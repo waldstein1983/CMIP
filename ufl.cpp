@@ -112,26 +112,27 @@ void initSubModel() {
         for (int i = 1; i <= numFacility; i++) {
             string varName = "x_" + i;
             varName.append("_" + j);
-            subCovers[i][j] = XPRBnewvar(customer, XPRB_PL, varName.c_str(), 0, DBL_MAX);
+            subCovers[i][j] = XPRBnewvar(customer, XPRB_PL, XPRBnewname("x_%d_%d", i, j), 0, DBL_MAX);
         }
 
-        XPRBctr obj = XPRBnewctr(customer, "Obj of Sub problem " + j, XPRB_N);
+        XPRBctr obj = XPRBnewctr(customer, XPRBnewname("Obj of Sub problem %d", j), XPRB_N);
         for (int i = 1; i <= numFacility; i++) {
             XPRBaddterm(obj, subCovers[i][j], servingCosts[i][j]);
         }
         XPRBsetobj(customer, obj);
 
-        XPRBctr fulfill = XPRBnewctr(customer, "Fullfill of Sub problem " + j, XPRB_E);
+        XPRBctr fulfill = XPRBnewctr(customer, XPRBnewname("Fullfill of Sub problem %d", j), XPRB_E);
         for (int i = 1; i <= numFacility; i++) {
             XPRBaddterm(fulfill, subCovers[i][j], 1.0);
         }
         XPRBsetrange(fulfill, 1, 1);
 
         for (int i = 1; i <= numFacility; i++) {
-            XPRBctr ctr = XPRBnewctr(customer, "Bounding with facility " + i, XPRB_L);
+            XPRBctr ctr = XPRBnewctr(customer, XPRBnewname("Bounding with facility %d", i), XPRB_L);
             XPRBaddterm(ctr, subCovers[i][j], 1);
             XPRBsetrange(ctr, -DBL_MAX, 0);
             subBoundingCtrs[j][i] = ctr;
+//            XPRBprintctr(ctr);
         }
 
         XPRBsetsense(customer, XPRB_MINIM);
@@ -203,13 +204,14 @@ void print() {
 
 bool addBendersCutForEachSubProblemToMaster() {
 
-    XPRBctr ctr;
-    ctr = NULL;
-    while ((ctr = XPRBgetnextctr(masterSolver, ctr)) != NULL) {
-        XPRBprintctr(ctr);
-    }
+//    XPRBctr ctr;
+//    ctr = NULL;
+//    while ((ctr = XPRBgetnextctr(masterSolver, ctr)) != NULL) {
+//        XPRBprintctr(ctr);
+//    }
+//    XPRBprob p = XPRBnewprob("");
 
-    XPRBcut cut[numCustomer];
+//    XPRBcut cut[numCustomer];
     bool newCut = false;
     for (int j = 1; j <= numCustomer; j++) {
         map<int, double> targetServingCosts;
@@ -249,8 +251,8 @@ bool addBendersCutForEachSubProblemToMaster() {
 //        string cutId("Benders Cut " + j);
 //        cutId += " ";
 //        cutId += globalBendersCutId;
-        XPRBctr cut = XPRBnewctr(masterSolver, "benders cut " + globalBendersCutId, XPRB_G);
-
+        XPRBctr cut = XPRBnewctr(masterSolver, XPRBnewname("benders cut %d", globalBendersCutId), XPRB_G);
+//        XPRBprintctr(cut);
 //        XPRBcut cc = masterSolver.newCut(0);
 //        XPRBcut cut = XPRBnewcut(masterSolver, XPRB_G, globalBendersCutId);
 
@@ -264,7 +266,9 @@ bool addBendersCutForEachSubProblemToMaster() {
                 if (servingCosts[critical][j] - pairs[i].second != 0) {
 //                    cut += masterLocations[1];
 
+//                    XPRBvar loca = masterLocations[pairs[i].first];
                     XPRBaddterm(cut, masterLocations[pairs[i].first], servingCosts[critical][j] - pairs[i].second);
+//                    XPRBprintctr(cut);
 //                    XPRBaddcutterm(cut, masterLocations[pairs[i].first], servingCosts[critical][j] - pairs[i].second);
 //                    cut.addTerm();
                 }
@@ -272,9 +276,12 @@ bool addBendersCutForEachSubProblemToMaster() {
         }
 
         XPRBaddterm(cut, masterAlphas[j], 1.0);
+        double bound = servingCosts[critical][j];
+        XPRBsetrange(cut, bound, 1000);
 
-        XPRBsetrange(cut, servingCosts[critical][j], DBL_MAX);
-
+//        double curLB, curUB;
+//        XPRBgetrange(cut, &curLB, &curUB);
+//
         XPRBprintctr(cut);
 //        XPRBaddcutterm(cut, NULL, servingCosts[critical][j]);
 //        XPRBset
@@ -304,6 +311,12 @@ void bendersDecomposition() {
     solveSubModel();
     updateUB();
     bool newCutAdded = addBendersCutForEachSubProblemToMaster();
+
+    XPRBctr ctr;
+    ctr = NULL;
+    while ((ctr = XPRBgetnextctr(masterSolver, ctr)) != NULL) {
+        XPRBprintctr(ctr);
+    }
     if (newCutAdded == false)
         return;
     while (abs(ub - lb) >= 1) {
@@ -322,7 +335,7 @@ void bendersDecomposition() {
 
 int main() {
 //    std::cout << "Hello, World!" << std::endl;
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/simpleExample2.txt";
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/simpleExample.txt";
     readFromFile(fileName);
     bendersDecomposition();
     return 0;
