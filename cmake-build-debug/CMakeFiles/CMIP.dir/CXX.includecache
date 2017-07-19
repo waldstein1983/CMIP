@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/local/ANT/baohuaw/CLionProjects/CMIP/ufl.cpp
+iostream
+-
+string
+-
+xprb.h
+-
+map
+-
+cfloat
+-
+vector
+-
+fstream
+-
+sstream
+-
+iterator
+-
+xprb_cpp.h
+-
+cmath
+-
+algorithm
+-
+
+/opt/xpressmp/include/xprb.h
+
+/opt/xpressmp/include/xprb_cpp.h
+xprb.h
+/opt/xpressmp/include/xprb.h
+
