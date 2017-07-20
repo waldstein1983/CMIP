@@ -4,8 +4,9 @@ project(CMIP)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-        ufl.cpp
+#        ufl_bd.cpp
 #        xbcutstk.cxx
+        ufl_bc.cpp
         )
 
 set(XPRESS_INC_DIR /opt/xpressmp/include)

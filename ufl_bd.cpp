@@ -1,20 +1,16 @@
 #include <iostream>
-
-
-#include <string>
+#include <chrono>
 #include <xprb.h>
 #include <map>
-#include <cfloat>
 #include <vector>
 #include <fstream>
 #include <sstream>
 #include <iterator>
-#include <xprb_cpp.h>
 #include <cmath>
 #include <algorithm>
 
 using namespace std;
-//using namespace ::dashoptimization;
+using namespace std::chrono;
 
 int numFacility;
 int numCustomer;
@@ -26,18 +22,21 @@ map<int, map<int, XPRBvar>> subCovers;
 
 map<int, map<int, XPRBctr>> subBoundingCtrs;
 
-double lb = -DBL_MAX;
-double ub = DBL_MAX;
-//vector<string> complicatingVarNames;
+const double MAX = 1000000;
+double lb = -MAX;
+double ub = MAX;
+
 map<int, double> openingCosts;
 map<int, map<int, double>> servingCosts;
 
 int globalBendersCutId = 1;
 map<int, vector<int>> customerCriticals;
-int INT_GAP = 0.00001;
+const double INT_GAP = 0.00001;
 
 
-map<string, map<int, double>> boundingVarSubDuals;
+map<int, map<int, double>> boundingVarSubDuals;
+
+void print();
 
 void readFromFile(string fileName) {
     ifstream in(fileName);
@@ -84,25 +83,27 @@ void initMaster() {
     }
 
     for (int j = 1; j <= numCustomer; j++) {
-        masterAlphas[j] = XPRBnewvar(masterSolver, XPRB_PL, XPRBnewname("alpha_%d", j), 0, DBL_MAX);
+        masterAlphas[j] = XPRBnewvar(masterSolver, XPRB_PL, XPRBnewname("alpha_%d", j), 0, MAX);
     }
 
     XPRBctr obj = XPRBnewctr(masterSolver, "Obj", XPRB_N);
     for (int i = 1; i <= numFacility; i++) {
         XPRBaddterm(obj, masterLocations[i], openingCosts[i]);
     }
+
+    for (int j = 1; j <= numCustomer; j++) {
+        XPRBaddterm(obj, masterAlphas[j], 1.0);
+    }
     XPRBsetobj(masterSolver, obj);
 
-    XPRBctr facilityExistence = XPRBnewctr(masterSolver, "Facility_existence", XPRB_E);
+    XPRBctr facilityExistence = XPRBnewctr(masterSolver, "Facility_existence", XPRB_G);
     for (int i = 1; i <= numFacility; i++) {
         XPRBaddterm(facilityExistence, masterLocations[i], 1.0);
     }
-    XPRBsetrange(facilityExistence, 1, 1);
-//    XPRBprintctr(facilityExistence);
-//    masterSolver.newCtr("Facility_exist", facilityExistence >= 1);
-//    masterSolver.setSense(XPRB_MINIM);
+
+    XPRBaddterm(facilityExistence, NULL, 1.0);
     XPRBsetsense(masterSolver, XPRB_MINIM);
-    XPRBsetmsglevel(masterSolver, 1);
+//    XPRBsetmsglevel(masterSolver, 1);
 }
 
 void initSubModel() {
@@ -110,9 +111,7 @@ void initSubModel() {
         XPRBprob customer = XPRBnewprob("Sub");
         XPRBsetmsglevel(customer, 1);
         for (int i = 1; i <= numFacility; i++) {
-            string varName = "x_" + i;
-            varName.append("_" + j);
-            subCovers[i][j] = XPRBnewvar(customer, XPRB_PL, XPRBnewname("x_%d_%d", i, j), 0, DBL_MAX);
+            subCovers[i][j] = XPRBnewvar(customer, XPRB_PL, XPRBnewname("x_%d_%d", i, j), 0, MAX);
         }
 
         XPRBctr obj = XPRBnewctr(customer, XPRBnewname("Obj of Sub problem %d", j), XPRB_N);
@@ -125,14 +124,13 @@ void initSubModel() {
         for (int i = 1; i <= numFacility; i++) {
             XPRBaddterm(fulfill, subCovers[i][j], 1.0);
         }
-        XPRBsetrange(fulfill, 1, 1);
+        XPRBaddterm(fulfill, NULL, 1.0);
 
         for (int i = 1; i <= numFacility; i++) {
             XPRBctr ctr = XPRBnewctr(customer, XPRBnewname("Bounding with facility %d", i), XPRB_L);
             XPRBaddterm(ctr, subCovers[i][j], 1);
-            XPRBsetrange(ctr, -DBL_MAX, 0);
+            XPRBaddterm(ctr, NULL, 0);
             subBoundingCtrs[j][i] = ctr;
-//            XPRBprintctr(ctr);
         }
 
         XPRBsetsense(customer, XPRB_MINIM);
@@ -142,47 +140,23 @@ void initSubModel() {
 
 void solveMaster() {
     XPRBmipoptimise(masterSolver, "");
-//    masterSolver.mipOptimize();
     lb = XPRBgetobjval(masterSolver);
-//    lb = masterSolver.getObjVal();
-//    for (int i = 1; i <= numFacility; i++) {
-//        cout << "facility " << i << " : " << XPRBgetsol(masterLocations[i]) << endl;
-//    }
+//    print();
 }
 
 bool solveSubModel() {
-    for (map<int, XPRBprob>::iterator it = subSolvers.begin(); it != subSolvers.end(); ++it) {
+    for (auto it = subSolvers.begin(); it != subSolvers.end(); ++it) {
         for (int i = 1; i <= numFacility; i++) {
-            XPRBsetrange(subBoundingCtrs[it->first][i], -DBL_MAX, XPRBgetsol(masterLocations[i]));
+            XPRBsetrange(subBoundingCtrs[it->first][i], -MAX, XPRBgetsol(masterLocations[i]));
         }
 
         XPRBlpoptimise(subSolvers[it->first], "");
         for (int i = 1; i <= numFacility; i++) {
             string ctrName = "Bounding with y_" + i;
-            boundingVarSubDuals["y_" + i][it->first] = XPRBgetdual(subBoundingCtrs[it->first][i]);
+            boundingVarSubDuals[i][it->first] = XPRBgetdual(subBoundingCtrs[it->first][i]);
         }
     }
     return true;
-}
-
-void updateUB() {
-    double currentUb = 0;
-
-    for (int i = 1; i <= numFacility; i++) {
-        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
-            currentUb += XPRBgetsol(masterLocations[i]) * openingCosts[i];
-        }
-    }
-
-    for (int i = 1; i <= numFacility; i++) {
-        for (int j = 1; j <= numCustomer; j++) {
-            if (abs(XPRBgetsol(subCovers[i][j]) - 1) <= INT_GAP) {
-                currentUb += XPRBgetsol(subCovers[i][j]) * servingCosts[i][j];
-            }
-        }
-    }
-
-    ub = currentUb;
 }
 
 void print() {
@@ -202,16 +176,29 @@ void print() {
 
 }
 
+void updateUB() {
+    double currentUb = 0;
+
+    for (int i = 1; i <= numFacility; i++) {
+        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
+            currentUb += XPRBgetsol(masterLocations[i]) * openingCosts[i];
+        }
+    }
+
+    for (int i = 1; i <= numFacility; i++) {
+        for (int j = 1; j <= numCustomer; j++) {
+            if (abs(XPRBgetsol(subCovers[i][j]) - 1) <= INT_GAP) {
+                currentUb += XPRBgetsol(subCovers[i][j]) * servingCosts[i][j];
+            }
+        }
+    }
+
+//    print();
+    ub = currentUb;
+}
+
+
 bool addBendersCutForEachSubProblemToMaster() {
-
-//    XPRBctr ctr;
-//    ctr = NULL;
-//    while ((ctr = XPRBgetnextctr(masterSolver, ctr)) != NULL) {
-//        XPRBprintctr(ctr);
-//    }
-//    XPRBprob p = XPRBnewprob("");
-
-//    XPRBcut cut[numCustomer];
     bool newCut = false;
     for (int j = 1; j <= numCustomer; j++) {
         map<int, double> targetServingCosts;
@@ -220,8 +207,8 @@ bool addBendersCutForEachSubProblemToMaster() {
         }
 
         vector<pair<int, double>> pairs;
-        for (auto itr = targetServingCosts.begin(); itr != targetServingCosts.end(); ++itr)
-            pairs.push_back(*itr);
+        for (auto &targetServingCost : targetServingCosts)
+            pairs.push_back(targetServingCost);
 
         sort(pairs.begin(), pairs.end(), [=](std::pair<int, double> &a, std::pair<int, double> &b) {
                  return a.second < b.second;
@@ -231,11 +218,10 @@ bool addBendersCutForEachSubProblemToMaster() {
         int temp = 0;
 
         int critical = -1;
-//        map<string, Double> cutTerms = new LinkedHashMap<>();
-        for (int i = 0; i < pairs.size(); i++) {
-            temp += XPRBgetsol(masterLocations[pairs[i].first]);
-            if (temp >= 1 && temp - XPRBgetsol(masterLocations[pairs[i].first]) < 1) {
-                critical = pairs[i].first;
+        for (auto &pair : pairs) {
+            temp += XPRBgetsol(masterLocations[pair.first]);
+            if (temp >= 1 && temp - XPRBgetsol(masterLocations[pair.first]) < 1) {
+                critical = pair.first;
                 break;
             }
         }
@@ -247,96 +233,98 @@ bool addBendersCutForEachSubProblemToMaster() {
             }
         }
         customerCriticals[j].push_back(critical);
-
-//        string cutId("Benders Cut " + j);
-//        cutId += " ";
-//        cutId += globalBendersCutId;
         XPRBctr cut = XPRBnewctr(masterSolver, XPRBnewname("benders cut %d", globalBendersCutId), XPRB_G);
-//        XPRBprintctr(cut);
-//        XPRBcut cc = masterSolver.newCut(0);
-//        XPRBcut cut = XPRBnewcut(masterSolver, XPRB_G, globalBendersCutId);
-
-//        XPRBexpr cut;
-//        cut += masterLocations[1];
         globalBendersCutId++;
         for (int i = 0; i < pairs.size(); i++) {
             if (pairs[i].first == critical) {
                 break;
             } else {
                 if (servingCosts[critical][j] - pairs[i].second != 0) {
-//                    cut += masterLocations[1];
-
-//                    XPRBvar loca = masterLocations[pairs[i].first];
                     XPRBaddterm(cut, masterLocations[pairs[i].first], servingCosts[critical][j] - pairs[i].second);
-//                    XPRBprintctr(cut);
-//                    XPRBaddcutterm(cut, masterLocations[pairs[i].first], servingCosts[critical][j] - pairs[i].second);
-//                    cut.addTerm();
                 }
             }
         }
 
         XPRBaddterm(cut, masterAlphas[j], 1.0);
-        double bound = servingCosts[critical][j];
-        XPRBsetrange(cut, bound, 1000);
-
-//        double curLB, curUB;
-//        XPRBgetrange(cut, &curLB, &curUB);
-//
-        XPRBprintctr(cut);
-//        XPRBaddcutterm(cut, NULL, servingCosts[critical][j]);
-//        XPRBset
-//        XPRBsetrange(cut, servingCosts[critical][j], DBL_MAX);
-//        string varName = "alpha_" + j;
-//        cut.addTerm(masterAlphas[j], 1.0);
-
-//        string cutName = "Benders cut " + j;
-//        cutName.append(" " + globalBendersCutId);
-//        masterSolver.newCtr(cutName.c_str(), cut >= servingCosts[critical][j]);
+        XPRBaddterm(cut, NULL, servingCosts[critical][j]);
         newCut = true;
     }
+    return newCut;
+}
 
-//    XPRBctr ctr;
-//    ctr = NULL;
-//    while((ctr = XPRBgetnextctr(masterSolver, ctr)) != NULL){
-//        XPRBprintctr(ctr);
-//    }
-//    XPRBgetc
+void destroy() {
+    XPRBdelprob(masterSolver);
+    for (auto &subSolver : subSolvers) {
+        XPRBdelprob(subSolver.second);
+    }
+    XPRBfinish();
+
+}
+
+bool addBendersCutForEachSubProblemToMaster2() {
+    bool newCut = false;
+    for (int j = 1; j <= numCustomer; j++) {
+        double sumDual  = 0;
+        for(int i = 1;i <= numFacility;i++){
+//            cout << boundingVarSubDuals[i][j] << " * " << XPRBgetsol(masterLocations[i]) << endl;
+            sumDual += boundingVarSubDuals[i][j] * XPRBgetsol(masterLocations[i]);
+        }
+
+        XPRBctr cut = XPRBnewctr(masterSolver, XPRBnewname("benders cut %d", globalBendersCutId), XPRB_G);
+
+        for(int i = 1;i <= numFacility;i++){
+            XPRBaddterm(cut, masterLocations[i], -boundingVarSubDuals[i][j]);
+//            cout <<  XPRBgetsol(masterLocations[i]) << endl;
+//            sumDual += boundingVarSubDuals[i][j] * XPRBgetsol(masterLocations[i]);
+        }
+        XPRBaddterm(cut, masterAlphas[j],1);
+        XPRBaddterm(cut, nullptr, XPRBgetobjval(subSolvers[j]) - sumDual);
+//        XPRBprintctr(cut);
+        newCut = true;
+    }
     return newCut;
 }
 
 void bendersDecomposition() {
+    XPRBsetmsglevel(masterSolver, 1);
     initMaster();
     initSubModel();
     solveMaster();
     solveSubModel();
     updateUB();
-    bool newCutAdded = addBendersCutForEachSubProblemToMaster();
-
-    XPRBctr ctr;
-    ctr = NULL;
-    while ((ctr = XPRBgetnextctr(masterSolver, ctr)) != NULL) {
-        XPRBprintctr(ctr);
-    }
-    if (newCutAdded == false)
+    bool newCutAdded = addBendersCutForEachSubProblemToMaster2();
+    if (!newCutAdded)
         return;
     while (abs(ub - lb) >= 1) {
-        cout << lb << " , " << ub << endl;
+        cout << "$$$$$$$$$$$$$$   " << lb << " , " << ub << endl;
         solveMaster();
         solveSubModel();
         updateUB();
-        newCutAdded = addBendersCutForEachSubProblemToMaster();
-        if (newCutAdded == false)
+        newCutAdded = addBendersCutForEachSubProblemToMaster2();
+        if (!newCutAdded)
             break;
     }
     cout << "UB = " << ub << endl;
     print();
+
+
 }
 
 
 int main() {
-//    std::cout << "Hello, World!" << std::endl;
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/simpleExample.txt";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/simpleExample2.txt";
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-2";
     readFromFile(fileName);
+    milliseconds start = duration_cast<milliseconds>(
+            system_clock::now().time_since_epoch()
+    );
     bendersDecomposition();
+
+    milliseconds end = duration_cast<milliseconds>(
+            system_clock::now().time_since_epoch()
+    );
+
+    cout << "Time " << (end.count() - start.count()) << endl;
+    destroy();
     return 0;
 }

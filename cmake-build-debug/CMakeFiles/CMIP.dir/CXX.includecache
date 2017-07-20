@@ -1,4 +1,4 @@
-#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
 
 #IncludeRegexScan: ^.*$
 
@@ -6,16 +6,14 @@
 
 #IncludeRegexTransform: 
 
-/home/local/ANT/baohuaw/CLionProjects/CMIP/ufl.cpp
+/home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc.cpp
 iostream
 -
-string
+chrono
 -
 xprb.h
 -
 map
--
-cfloat
 -
 vector
 -
@@ -25,16 +23,10 @@ sstream
 -
 iterator
 -
-xprb_cpp.h
--
 cmath
 -
 algorithm
 -
 
-/opt/xpressmp/include/xprb.h
-
-/opt/xpressmp/include/xprb_cpp.h
-xprb.h
 /opt/xpressmp/include/xprb.h
 
