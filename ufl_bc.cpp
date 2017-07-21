@@ -18,8 +18,9 @@ using namespace std::chrono;
 int nodeNum = 0;
 
 #define INT_GAP 0.00001
-#define LAMDA 0.2
-#define DELTA  2 * INT_GAP
+
+double LAMDA = 0.2;
+double DELTA = 2 * INT_GAP;
 
 struct BranchingConstraint {
     string name;
@@ -363,8 +364,8 @@ bool isMasterSolutionAndSubSolutionInteger() {
     }
 
     for (int i = 1; i <= numFacility; i++) {
-        for(int j = 1;j <= numCustomer;j++){
-            if (abs(XPRBgetsol(subCovers[i][j]) - round(XPRBgetsol(subCovers[i][j]))) > INT_GAP){
+        for (int j = 1; j <= numCustomer; j++) {
+            if (abs(XPRBgetsol(subCovers[i][j]) - round(XPRBgetsol(subCovers[i][j]))) > INT_GAP) {
 //                cout << XPRBgetsol(subCovers[i][j]) << endl;
 //                cout << round(XPRBgetsol(subCovers[i][j])) << endl;
                 return false;
@@ -399,6 +400,7 @@ void bendersDecomposition() {
 
 void bendersDecompositionWithInOut() {
 
+    int LBnoImproveStep = 0;
     double nodeLB = 0, nodeUB = MAX;
 //    while (abs(nodeUB - nodeLB) > 1) {
     while (nodeUB - nodeLB > 1) {
@@ -414,15 +416,39 @@ void bendersDecompositionWithInOut() {
         }
 
         map<int, double> separator = stabilize();
-        nodeLB = XPRBgetobjval(masterSolver);
+
+        if (XPRBgetobjval(masterSolver) == nodeLB) {
+            LBnoImproveStep++;
+
+            if(LBnoImproveStep == 5){
+                if(LAMDA != 1)
+                    LAMDA = 1;
+                else{
+                    if(DELTA == 0.2){
+                        DELTA = 0;
+                    }else{
+                        break;
+                    }
+                }
+
+                LBnoImproveStep = 0;
+            }
+
+//            if(LAMDA == 1 && LBnoImproveStep == 5){
+//                DELTA = 0;
+//                LBnoImproveStep = 0;
+//            }
+//
+//            if(LAMDA == 1 && DELTA == 0 && LBnoImproveStep == 5){
+//                break;
+//            }
+        }else{
+            LBnoImproveStep = 0;
+            nodeLB = XPRBgetobjval(masterSolver);
+        }
+
         solveSubModelWithSeprator(separator);
         nodeUB = computeTotalCost();
-//        if (isMasterSolutionInteger()) {
-//            solveSubModel();
-//            double cost = computeTotalCost();
-//            if (nodeUB < ub)
-//                ub = nodeUB;
-//        }
         if (nodeUB - nodeLB <= 1)
             break;
 
@@ -625,18 +651,18 @@ int main() {
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/50/50.1";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/150/150.5";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/200/200.10";
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-5";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-5";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/b/gs250b-3";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/500/a/gs500a-2";
-//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/750/a/gs750a-1";
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/750/a/gs750a-1";
     readFromFile(fileName);
     milliseconds start = duration_cast<milliseconds>(
             system_clock::now().time_since_epoch()
     );
 //    bendersDecomposition();
 
-    branchAndCut();
-//    branchAndCutWithInOut();
+//    branchAndCut();
+    branchAndCutWithInOut();
     milliseconds end = duration_cast<milliseconds>(
             system_clock::now().time_since_epoch()
     );
