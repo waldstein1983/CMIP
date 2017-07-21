@@ -17,6 +17,10 @@ using namespace std::chrono;
 
 int nodeNum = 0;
 
+#define INT_GAP 0.00001
+#define LAMDA 0.2
+#define DELTA  2 * INT_GAP
+
 struct BranchingConstraint {
     string name;
     int branchingLocationId;
@@ -41,8 +45,6 @@ map<int, map<int, XPRBvar>> subCovers;
 
 map<int, map<int, XPRBctr>> subBoundingCtrs;
 
-//const double MAX = 10000000000;
-//double lb = -MAX;
 double ub = MAX;
 
 map<int, double> openingCosts;
@@ -50,14 +52,46 @@ map<int, map<int, double>> servingCosts;
 
 int globalBendersCutId = 1;
 map<int, vector<int>> customerCriticals;
-const double INT_GAP = 0.00001;
+
+map<int, double> yy;
 
 //facility -> customer -> dual
 map<int, map<int, double>> boundingVarSubDuals;
 
 void print();
 
-void readFromFile(string fileName) {
+map<int, double> stabilize() {
+    for (int i = 1; i <= numFacility; i++) {
+        double temp = (XPRBgetsol(masterLocations[i]) + yy[i]) * 0.5;
+        yy[i] = temp;
+    }
+    map<int, double> separator;
+    for (int i = 1; i <= numFacility; i++) {
+        double temp = LAMDA * XPRBgetsol(masterLocations[i]) + (1 - LAMDA) * yy[i] + DELTA;
+        separator[i] = temp;
+    }
+    return separator;
+}
+
+void addBendersCutWithSeparator(map<int, double> separator) {
+    for (int j = 1; j <= numCustomer; j++) {
+        double sumDual = 0;
+        for (int i = 1; i <= numFacility; i++) {
+//            sumDual += boundingVarSubDuals[i][j] * XPRBgetsol(masterLocations[i]);
+            sumDual += boundingVarSubDuals[i][j] * separator[i];
+        }
+
+        XPRBctr cut = XPRBnewctr(masterSolver, XPRBnewname("benders cut %d", globalBendersCutId), XPRB_G);
+
+        for (int i = 1; i <= numFacility; i++) {
+            XPRBaddterm(cut, masterLocations[i], -boundingVarSubDuals[i][j]);
+        }
+        XPRBaddterm(cut, masterAlphas[j], 1);
+        XPRBaddterm(cut, nullptr, XPRBgetobjval(subSolvers[j]) - sumDual);
+    }
+}
+
+void readFromFile(const string &fileName) {
     ifstream in(fileName);
     if (!in) {
         cout << "Cannot open input file.\n";
@@ -143,12 +177,12 @@ void initSubModel() {
         for (int i = 1; i <= numFacility; i++) {
             XPRBaddterm(fulfill, subCovers[i][j], 1.0);
         }
-        XPRBaddterm(fulfill, NULL, 1.0);
+        XPRBaddterm(fulfill, nullptr, 1.0);
 
         for (int i = 1; i <= numFacility; i++) {
             XPRBctr ctr = XPRBnewctr(customer, XPRBnewname("Bounding with facility %d", i), XPRB_L);
             XPRBaddterm(ctr, subCovers[i][j], 1);
-            XPRBaddterm(ctr, NULL, 0);
+            XPRBaddterm(ctr, nullptr, 0);
             subBoundingCtrs[j][i] = ctr;
         }
 
@@ -167,6 +201,21 @@ bool solveSubModel() {
     for (auto it = subSolvers.begin(); it != subSolvers.end(); ++it) {
         for (int i = 1; i <= numFacility; i++) {
             XPRBsetrange(subBoundingCtrs[it->first][i], -MAX, XPRBgetsol(masterLocations[i]));
+        }
+
+        XPRBlpoptimise(subSolvers[it->first], "");
+        for (int i = 1; i <= numFacility; i++) {
+            string ctrName = "Bounding with y_" + i;
+            boundingVarSubDuals[i][it->first] = XPRBgetdual(subBoundingCtrs[it->first][i]);
+        }
+    }
+    return true;
+}
+
+bool solveSubModelWithSeprator(map<int, double> seprator) {
+    for (auto it = subSolvers.begin(); it != subSolvers.end(); ++it) {
+        for (int i = 1; i <= numFacility; i++) {
+            XPRBsetrange(subBoundingCtrs[it->first][i], -MAX, seprator[i]);
         }
 
         XPRBlpoptimise(subSolvers[it->first], "");
@@ -251,7 +300,7 @@ void addOptimalityCut() {
 
     }
     for (int i = 1; i < numFacility; i++) {
-        if(abs(XPRBgetsol(masterLocations[i]) - 0) <= INT_GAP){
+        if (abs(XPRBgetsol(masterLocations[i]) - 0) <= INT_GAP) {
             XPRBaddterm(cut, masterLocations[i], sumServingCost);
         }
     }
@@ -306,10 +355,29 @@ bool isMasterSolutionInteger() {
     return true;
 }
 
+bool isMasterSolutionAndSubSolutionInteger() {
+    for (int i = 1; i <= numFacility; i++) {
+        if (abs(XPRBgetsol(masterLocations[i]) - round(XPRBgetsol(masterLocations[i]))) <= INT_GAP)
+            continue;
+        return false;
+    }
+
+    for (int i = 1; i <= numFacility; i++) {
+        for(int j = 1;j <= numCustomer;j++){
+            if (abs(XPRBgetsol(subCovers[i][j]) - round(XPRBgetsol(subCovers[i][j]))) > INT_GAP){
+//                cout << XPRBgetsol(subCovers[i][j]) << endl;
+//                cout << round(XPRBgetsol(subCovers[i][j])) << endl;
+                return false;
+            }
+        }
+//        return false;
+    }
+    return true;
+}
+
 void bendersDecomposition() {
 
-    double nodeLB = 0;
-    double nodeUB = MAX;
+    double nodeLB = 0, nodeUB = MAX;
     while (abs(nodeUB - nodeLB) > 1) {
         if (XPRBgetobjval(masterSolver) > ub) {
             break;
@@ -317,14 +385,48 @@ void bendersDecomposition() {
         nodeLB = XPRBgetobjval(masterSolver);
         solveSubModel();
         nodeUB = computeTotalCost();
-        if (isMasterSolutionInteger() ) {
-            addOptimalityCut();
-            if(nodeUB < ub)
+        if (isMasterSolutionInteger()) {
+//            addOptimalityCut();
+            if (nodeUB < ub)
                 ub = nodeUB;
         }
         if (abs(nodeUB - nodeLB) <= 1)
             break;
         addBendersCutForEachSubProblemToMaster();
+        XPRBlpoptimise(masterSolver, "");
+    }
+}
+
+void bendersDecompositionWithInOut() {
+
+    double nodeLB = 0, nodeUB = MAX;
+//    while (abs(nodeUB - nodeLB) > 1) {
+    while (nodeUB - nodeLB > 1) {
+        if (XPRBgetobjval(masterSolver) > ub) {
+            break;
+        }
+
+        if (isMasterSolutionInteger()) {
+            solveSubModel();
+            double cost = computeTotalCost();
+            if (cost < ub)
+                ub = cost;
+        }
+
+        map<int, double> separator = stabilize();
+        nodeLB = XPRBgetobjval(masterSolver);
+        solveSubModelWithSeprator(separator);
+        nodeUB = computeTotalCost();
+//        if (isMasterSolutionInteger()) {
+//            solveSubModel();
+//            double cost = computeTotalCost();
+//            if (nodeUB < ub)
+//                ub = nodeUB;
+//        }
+        if (nodeUB - nodeLB <= 1)
+            break;
+
+        addBendersCutWithSeparator(separator);
         XPRBlpoptimise(masterSolver, "");
     }
 }
@@ -370,12 +472,12 @@ void branching(BranchingConstraintSet set) {
 //    }
 
     double gapToHalf = DBL_MAX;
-    for(int i = 1;i <= numFacility;i++){
-        if (abs(XPRBgetsol(masterLocations[i]) - round(XPRBgetsol(masterLocations[i]))) <= INT_GAP){
+    for (int i = 1; i <= numFacility; i++) {
+        if (abs(XPRBgetsol(masterLocations[i]) - round(XPRBgetsol(masterLocations[i]))) <= INT_GAP) {
             continue;
         }
-        double fractional = XPRBgetsol(masterLocations[i]) - (int)XPRBgetsol(masterLocations[i]);
-        if (abs(fractional - 0.5) < gapToHalf){
+        double fractional = XPRBgetsol(masterLocations[i]) - (int) XPRBgetsol(masterLocations[i]);
+        if (abs(fractional - 0.5) < gapToHalf) {
             gapToHalf = abs(fractional - 0.5);
             targetBranchingLocationId = i;
         }
@@ -458,13 +560,75 @@ void branchAndCut() {
     cout << "UB = " << ub << endl;
 }
 
+void branchAndCutWithInOut() {
+    for (int i = 1; i <= numFacility; i++) {
+        yy[i] = 1.0;
+    }
+
+    XPRBsetmsglevel(masterSolver, 1);
+    initMaster();
+    initSubModel();
+
+    XPRBlpoptimise(masterSolver, "");
+    bendersDecompositionWithInOut();
+
+    if (isMasterSolutionInteger()) {
+        cout << "UB = " << ub << " at the root node " << endl;
+        return;
+    }
+
+    BranchingConstraintSet target = {nodeNum, {}};
+    branching(target);
+
+    int step = 1;
+    while (!branchingNodes.empty()) {
+        if (step % 1 == 0) {
+            cout << ub << "   node size " << branchingNodes.size() << " step = " << step << endl;
+        }
+        target = branchingNodes[0];
+        branchingNodes.erase(branchingNodes.begin());
+
+        for (auto &branching : target.branchingCons) {
+            if (branching.ctrType == 0) {
+                XPRBctr ctr = XPRBnewctr(masterSolver, branching.name.c_str(), XPRB_L);
+                XPRBaddterm(ctr, masterLocations[branching.branchingLocationId], 1);
+                XPRBaddterm(ctr, nullptr, branching.bound);
+
+            } else if (branching.ctrType == 1) {
+                XPRBctr ctr = XPRBnewctr(masterSolver, branching.name.c_str(), XPRB_G);
+                XPRBaddterm(ctr, masterLocations[branching.branchingLocationId], 1);
+                XPRBaddterm(ctr, nullptr, branching.bound);
+            }
+        }
+
+        XPRBlpoptimise(masterSolver, "");
+
+        if (XPRBgetlpstat(masterSolver) == XPRB_LP_OPTIMAL) {
+            if (XPRBgetobjval(masterSolver) < ub && abs(XPRBgetobjval(masterSolver) - ub) >= INT_GAP) {
+                bendersDecompositionWithInOut();
+                branching(target);
+            }
+        }
+
+        for (auto &branching : target.branchingCons) {
+            auto branchingCtr = (XPRBctr) XPRBgetbyname(masterSolver, branching.name.c_str(), XPRB_CTR);
+            XPRBdelctr(branchingCtr);
+        }
+        step++;
+    }
+    cout << "UB = " << ub << endl;
+}
+
 
 int main() {
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/simpleExample2.txt";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/50/50.1";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/150/150.5";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/200/200.10";
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-1";
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-5";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/b/gs250b-3";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/500/a/gs500a-2";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/750/a/gs750a-1";
     readFromFile(fileName);
     milliseconds start = duration_cast<milliseconds>(
             system_clock::now().time_since_epoch()
@@ -472,6 +636,7 @@ int main() {
 //    bendersDecomposition();
 
     branchAndCut();
+//    branchAndCutWithInOut();
     milliseconds end = duration_cast<milliseconds>(
             system_clock::now().time_since_epoch()
     );
