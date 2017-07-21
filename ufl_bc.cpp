@@ -8,6 +8,9 @@
 #include <iterator>
 #include <cmath>
 #include <algorithm>
+#include <cfloat>
+
+#define MAX DBL_MAX
 
 using namespace std;
 using namespace std::chrono;
@@ -38,8 +41,8 @@ map<int, map<int, XPRBvar>> subCovers;
 
 map<int, map<int, XPRBctr>> subBoundingCtrs;
 
-const double MAX = 10000000000;
-double lb = -MAX;
+//const double MAX = 10000000000;
+//double lb = -MAX;
 double ub = MAX;
 
 map<int, double> openingCosts;
@@ -156,7 +159,7 @@ void initSubModel() {
 
 void solveMaster() {
     XPRBmipoptimise(masterSolver, "");
-    lb = XPRBgetobjval(masterSolver);
+//    lb = XPRBgetobjval(masterSolver);
 //    print();
 }
 
@@ -184,7 +187,7 @@ void print() {
     }
 
     for (int j = 1; j <= numCustomer; j++) {
-        cout << "alpha " << j <<XPRBgetsol(masterAlphas[j]) << endl;
+        cout << "alpha " << j << XPRBgetsol(masterAlphas[j]) << endl;
     }
 
     for (int i = 1; i <= numFacility; i++) {
@@ -196,20 +199,22 @@ void print() {
     }
 }
 
-double computeTotalCost(){
+double computeTotalCost() {
     double currentUb = 0;
 
     for (int i = 1; i <= numFacility; i++) {
-        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
-            currentUb += XPRBgetsol(masterLocations[i]) * openingCosts[i];
-        }
+        currentUb += XPRBgetsol(masterLocations[i]) * openingCosts[i];
+//        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
+//
+//        }
     }
 
     for (int i = 1; i <= numFacility; i++) {
         for (int j = 1; j <= numCustomer; j++) {
-            if (abs(XPRBgetsol(subCovers[i][j]) - 1) <= INT_GAP) {
-                currentUb += XPRBgetsol(subCovers[i][j]) * servingCosts[i][j];
-            }
+            currentUb += XPRBgetsol(subCovers[i][j]) * servingCosts[i][j];
+//            if (abs(XPRBgetsol(subCovers[i][j]) - 1) <= INT_GAP) {
+//                currentUb += XPRBgetsol(subCovers[i][j]) * servingCosts[i][j];
+//            }
         }
     }
     return currentUb;
@@ -233,28 +238,45 @@ void updateUB() {
     }
 
 //    print();
-    if(currentUb < ub)
+    if (currentUb < ub)
         ub = currentUb;
 }
 
+void addOptimalityCut() {
+    XPRBctr cut = XPRBnewctr(masterSolver, "Optimality cut", XPRB_G);
+    double sumServingCost = 0;
+    for (int j = 1; j <= numCustomer; j++) {
+        sumServingCost += XPRBgetobjval(subSolvers[j]);
+        XPRBaddterm(cut, masterAlphas[j], 1);
+
+    }
+    for (int i = 1; i < numFacility; i++) {
+        if(abs(XPRBgetsol(masterLocations[i]) - 0) <= INT_GAP){
+            XPRBaddterm(cut, masterLocations[i], sumServingCost);
+        }
+    }
+
+    XPRBaddterm(cut, nullptr, sumServingCost);
+//    XPRBprintctr(cut);
+}
 
 bool addBendersCutForEachSubProblemToMaster() {
     bool newCut = false;
     for (int j = 1; j <= numCustomer; j++) {
-        double sumDual  = 0;
-        for(int i = 1;i <= numFacility;i++){
+        double sumDual = 0;
+        for (int i = 1; i <= numFacility; i++) {
 //            cout << boundingVarSubDuals[i][j] << " * " << XPRBgetsol(masterLocations[i]) << endl;
             sumDual += boundingVarSubDuals[i][j] * XPRBgetsol(masterLocations[i]);
         }
 
         XPRBctr cut = XPRBnewctr(masterSolver, XPRBnewname("benders cut %d", globalBendersCutId), XPRB_G);
 
-        for(int i = 1;i <= numFacility;i++){
+        for (int i = 1; i <= numFacility; i++) {
             XPRBaddterm(cut, masterLocations[i], -boundingVarSubDuals[i][j]);
 //            cout <<  XPRBgetsol(masterLocations[i]) << endl;
 //            sumDual += boundingVarSubDuals[i][j] * XPRBgetsol(masterLocations[i]);
         }
-        XPRBaddterm(cut, masterAlphas[j],1);
+        XPRBaddterm(cut, masterAlphas[j], 1);
         XPRBaddterm(cut, nullptr, XPRBgetobjval(subSolvers[j]) - sumDual);
 //        XPRBprintctr(cut);
         newCut = true;
@@ -274,7 +296,7 @@ void destroy() {
 bool isMasterSolutionInteger() {
     for (int i = 1; i <= numFacility; i++) {
 //        if (abs(XPRBgetsol(masterLocations[i]) - 0) <= INT_GAP)
-        if(abs(XPRBgetsol(masterLocations[i]) - round(XPRBgetsol(masterLocations[i]))) <= INT_GAP)
+        if (abs(XPRBgetsol(masterLocations[i]) - round(XPRBgetsol(masterLocations[i]))) <= INT_GAP)
             continue;
 //        cout << XPRBgetsol(masterLocations[i]) << endl;
 //        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP)
@@ -295,10 +317,12 @@ void bendersDecomposition() {
         nodeLB = XPRBgetobjval(masterSolver);
         solveSubModel();
         nodeUB = computeTotalCost();
-        if(isMasterSolutionInteger() && nodeUB < ub){
-            ub = nodeUB;
+        if (isMasterSolutionInteger() ) {
+            addOptimalityCut();
+            if(nodeUB < ub)
+                ub = nodeUB;
         }
-        if(abs(nodeUB - nodeLB) <= 1)
+        if (abs(nodeUB - nodeLB) <= 1)
             break;
         addBendersCutForEachSubProblemToMaster();
         XPRBlpoptimise(masterSolver, "");
@@ -336,13 +360,26 @@ void buildBranchingConstraintSet(BranchingConstraintSet targetSet, int branching
 
 void branching(BranchingConstraintSet set) {
     int targetBranchingLocationId = 0;
-    for (int i = 1; i <= numFacility; i++) {
-        if(abs(XPRBgetsol(masterLocations[i]) - round(XPRBgetsol(masterLocations[i]))) <= INT_GAP)
-            continue;
-        targetBranchingLocationId = i;
-        break;
-    }
 
+
+//    for (int i = 1; i <= numFacility; i++) {
+//        if (abs(XPRBgetsol(masterLocations[i]) - round(XPRBgetsol(masterLocations[i]))) <= INT_GAP)
+//            continue;
+//        targetBranchingLocationId = i;
+//        break;
+//    }
+
+    double gapToHalf = DBL_MAX;
+    for(int i = 1;i <= numFacility;i++){
+        if (abs(XPRBgetsol(masterLocations[i]) - round(XPRBgetsol(masterLocations[i]))) <= INT_GAP){
+            continue;
+        }
+        double fractional = XPRBgetsol(masterLocations[i]) - (int)XPRBgetsol(masterLocations[i]);
+        if (abs(fractional - 0.5) < gapToHalf){
+            gapToHalf = abs(fractional - 0.5);
+            targetBranchingLocationId = i;
+        }
+    }
 
     if (targetBranchingLocationId == 0) {
         return;
@@ -359,13 +396,23 @@ void branchAndCut() {
     initSubModel();
 
     XPRBlpoptimise(masterSolver, "");
-//    print();
     bendersDecomposition();
 
-    if(isMasterSolutionInteger()){
+    if (isMasterSolutionInteger()) {
         cout << "UB = " << ub << " at the root node " << endl;
         return;
     }
+
+//    addOptimalityCut();
+//    XPRBlpoptimise(masterSolver, "");
+//
+//    if (isMasterSolutionInteger()) {
+//        double cost = computeTotalCost();
+//        if(cost < ub)
+//            ub = cost;
+//        cout << "UB = " << ub << " at the root node " << endl;
+//        return;
+//    }
 
     BranchingConstraintSet target = {nodeNum, {}};
     branching(target);
@@ -390,11 +437,12 @@ void branchAndCut() {
                 XPRBaddterm(ctr, nullptr, branching.bound);
             }
         }
+
         XPRBlpoptimise(masterSolver, "");
 
         if (XPRBgetlpstat(masterSolver) == XPRB_LP_OPTIMAL) {
-            print();
-            cout << XPRBgetobjval(masterSolver) << endl;
+//            print();
+//            cout << XPRBgetobjval(masterSolver) << endl;
             if (XPRBgetobjval(masterSolver) < ub && abs(XPRBgetobjval(masterSolver) - ub) >= INT_GAP) {
                 bendersDecomposition();
                 branching(target);
@@ -413,8 +461,10 @@ void branchAndCut() {
 
 int main() {
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/simpleExample2.txt";
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/150/150.1";
-//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-2";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/50/50.1";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/150/150.5";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/200/200.10";
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-1";
     readFromFile(fileName);
     milliseconds start = duration_cast<milliseconds>(
             system_clock::now().time_since_epoch()
