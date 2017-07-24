@@ -433,15 +433,6 @@ void bendersDecompositionWithInOut() {
 
                 LBnoImproveStep = 0;
             }
-
-//            if(LAMDA == 1 && LBnoImproveStep == 5){
-//                DELTA = 0;
-//                LBnoImproveStep = 0;
-//            }
-//
-//            if(LAMDA == 1 && DELTA == 0 && LBnoImproveStep == 5){
-//                break;
-//            }
         }else{
             LBnoImproveStep = 0;
             nodeLB = XPRBgetobjval(masterSolver);
