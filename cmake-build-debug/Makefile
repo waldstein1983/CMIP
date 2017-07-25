@@ -123,6 +123,33 @@ CMIP/fast:
 	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/build
 .PHONY : CMIP/fast
 
+cfl_bc.o: cfl_bc.cpp.o
+
+.PHONY : cfl_bc.o
+
+# target to build an object file
+cfl_bc.cpp.o:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/cfl_bc.cpp.o
+.PHONY : cfl_bc.cpp.o
+
+cfl_bc.i: cfl_bc.cpp.i
+
+.PHONY : cfl_bc.i
+
+# target to preprocess a source file
+cfl_bc.cpp.i:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/cfl_bc.cpp.i
+.PHONY : cfl_bc.cpp.i
+
+cfl_bc.s: cfl_bc.cpp.s
+
+.PHONY : cfl_bc.s
+
+# target to generate assembly for a file
+cfl_bc.cpp.s:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/cfl_bc.cpp.s
+.PHONY : cfl_bc.cpp.s
+
 ufl_bc.o: ufl_bc.cpp.o
 
 .PHONY : ufl_bc.o
@@ -159,6 +186,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... CMIP"
+	@echo "... cfl_bc.o"
+	@echo "... cfl_bc.i"
+	@echo "... cfl_bc.s"
 	@echo "... ufl_bc.o"
 	@echo "... ufl_bc.i"
 	@echo "... ufl_bc.s"

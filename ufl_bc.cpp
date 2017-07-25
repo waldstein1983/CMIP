@@ -31,8 +31,11 @@ struct BranchingConstraint {
 
 struct BranchingConstraintSet {
     int nodeId;
+    XPRBbasis basis;
     vector<BranchingConstraint> branchingCons;
 };
+
+milliseconds start;
 
 vector<BranchingConstraintSet> branchingNodes;
 
@@ -59,7 +62,16 @@ map<int, double> yy;
 //facility -> customer -> dual
 map<int, map<int, double>> boundingVarSubDuals;
 
+struct Solution {
+    map<int, int> selectedLocations;
+    double totalCost;
+};
+
+Solution best = {{}, 0};
+
 void print();
+
+Solution roundingHeuristic();
 
 map<int, double> stabilize() {
     for (int i = 1; i <= numFacility; i++) {
@@ -74,7 +86,7 @@ map<int, double> stabilize() {
     return separator;
 }
 
-void addBendersCutWithSeparator(map<int, double> separator) {
+void addBendersCutWithSeparator(map<int, double> &separator) {
     for (int j = 1; j <= numCustomer; j++) {
         double sumDual = 0;
         for (int i = 1; i <= numFacility; i++) {
@@ -192,12 +204,6 @@ void initSubModel() {
     }
 }
 
-void solveMaster() {
-    XPRBmipoptimise(masterSolver, "");
-//    lb = XPRBgetobjval(masterSolver);
-//    print();
-}
-
 bool solveSubModel() {
     for (auto it = subSolvers.begin(); it != subSolvers.end(); ++it) {
         for (int i = 1; i <= numFacility; i++) {
@@ -213,7 +219,22 @@ bool solveSubModel() {
     return true;
 }
 
-bool solveSubModelWithSeprator(map<int, double> seprator) {
+bool solveSubModel(Solution &solution) {
+    for (auto it = subSolvers.begin(); it != subSolvers.end(); ++it) {
+        for (int i = 1; i <= numFacility; i++) {
+            XPRBsetrange(subBoundingCtrs[it->first][i], -MAX, solution.selectedLocations[i]);
+        }
+
+        XPRBlpoptimise(subSolvers[it->first], "");
+        for (int i = 1; i <= numFacility; i++) {
+            string ctrName = "Bounding with y_" + i;
+            boundingVarSubDuals[i][it->first] = XPRBgetdual(subBoundingCtrs[it->first][i]);
+        }
+    }
+    return true;
+}
+
+bool solveSubModelWithSeprator(map<int, double> &seprator) {
     for (auto it = subSolvers.begin(); it != subSolvers.end(); ++it) {
         for (int i = 1; i <= numFacility; i++) {
             XPRBsetrange(subBoundingCtrs[it->first][i], -MAX, seprator[i]);
@@ -236,14 +257,24 @@ void print() {
         }
     }
 
-    for (int j = 1; j <= numCustomer; j++) {
-        cout << "alpha " << j << XPRBgetsol(masterAlphas[j]) << endl;
+    for (int i = 1; i <= numFacility; i++) {
+        for (int j = 1; j <= numCustomer; j++) {
+            if (abs(XPRBgetsol(subCovers[i][j]) - 1) <= INT_GAP) {
+                cout << "Customer " << j << " -> " << "Facility " << i << endl;
+            }
+        }
+    }
+}
+
+void print(Solution solution) {
+    for (int i = 1; i <= numFacility; i++) {
+        cout << "Facility " << i << " -> " << solution.selectedLocations[i] << endl;
     }
 
     for (int i = 1; i <= numFacility; i++) {
         for (int j = 1; j <= numCustomer; j++) {
             if (abs(XPRBgetsol(subCovers[i][j]) - 1) <= INT_GAP) {
-//                cout << "Customer " << j << " -> " << "Facility " << i << endl;
+                cout << "Customer " << j << " -> " << "Facility " << i << endl;
             }
         }
     }
@@ -269,28 +300,28 @@ double computeTotalCost() {
     }
     return currentUb;
 }
-
-void updateUB() {
-    double currentUb = 0;
-
-    for (int i = 1; i <= numFacility; i++) {
-        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
-            currentUb += XPRBgetsol(masterLocations[i]) * openingCosts[i];
-        }
-    }
-
-    for (int i = 1; i <= numFacility; i++) {
-        for (int j = 1; j <= numCustomer; j++) {
-            if (abs(XPRBgetsol(subCovers[i][j]) - 1) <= INT_GAP) {
-                currentUb += XPRBgetsol(subCovers[i][j]) * servingCosts[i][j];
-            }
-        }
-    }
-
-//    print();
-    if (currentUb < ub)
-        ub = currentUb;
-}
+//
+//void updateUB() {
+//    double currentUb = 0;
+//
+//    for (int i = 1; i <= numFacility; i++) {
+//        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
+//            currentUb += XPRBgetsol(masterLocations[i]) * openingCosts[i];
+//        }
+//    }
+//
+//    for (int i = 1; i <= numFacility; i++) {
+//        for (int j = 1; j <= numCustomer; j++) {
+//            if (abs(XPRBgetsol(subCovers[i][j]) - 1) <= INT_GAP) {
+//                currentUb += XPRBgetsol(subCovers[i][j]) * servingCosts[i][j];
+//            }
+//        }
+//    }
+//
+////    print();
+//    if (currentUb < ub)
+//        ub = currentUb;
+//}
 
 void addOptimalityCut() {
     XPRBctr cut = XPRBnewctr(masterSolver, "Optimality cut", XPRB_G);
@@ -307,7 +338,6 @@ void addOptimalityCut() {
     }
 
     XPRBaddterm(cut, nullptr, sumServingCost);
-//    XPRBprintctr(cut);
 }
 
 bool addBendersCutForEachSubProblemToMaster() {
@@ -334,6 +364,29 @@ bool addBendersCutForEachSubProblemToMaster() {
     return newCut;
 }
 
+bool addBendersCutForEachSubProblemToMaster(Solution &solution) {
+    bool newCut = false;
+    for (int j = 1; j <= numCustomer; j++) {
+        double sumDual = 0;
+        for (int i = 1; i <= numFacility; i++) {
+//            cout << boundingVarSubDuals[i][j] << " * " << XPRBgetsol(masterLocations[i]) << endl;
+            sumDual += boundingVarSubDuals[i][j] * solution.selectedLocations[i];
+        }
+
+        XPRBctr cut = XPRBnewctr(masterSolver, XPRBnewname("benders cut %d", globalBendersCutId), XPRB_G);
+
+        for (int i = 1; i <= numFacility; i++) {
+            XPRBaddterm(cut, masterLocations[i], -boundingVarSubDuals[i][j]);
+//            cout <<  XPRBgetsol(masterLocations[i]) << endl;
+//            sumDual += boundingVarSubDuals[i][j] * XPRBgetsol(masterLocations[i]);
+        }
+        XPRBaddterm(cut, masterAlphas[j], 1);
+        XPRBaddterm(cut, nullptr, XPRBgetobjval(subSolvers[j]) - sumDual);
+        newCut = true;
+    }
+    return newCut;
+}
+
 void destroy() {
     XPRBdelprob(masterSolver);
     for (auto &subSolver : subSolvers) {
@@ -348,36 +401,14 @@ bool isMasterSolutionInteger() {
 //        if (abs(XPRBgetsol(masterLocations[i]) - 0) <= INT_GAP)
         if (abs(XPRBgetsol(masterLocations[i]) - round(XPRBgetsol(masterLocations[i]))) <= INT_GAP)
             continue;
-//        cout << XPRBgetsol(masterLocations[i]) << endl;
-//        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP)
-//            continue;
         return false;
     }
     return true;
 }
 
-bool isMasterSolutionAndSubSolutionInteger() {
-    for (int i = 1; i <= numFacility; i++) {
-        if (abs(XPRBgetsol(masterLocations[i]) - round(XPRBgetsol(masterLocations[i]))) <= INT_GAP)
-            continue;
-        return false;
-    }
+void bendersDecomposition(bool useOptimalityCut, bool useDualSimplex, bool useRoundingHeuristic) {
 
-    for (int i = 1; i <= numFacility; i++) {
-        for (int j = 1; j <= numCustomer; j++) {
-            if (abs(XPRBgetsol(subCovers[i][j]) - round(XPRBgetsol(subCovers[i][j]))) > INT_GAP) {
-//                cout << XPRBgetsol(subCovers[i][j]) << endl;
-//                cout << round(XPRBgetsol(subCovers[i][j])) << endl;
-                return false;
-            }
-        }
-//        return false;
-    }
-    return true;
-}
-
-void bendersDecomposition() {
-
+    XPRBbasis basis = XPRBsavebasis(masterSolver);
     double nodeLB = 0, nodeUB = MAX;
     while (abs(nodeUB - nodeLB) > 1) {
         if (XPRBgetobjval(masterSolver) > ub) {
@@ -386,24 +417,66 @@ void bendersDecomposition() {
         nodeLB = XPRBgetobjval(masterSolver);
         solveSubModel();
         nodeUB = computeTotalCost();
+
+        bool useHeuristicSolutionToAddCut = false;
+        Solution solution;
         if (isMasterSolutionInteger()) {
-//            addOptimalityCut();
-            if (nodeUB < ub)
+            if (useOptimalityCut)
+                addOptimalityCut();
+            if (nodeUB < ub) {
                 ub = nodeUB;
+                best.totalCost = ub;
+                for (int i = 1; i <= numFacility; i++) {
+                    if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
+                        best.selectedLocations[i] = 1;
+                    } else {
+                        best.selectedLocations[i] = 0;
+                    }
+                }
+            }
+        } else {
+            if (useRoundingHeuristic) {
+                solution = roundingHeuristic();
+                if (solution.totalCost < ub) {
+                    ub = solution.totalCost;
+                    solveSubModel(solution);
+                    useHeuristicSolutionToAddCut = true;
+
+                    best.totalCost = ub;
+                    for (int i = 1; i <= numFacility; i++) {
+                        if (solution.selectedLocations[i] == 1) {
+                            best.selectedLocations[i] = 1;
+                        } else {
+                            best.selectedLocations[i] = 0;
+                        }
+                    }
+                }
+            }
         }
         if (abs(nodeUB - nodeLB) <= 1)
             break;
-        addBendersCutForEachSubProblemToMaster();
-        XPRBlpoptimise(masterSolver, "");
+
+        if (useHeuristicSolutionToAddCut) {
+            addBendersCutForEachSubProblemToMaster(solution);
+        } else {
+            addBendersCutForEachSubProblemToMaster();
+        }
+        if (useDualSimplex) {
+            XPRBloadmat(masterSolver);
+            XPRBloadbasis(basis);
+            basis = nullptr;
+            XPRBlpoptimise(masterSolver, "d");
+            basis = XPRBsavebasis(masterSolver);
+        } else
+            XPRBlpoptimise(masterSolver, "");
     }
 }
 
 void bendersDecompositionWithInOut() {
-
     int LBnoImproveStep = 0;
     double nodeLB = 0, nodeUB = MAX;
 //    while (abs(nodeUB - nodeLB) > 1) {
-    while (nodeUB - nodeLB > 1) {
+    while (abs(nodeUB - nodeLB) > 1) {
         if (XPRBgetobjval(masterSolver) > ub) {
             break;
         }
@@ -411,45 +484,52 @@ void bendersDecompositionWithInOut() {
         if (isMasterSolutionInteger()) {
             solveSubModel();
             double cost = computeTotalCost();
+//            nodeUB = cost;
             if (cost < ub)
                 ub = cost;
+//            addBendersCutForEachSubProblemToMaster();
+        } else {
+
         }
 
         map<int, double> separator = stabilize();
+        solveSubModelWithSeprator(separator);
+        nodeUB = computeTotalCost();
+        addBendersCutWithSeparator(separator);
 
-        if (XPRBgetobjval(masterSolver) == nodeLB) {
+        if (abs(XPRBgetobjval(masterSolver) - nodeLB) <= 1) {
             LBnoImproveStep++;
 
-            if(LBnoImproveStep == 5){
-                if(LAMDA != 1)
+            if (LBnoImproveStep == 5) {
+                if (LAMDA != 1)
                     LAMDA = 1;
-                else{
-                    if(DELTA == 0.2){
+                else {
+                    if (DELTA == 0.2) {
                         DELTA = 0;
-                    }else{
+                    } else {
                         break;
                     }
                 }
 
                 LBnoImproveStep = 0;
             }
-        }else{
+        } else {
             LBnoImproveStep = 0;
             nodeLB = XPRBgetobjval(masterSolver);
         }
 
-        solveSubModelWithSeprator(separator);
-        nodeUB = computeTotalCost();
-        if (nodeUB - nodeLB <= 1)
+
+        if (abs(nodeUB - nodeLB) <= 1)
             break;
 
-        addBendersCutWithSeparator(separator);
+
         XPRBlpoptimise(masterSolver, "");
     }
 }
 
-void buildBranchingConstraintSet(BranchingConstraintSet targetSet, int branchingLocationId, int ctrType) {
-    BranchingConstraintSet branchingSet = {0, {}};
+void buildBranchingConstraintSet(BranchingConstraintSet &targetSet, int branchingLocationId, int ctrType) {
+    BranchingConstraintSet branchingSet = {0, nullptr, {}};
+    branchingSet.basis = XPRBsavebasis(masterSolver);
     nodeNum++;
 
     for (auto &ctr : targetSet.branchingCons) {
@@ -477,17 +557,8 @@ void buildBranchingConstraintSet(BranchingConstraintSet targetSet, int branching
 
 }
 
-void branching(BranchingConstraintSet set) {
+void branching(BranchingConstraintSet &set) {
     int targetBranchingLocationId = 0;
-
-
-//    for (int i = 1; i <= numFacility; i++) {
-//        if (abs(XPRBgetsol(masterLocations[i]) - round(XPRBgetsol(masterLocations[i]))) <= INT_GAP)
-//            continue;
-//        targetBranchingLocationId = i;
-//        break;
-//    }
-
     double gapToHalf = DBL_MAX;
     for (int i = 1; i <= numFacility; i++) {
         if (abs(XPRBgetsol(masterLocations[i]) - round(XPRBgetsol(masterLocations[i]))) <= INT_GAP) {
@@ -509,85 +580,110 @@ void branching(BranchingConstraintSet set) {
 
 }
 
-void branchAndCut() {
-    XPRBsetmsglevel(masterSolver, 1);
-    initMaster();
-    initSubModel();
-
-    XPRBlpoptimise(masterSolver, "");
-    bendersDecomposition();
-
-    if (isMasterSolutionInteger()) {
-        cout << "UB = " << ub << " at the root node " << endl;
-        return;
-    }
-
-//    addOptimalityCut();
-//    XPRBlpoptimise(masterSolver, "");
-//
-//    if (isMasterSolutionInteger()) {
-//        double cost = computeTotalCost();
-//        if(cost < ub)
-//            ub = cost;
-//        cout << "UB = " << ub << " at the root node " << endl;
-//        return;
-//    }
-
-    BranchingConstraintSet target = {nodeNum, {}};
-    branching(target);
-
-    int step = 1;
-    while (!branchingNodes.empty()) {
-        if (step % 1 == 0) {
-            cout << ub << "   node size " << branchingNodes.size() << " step = " << step << endl;
-        }
-        target = branchingNodes[0];
-        branchingNodes.erase(branchingNodes.begin());
-
-        for (auto &branching : target.branchingCons) {
-            if (branching.ctrType == 0) {
-                XPRBctr ctr = XPRBnewctr(masterSolver, branching.name.c_str(), XPRB_L);
-                XPRBaddterm(ctr, masterLocations[branching.branchingLocationId], 1);
-                XPRBaddterm(ctr, nullptr, branching.bound);
-
-            } else if (branching.ctrType == 1) {
-                XPRBctr ctr = XPRBnewctr(masterSolver, branching.name.c_str(), XPRB_G);
-                XPRBaddterm(ctr, masterLocations[branching.branchingLocationId], 1);
-                XPRBaddterm(ctr, nullptr, branching.bound);
+Solution roundingHeuristic() {
+    Solution solution = {{}, 0};
+    int tempLocation[numFacility + 1];
+    for (int i = 1; i < numFacility; i++) {
+        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
+            tempLocation[i] = 1;
+            solution.totalCost += openingCosts[i];
+        } else {
+            if (XPRBgetsol(masterLocations[i]) <= 0.5) {
+                tempLocation[i] = 0;
+            } else {
+                solution.totalCost += openingCosts[i];
+                tempLocation[i] = 1;
             }
         }
-
-        XPRBlpoptimise(masterSolver, "");
-
-        if (XPRBgetlpstat(masterSolver) == XPRB_LP_OPTIMAL) {
-//            print();
-//            cout << XPRBgetobjval(masterSolver) << endl;
-            if (XPRBgetobjval(masterSolver) < ub && abs(XPRBgetobjval(masterSolver) - ub) >= INT_GAP) {
-                bendersDecomposition();
-                branching(target);
-            }
-        }
-
-        for (auto &branching : target.branchingCons) {
-            auto branchingCtr = (XPRBctr) XPRBgetbyname(masterSolver, branching.name.c_str(), XPRB_CTR);
-            XPRBdelctr(branchingCtr);
-        }
-        step++;
     }
-    cout << "UB = " << ub << endl;
-}
 
-void branchAndCutWithInOut() {
+    bool locationSelected[numFacility + 1];
+
     for (int i = 1; i <= numFacility; i++) {
-        yy[i] = 1.0;
+        locationSelected[i] = false;
     }
 
+    for (int j = 1; j <= numCustomer; j++) {
+        int neareastFacility = 0;
+        double nearestDistance = MAX;
+        for (int i = 1; i < numFacility; i++) {
+            if (tempLocation[i] == 1) {
+                if (servingCosts[i][j] < nearestDistance) {
+                    nearestDistance = servingCosts[i][j];
+                    neareastFacility = i;
+                }
+            }
+        }
+        solution.totalCost += servingCosts[neareastFacility][j];
+        locationSelected[neareastFacility] = true;
+    }
+
+    for (int i = 1; i <= numFacility; i++) {
+        solution.selectedLocations[i] = 0;
+        if (!locationSelected[i] && tempLocation[i] == 1) {
+            solution.totalCost -= openingCosts[i];
+        } else if (locationSelected[i] && tempLocation[i] == 1) {
+            solution.selectedLocations[i] = 1;
+        }
+    }
+    return solution;
+}
+
+Solution roundingHeuristic2() {
+    Solution solution = {{}, 0};
+    vector<int> integerSol;
+    vector<int> fracSol;
+    for (int i = 1; i < numFacility; i++) {
+        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
+            integerSol.push_back(i);
+//            tempLocation[i] = 1;
+//            solution.totalCost += openingCosts[i];
+        } else {
+            fracSol.push_back(i);
+//            if (XPRBgetsol(masterLocations[i]) <= 0.5) {
+//                tempLocation[i] = 0;
+//            } else {
+//                solution.totalCost += openingCosts[i];
+//                tempLocation[i] = 1;
+//            }
+        }
+    }
+
+
+    map<int, int> allocation;
+    for (int j = 1; j <= numCustomer; j++) {
+        int neareastFacility = 0;
+        double nearestDistance = MAX;
+        for (int i = 1; i < numFacility; i++) {
+            if (std::find(integerSol.begin(), integerSol.end(), i) != integerSol.end()) {
+                if (servingCosts[i][j] < nearestDistance) {
+                    nearestDistance = servingCosts[i][j];
+                    neareastFacility = i;
+                }
+            }
+        }
+        allocation[j] = neareastFacility;
+    }
+
+    map<int, double> openingCostOfFracSol;
+    for (auto &sol : fracSol) {
+        openingCostOfFracSol[sol] = openingCostOfFracSol[sol];
+    }
+
+    return solution;
+}
+
+void branchAndCut(bool useOptimalityCutInBendersDecomposition, bool useDualSimplexInBendersDecomposition,
+                  bool useRoundingHeuristicInBendersDecomposition,
+                  bool useDualSimplexInBranch) {
     XPRBsetmsglevel(masterSolver, 1);
     initMaster();
     initSubModel();
 
     XPRBlpoptimise(masterSolver, "");
-    bendersDecompositionWithInOut();
+    bendersDecomposition(useOptimalityCutInBendersDecomposition, useDualSimplexInBendersDecomposition,
+                         useRoundingHeuristicInBendersDecomposition);
+
 
     if (isMasterSolutionInteger()) {
         cout << "UB = " << ub << " at the root node " << endl;
@@ -599,8 +695,17 @@ void branchAndCutWithInOut() {
 
     int step = 1;
     while (!branchingNodes.empty()) {
+        milliseconds end = duration_cast<milliseconds>(
+                system_clock::now().time_since_epoch()
+        );
         if (step % 1 == 0) {
-            cout << ub << "   node size " << branchingNodes.size() << " step = " << step << endl;
+            cout << ub << "   node size " << branchingNodes.size() << " step = " << step << "   Time "
+                 << (end.count() - start.count()) << endl;
+
+        }
+        if ((end.count() - start.count()) / 1000 > 3600) {
+            cout << "Terminate due to time limit of 3600 sec" << endl;
+            break;
         }
         target = branchingNodes[0];
         branchingNodes.erase(branchingNodes.begin());
@@ -618,11 +723,21 @@ void branchAndCutWithInOut() {
             }
         }
 
-        XPRBlpoptimise(masterSolver, "");
+        if(useDualSimplexInBranch){
+            XPRBloadmat(masterSolver);
+            XPRBloadbasis(target.basis);
+//            basis = nullptr;
+            XPRBlpoptimise(masterSolver, "d");
+//            basis = XPRBsavebasis(masterSolver);
+        }else{
+            XPRBlpoptimise(masterSolver, "");
+        }
+
 
         if (XPRBgetlpstat(masterSolver) == XPRB_LP_OPTIMAL) {
             if (XPRBgetobjval(masterSolver) < ub && abs(XPRBgetobjval(masterSolver) - ub) >= INT_GAP) {
-                bendersDecompositionWithInOut();
+                bendersDecomposition(useOptimalityCutInBendersDecomposition, useDualSimplexInBendersDecomposition,
+                                     useRoundingHeuristicInBendersDecomposition);
                 branching(target);
             }
         }
@@ -634,8 +749,28 @@ void branchAndCutWithInOut() {
         step++;
     }
     cout << "UB = " << ub << endl;
-}
 
+    cout << "Total Cost " << best.totalCost << endl;
+    for (int i = 1; i <= numFacility; i++) {
+        cout << "facility " << i << " -> " << best.selectedLocations[i] << endl;
+    }
+    for (int j = 1; j <= numCustomer; j++) {
+        int neareastFacility = 0;
+        double nearestDistance = MAX;
+        for (int i = 1; i < numFacility; i++) {
+            if (abs(best.selectedLocations[i] - 1) <= INT_GAP) {
+                if (servingCosts[i][j] < nearestDistance) {
+                    nearestDistance = servingCosts[i][j];
+                    neareastFacility = i;
+                }
+            }
+        }
+        cout << "Customer " << j << " -> " << neareastFacility << endl;
+//        solution.totalCost += servingCosts[neareastFacility][j];
+//        locationSelected[neareastFacility] = true;
+    }
+
+}
 
 int main() {
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/simpleExample2.txt";
@@ -645,15 +780,19 @@ int main() {
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-5";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/b/gs250b-3";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/500/a/gs500a-2";
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/750/a/gs750a-1";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/750/a/gs750a-1";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/kmedian/1000-10";
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/kmedian/1500-10";
     readFromFile(fileName);
-    milliseconds start = duration_cast<milliseconds>(
+    start = duration_cast<milliseconds>(
             system_clock::now().time_since_epoch()
     );
 //    bendersDecomposition();
 
-//    branchAndCut();
-    branchAndCutWithInOut();
+//    branchAndCut(false,true);
+    branchAndCut(true, true, true, true);
+//    branchAndCutWithInOut(false);
+//    branchAndCutWithDualSimplex(false);
     milliseconds end = duration_cast<milliseconds>(
             system_clock::now().time_since_epoch()
     );

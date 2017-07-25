@@ -6,6 +6,8 @@
 
 #IncludeRegexTransform: 
 
+/home/local/ANT/baohuaw/CLionProjects/CMIP/cfl_bc.cpp
+
 /home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc.cpp
 iostream
 -
