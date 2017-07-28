@@ -1,13 +1,8 @@
 //
 // Created by baohuaw on 7/28/17.
 //
-
-#ifndef CMIP_ROUNDING_HEURISTIC_H
-#define CMIP_ROUNDING_HEURISTIC_H
-
-#include "model.h"
-#include "problem.h"
-#include <algorithm>
+#include <cfloat>
+#include "rounding_heu.h"
 
 Solution roundingHeuristic() {
     double sortedLocation[numFacility + 1];
@@ -78,5 +73,3 @@ Solution roundingHeuristic() {
 
     return solutions[0];
 }
-
-#endif //CMIP_ROUNDING_HEURISTIC_H

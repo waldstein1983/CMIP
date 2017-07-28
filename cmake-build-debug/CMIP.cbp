@@ -86,25 +86,55 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut.cpp">
+			<Option target="CMIP"/>
+		</Unit>
 		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut.h">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut_inout.cpp">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut_inout.h">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/branch_cut.cpp">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/branch_cut.h">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/branch_cut_lb.cpp">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/branch_cut_lb.h">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/branching.cpp">
 			<Option target="CMIP"/>
 		</Unit>
 		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/branching.h">
 			<Option target="CMIP"/>
 		</Unit>
-		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/decision_var.h">
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/local_branching.cpp">
 			<Option target="CMIP"/>
 		</Unit>
-		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/model.h">
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/local_branching.h">
 			<Option target="CMIP"/>
 		</Unit>
-		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/problem.h">
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/rounding_heu.cpp">
 			<Option target="CMIP"/>
 		</Unit>
-		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/rounding_heuristic.h">
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/rounding_heu.h">
 			<Option target="CMIP"/>
 		</Unit>
-		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc.cpp">
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_model.cpp">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_model.h">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_solve.cpp">
 			<Option target="CMIP"/>
 		</Unit>
 		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/CMakeLists.txt">

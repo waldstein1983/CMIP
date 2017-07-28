@@ -123,32 +123,248 @@ CMIP/fast:
 	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/build
 .PHONY : CMIP/fast
 
-ufl_bc.o: ufl_bc.cpp.o
+benders_cut.o: benders_cut.cpp.o
 
-.PHONY : ufl_bc.o
+.PHONY : benders_cut.o
 
 # target to build an object file
-ufl_bc.cpp.o:
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_bc.cpp.o
-.PHONY : ufl_bc.cpp.o
+benders_cut.cpp.o:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/benders_cut.cpp.o
+.PHONY : benders_cut.cpp.o
 
-ufl_bc.i: ufl_bc.cpp.i
+benders_cut.i: benders_cut.cpp.i
 
-.PHONY : ufl_bc.i
+.PHONY : benders_cut.i
 
 # target to preprocess a source file
-ufl_bc.cpp.i:
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_bc.cpp.i
-.PHONY : ufl_bc.cpp.i
+benders_cut.cpp.i:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/benders_cut.cpp.i
+.PHONY : benders_cut.cpp.i
 
-ufl_bc.s: ufl_bc.cpp.s
+benders_cut.s: benders_cut.cpp.s
 
-.PHONY : ufl_bc.s
+.PHONY : benders_cut.s
 
 # target to generate assembly for a file
-ufl_bc.cpp.s:
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_bc.cpp.s
-.PHONY : ufl_bc.cpp.s
+benders_cut.cpp.s:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/benders_cut.cpp.s
+.PHONY : benders_cut.cpp.s
+
+benders_cut_inout.o: benders_cut_inout.cpp.o
+
+.PHONY : benders_cut_inout.o
+
+# target to build an object file
+benders_cut_inout.cpp.o:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o
+.PHONY : benders_cut_inout.cpp.o
+
+benders_cut_inout.i: benders_cut_inout.cpp.i
+
+.PHONY : benders_cut_inout.i
+
+# target to preprocess a source file
+benders_cut_inout.cpp.i:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/benders_cut_inout.cpp.i
+.PHONY : benders_cut_inout.cpp.i
+
+benders_cut_inout.s: benders_cut_inout.cpp.s
+
+.PHONY : benders_cut_inout.s
+
+# target to generate assembly for a file
+benders_cut_inout.cpp.s:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/benders_cut_inout.cpp.s
+.PHONY : benders_cut_inout.cpp.s
+
+branch_cut.o: branch_cut.cpp.o
+
+.PHONY : branch_cut.o
+
+# target to build an object file
+branch_cut.cpp.o:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/branch_cut.cpp.o
+.PHONY : branch_cut.cpp.o
+
+branch_cut.i: branch_cut.cpp.i
+
+.PHONY : branch_cut.i
+
+# target to preprocess a source file
+branch_cut.cpp.i:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/branch_cut.cpp.i
+.PHONY : branch_cut.cpp.i
+
+branch_cut.s: branch_cut.cpp.s
+
+.PHONY : branch_cut.s
+
+# target to generate assembly for a file
+branch_cut.cpp.s:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/branch_cut.cpp.s
+.PHONY : branch_cut.cpp.s
+
+branch_cut_lb.o: branch_cut_lb.cpp.o
+
+.PHONY : branch_cut_lb.o
+
+# target to build an object file
+branch_cut_lb.cpp.o:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o
+.PHONY : branch_cut_lb.cpp.o
+
+branch_cut_lb.i: branch_cut_lb.cpp.i
+
+.PHONY : branch_cut_lb.i
+
+# target to preprocess a source file
+branch_cut_lb.cpp.i:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/branch_cut_lb.cpp.i
+.PHONY : branch_cut_lb.cpp.i
+
+branch_cut_lb.s: branch_cut_lb.cpp.s
+
+.PHONY : branch_cut_lb.s
+
+# target to generate assembly for a file
+branch_cut_lb.cpp.s:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/branch_cut_lb.cpp.s
+.PHONY : branch_cut_lb.cpp.s
+
+branching.o: branching.cpp.o
+
+.PHONY : branching.o
+
+# target to build an object file
+branching.cpp.o:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/branching.cpp.o
+.PHONY : branching.cpp.o
+
+branching.i: branching.cpp.i
+
+.PHONY : branching.i
+
+# target to preprocess a source file
+branching.cpp.i:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/branching.cpp.i
+.PHONY : branching.cpp.i
+
+branching.s: branching.cpp.s
+
+.PHONY : branching.s
+
+# target to generate assembly for a file
+branching.cpp.s:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/branching.cpp.s
+.PHONY : branching.cpp.s
+
+local_branching.o: local_branching.cpp.o
+
+.PHONY : local_branching.o
+
+# target to build an object file
+local_branching.cpp.o:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/local_branching.cpp.o
+.PHONY : local_branching.cpp.o
+
+local_branching.i: local_branching.cpp.i
+
+.PHONY : local_branching.i
+
+# target to preprocess a source file
+local_branching.cpp.i:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/local_branching.cpp.i
+.PHONY : local_branching.cpp.i
+
+local_branching.s: local_branching.cpp.s
+
+.PHONY : local_branching.s
+
+# target to generate assembly for a file
+local_branching.cpp.s:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/local_branching.cpp.s
+.PHONY : local_branching.cpp.s
+
+rounding_heu.o: rounding_heu.cpp.o
+
+.PHONY : rounding_heu.o
+
+# target to build an object file
+rounding_heu.cpp.o:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/rounding_heu.cpp.o
+.PHONY : rounding_heu.cpp.o
+
+rounding_heu.i: rounding_heu.cpp.i
+
+.PHONY : rounding_heu.i
+
+# target to preprocess a source file
+rounding_heu.cpp.i:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/rounding_heu.cpp.i
+.PHONY : rounding_heu.cpp.i
+
+rounding_heu.s: rounding_heu.cpp.s
+
+.PHONY : rounding_heu.s
+
+# target to generate assembly for a file
+rounding_heu.cpp.s:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/rounding_heu.cpp.s
+.PHONY : rounding_heu.cpp.s
+
+ufl_model.o: ufl_model.cpp.o
+
+.PHONY : ufl_model.o
+
+# target to build an object file
+ufl_model.cpp.o:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_model.cpp.o
+.PHONY : ufl_model.cpp.o
+
+ufl_model.i: ufl_model.cpp.i
+
+.PHONY : ufl_model.i
+
+# target to preprocess a source file
+ufl_model.cpp.i:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_model.cpp.i
+.PHONY : ufl_model.cpp.i
+
+ufl_model.s: ufl_model.cpp.s
+
+.PHONY : ufl_model.s
+
+# target to generate assembly for a file
+ufl_model.cpp.s:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_model.cpp.s
+.PHONY : ufl_model.cpp.s
+
+ufl_solve.o: ufl_solve.cpp.o
+
+.PHONY : ufl_solve.o
+
+# target to build an object file
+ufl_solve.cpp.o:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_solve.cpp.o
+.PHONY : ufl_solve.cpp.o
+
+ufl_solve.i: ufl_solve.cpp.i
+
+.PHONY : ufl_solve.i
+
+# target to preprocess a source file
+ufl_solve.cpp.i:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_solve.cpp.i
+.PHONY : ufl_solve.cpp.i
+
+ufl_solve.s: ufl_solve.cpp.s
+
+.PHONY : ufl_solve.s
+
+# target to generate assembly for a file
+ufl_solve.cpp.s:
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_solve.cpp.s
+.PHONY : ufl_solve.cpp.s
 
 # Help Target
 help:
@@ -159,9 +375,33 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... CMIP"
-	@echo "... ufl_bc.o"
-	@echo "... ufl_bc.i"
-	@echo "... ufl_bc.s"
+	@echo "... benders_cut.o"
+	@echo "... benders_cut.i"
+	@echo "... benders_cut.s"
+	@echo "... benders_cut_inout.o"
+	@echo "... benders_cut_inout.i"
+	@echo "... benders_cut_inout.s"
+	@echo "... branch_cut.o"
+	@echo "... branch_cut.i"
+	@echo "... branch_cut.s"
+	@echo "... branch_cut_lb.o"
+	@echo "... branch_cut_lb.i"
+	@echo "... branch_cut_lb.s"
+	@echo "... branching.o"
+	@echo "... branching.i"
+	@echo "... branching.s"
+	@echo "... local_branching.o"
+	@echo "... local_branching.i"
+	@echo "... local_branching.s"
+	@echo "... rounding_heu.o"
+	@echo "... rounding_heu.i"
+	@echo "... rounding_heu.s"
+	@echo "... ufl_model.o"
+	@echo "... ufl_model.i"
+	@echo "... ufl_model.s"
+	@echo "... ufl_solve.o"
+	@echo "... ufl_solve.i"
+	@echo "... ufl_solve.s"
 .PHONY : help
 
 

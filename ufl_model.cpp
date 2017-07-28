@@ -1,38 +1,14 @@
 //
 // Created by baohuaw on 7/28/17.
 //
-
-#ifndef CMIP_MODEL_H
-#define CMIP_MODEL_H
-
-#define BD_GAP 1
-#define INT_GAP 0.00001
-
-#include <xprb.h>
-#include <map>
-#include "problem.h"
-
-
-using namespace std;
-
-map<int, XPRBvar> masterLocations;
-map<int, XPRBvar> masterAlphas;
-map<int, map<int, XPRBvar>> subCovers;
-
-map<int, XPRBprob> subSolvers;
-XPRBprob masterSolver = XPRBnewprob("master");
-map<int, map<int, XPRBctr>> subBoundingCtrs;
-
-//facility -> customer -> dual
-
-map<int, map<int, double>> boundingVarSubDuals;
-
-struct Solution {
-    map<int, int> selectedLocations;
-    double totalCost;
-};
-
-
+#include <iostream>
+#include <cfloat>
+#include "ufl_model.h"
+#include <cmath>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <iterator>
 
 void initMaster() {
     for (int i = 1; i <= numFacility; i++) {
@@ -197,4 +173,42 @@ void print(Solution solution) {
     }
 }
 
-#endif //CMIP_MODEL_H
+
+void readFromFile(const string &fileName) {
+    ifstream in(fileName);
+    if (!in) {
+        cout << "Cannot open input file.\n";
+        return;
+    }
+
+    string str;
+    int lineId = 0;
+    while (getline(in, str)) {
+        istringstream iss(str);
+        if (lineId == 0) {
+            cout << str << endl;
+        } else if (lineId == 1) {
+            vector<string> tokens;
+            copy(istream_iterator<string>(iss), istream_iterator<string>(),
+                 back_inserter(tokens));
+
+            numFacility = stoi(tokens[0]);
+            numCustomer = stoi(tokens[1]);
+        } else {
+            vector<string> tokens;
+            copy(istream_iterator<string>(iss), istream_iterator<string>(),
+                 back_inserter(tokens));
+
+            int facilityId = stoi(tokens[0]);
+            double openingCost = stof(tokens[1]);
+            openingCosts[facilityId] = openingCost;
+
+            for (int j = 1; j <= tokens.size() - 2; j++) {
+                servingCosts[facilityId][j] = stof(tokens[j - 1 + 2]);
+            }
+        }
+
+        lineId++;
+    }
+    in.close();
+}
