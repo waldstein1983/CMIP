@@ -30,15 +30,30 @@ struct BranchingConstraint {
     int bound;
 };
 
+struct LocalBranchingConstraint {
+    string name;
+//    int branchingLocationId;
+    vector<int> nonZeros;
+    vector<int> zeros;
+    int ctrType;
+    int bound;
+};
+
 struct BranchingConstraintSet {
-    int nodeId;
     XPRBbasis basis;
     vector<BranchingConstraint> branchingCons;
+};
+
+struct LocalBranchingConstraintSet {
+    XPRBbasis basis;
+    vector<LocalBranchingConstraint> branchingCons;
 };
 
 milliseconds start;
 
 vector<BranchingConstraintSet> branchingNodes;
+
+vector<LocalBranchingConstraintSet> localBranchingNodes;
 
 int numFacility;
 int numCustomer;
@@ -56,7 +71,7 @@ map<int, double> openingCosts;
 map<int, map<int, double>> servingCosts;
 
 int globalBendersCutId = 1;
-map<int, vector<int>> customerCriticals;
+//map<int, vector<int>> customerCriticals;
 
 map<int, double> yy;
 
@@ -71,8 +86,6 @@ struct Solution {
 Solution best = {{}, 0};
 
 void print();
-
-//Solution roundingHeuristic();
 
 Solution roundingHeuristic2();
 
@@ -474,7 +487,7 @@ void bendersDecomposition(bool useOptimalityCut, bool useDualSimplex, bool useRo
     }
 }
 
-void bendersDecompositionWithInOut( bool useDualSimplex, bool useRoundingHeuristic) {
+void bendersDecompositionWithInOut(bool useDualSimplex, bool useRoundingHeuristic) {
     XPRBbasis basis = XPRBsavebasis(masterSolver);
     for (int i = 1; i <= numFacility; i++) {
         yy[i] = 1;
@@ -485,7 +498,7 @@ void bendersDecompositionWithInOut( bool useDualSimplex, bool useRoundingHeurist
 //    while (abs(nodeUB - nodeLB) > 1) {
 //    while ((nodeLB < nodeUB) || abs(nodeUB - nodeLB) > BD_GAP) {
     while (abs(nodeUB - nodeLB) > BD_GAP) {
-        if(nodeLB <= nodeUB){
+        if (nodeLB <= nodeUB) {
             cout << nodeLB << "    " << nodeUB << endl;
         }
         if (XPRBgetobjval(masterSolver) > ub) {
@@ -583,7 +596,7 @@ void bendersDecompositionWithInOut( bool useDualSimplex, bool useRoundingHeurist
         if (isMasterSolutionInteger()) {
 //            solveSubModel();
 //            double cost = computeTotalCost();
-            if (nodeUB < ub){
+            if (nodeUB < ub) {
                 ub = nodeUB;
                 best.totalCost = ub;
                 for (int i = 1; i <= numFacility; i++) {
@@ -595,7 +608,7 @@ void bendersDecompositionWithInOut( bool useDualSimplex, bool useRoundingHeurist
                 }
             }
 
-        }else{
+        } else {
             if (useRoundingHeuristic) {
                 solution = roundingHeuristic2();
                 if (solution.totalCost < ub) {
@@ -671,8 +684,34 @@ void bendersDecompositionWithInOut( bool useDualSimplex, bool useRoundingHeurist
     }
 }
 
+void buildLocalBranchingConstraintSet(LocalBranchingConstraintSet &targetSet, int ctrType, int k) {
+    LocalBranchingConstraintSet branchingSet = {nullptr, {}};
+
+    for (auto &ctr : targetSet.branchingCons) {
+        branchingSet.branchingCons.push_back(ctr);
+    }
+
+    vector<int> nonZeros;
+    vector<int> zeros;
+    for (int i = 1; i <= numFacility; i++) {
+        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
+            nonZeros.push_back(i);
+        } else {
+            zeros.push_back(i);
+        }
+    }
+
+    if (ctrType == 0) {
+        LocalBranchingConstraint left = {"Left", nonZeros, zeros, 0, k};
+        branchingSet.branchingCons.push_back(left);
+    } else {
+        LocalBranchingConstraint right = {"Right", nonZeros, zeros, 0, k + 1};
+        branchingSet.branchingCons.push_back(right);
+    }
+}
+
 void buildBranchingConstraintSet(BranchingConstraintSet &targetSet, int branchingLocationId, int ctrType) {
-    BranchingConstraintSet branchingSet = {0, nullptr, {}};
+    BranchingConstraintSet branchingSet = {nullptr, {}};
     branchingSet.basis = XPRBsavebasis(masterSolver);
     nodeNum++;
 
@@ -699,6 +738,11 @@ void buildBranchingConstraintSet(BranchingConstraintSet &targetSet, int branchin
 
     branchingNodes.insert(branchingNodes.begin(), branchingSet);
 
+}
+
+void localBranching(LocalBranchingConstraintSet &set, int k) {
+    buildLocalBranchingConstraintSet(set, 0, k);
+    buildLocalBranchingConstraintSet(set, 1, k);
 }
 
 void branching(BranchingConstraintSet &set) {
@@ -783,8 +827,8 @@ Solution roundingHeuristic2() {
 
     vector<Solution> solutions;
     double curThreshold = -1;
-    for(int i = 1;i <= numFacility;i++){
-        if(sortedLocation[i] != curThreshold){
+    for (int i = 1; i <= numFacility; i++) {
+        if (sortedLocation[i] != curThreshold) {
             Solution solution = {{}, 0};
             curThreshold = sortedLocation[i];
             int roundingLocation[numFacility + 1];
@@ -838,7 +882,7 @@ Solution roundingHeuristic2() {
 
 
     sort(solutions.begin(), solutions.begin() + solutions.size(),
-         [] (Solution const& a, Solution const& b) { return a.totalCost < b.totalCost; });
+         [](Solution const &a, Solution const &b) { return a.totalCost < b.totalCost; });
 
     return solutions[0];
 }
