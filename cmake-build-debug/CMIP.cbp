@@ -86,6 +86,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut.h">
+			<Option target="CMIP"/>
+		</Unit>
 		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/branching.h">
 			<Option target="CMIP"/>
 		</Unit>
@@ -93,6 +96,12 @@
 			<Option target="CMIP"/>
 		</Unit>
 		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/model.h">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/problem.h">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/rounding_heuristic.h">
 			<Option target="CMIP"/>
 		</Unit>
 		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc.cpp">

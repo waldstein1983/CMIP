@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut.h
+problem.h
+/home/local/ANT/baohuaw/CLionProjects/CMIP/problem.h
+model.h
+/home/local/ANT/baohuaw/CLionProjects/CMIP/model.h
+cmath
+-
+cfloat
+-
+rounding_heuristic.h
+/home/local/ANT/baohuaw/CLionProjects/CMIP/rounding_heuristic.h
+
 /home/local/ANT/baohuaw/CLionProjects/CMIP/branching.h
 xprb.h
 -
@@ -23,6 +35,26 @@ xprb.h
 -
 map
 -
+problem.h
+/home/local/ANT/baohuaw/CLionProjects/CMIP/problem.h
+
+/home/local/ANT/baohuaw/CLionProjects/CMIP/problem.h
+map
+-
+fstream
+-
+sstream
+-
+
+/home/local/ANT/baohuaw/CLionProjects/CMIP/rounding_heuristic.h
+model.h
+/home/local/ANT/baohuaw/CLionProjects/CMIP/model.h
+problem.h
+/home/local/ANT/baohuaw/CLionProjects/CMIP/problem.h
+decision_var.h
+/home/local/ANT/baohuaw/CLionProjects/CMIP/decision_var.h
+algorithm
+-
 
 /home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc.cpp
 iostream
@@ -31,13 +63,7 @@ chrono
 -
 map
 -
-fstream
--
-sstream
--
 iterator
--
-cmath
 -
 algorithm
 -
@@ -49,6 +75,10 @@ decision_var.h
 /home/local/ANT/baohuaw/CLionProjects/CMIP/decision_var.h
 model.h
 /home/local/ANT/baohuaw/CLionProjects/CMIP/model.h
+rounding_heuristic.h
+/home/local/ANT/baohuaw/CLionProjects/CMIP/rounding_heuristic.h
+benders_cut.h
+/home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut.h
 
 /opt/xpressmp/include/xprb.h
 

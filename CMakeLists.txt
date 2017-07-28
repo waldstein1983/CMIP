@@ -7,7 +7,7 @@ set(SOURCE_FILES
 #        ufl_bd.cpp
 #        xbcutstk.cxx
         ufl_bc.cpp
-        branching.h decision_var.h model.h)
+        branching.h model.h problem.h rounding_heuristic.h benders_cut.h)
 
 set(XPRESS_INC_DIR /opt/xpressmp/include)
 set(XPRESS_LINK_DIR /opt/xpressmp/lib)
