@@ -11,7 +11,7 @@
 #include <cfloat>
 
 #define MAX DBL_MAX
-#define BD_GAP 10
+#define BD_GAP 1
 
 using namespace std;
 using namespace std::chrono;
@@ -72,7 +72,7 @@ Solution best = {{}, 0};
 
 void print();
 
-Solution roundingHeuristic();
+//Solution roundingHeuristic();
 
 Solution roundingHeuristic2();
 
@@ -483,19 +483,108 @@ void bendersDecompositionWithInOut( bool useDualSimplex, bool useRoundingHeurist
     int LBnoImproveStep = 0;
     double nodeLB = 0, nodeUB = MAX;
 //    while (abs(nodeUB - nodeLB) > 1) {
-    while ((nodeLB < nodeUB) || abs(nodeUB - nodeLB) > BD_GAP) {
+//    while ((nodeLB < nodeUB) || abs(nodeUB - nodeLB) > BD_GAP) {
+    while (abs(nodeUB - nodeLB) > BD_GAP) {
+        if(nodeLB <= nodeUB){
+            cout << nodeLB << "    " << nodeUB << endl;
+        }
         if (XPRBgetobjval(masterSolver) > ub) {
             break;
         }
 
+//        bool useHeuristicSolutionToAddCut = false;
+//        Solution solution;
+////        if (useRoundingHeuristic) {
+////            solution = roundingHeuristic2();
+////            if (solution.totalCost < ub) {
+////                ub = solution.totalCost;
+////                solveSubModel(solution);
+////                useHeuristicSolutionToAddCut = true;
+////
+////                best.totalCost = ub;
+////                for (int i = 1; i <= numFacility; i++) {
+////                    if (solution.selectedLocations[i] == 1) {
+////                        best.selectedLocations[i] = 1;
+////                    } else {
+////                        best.selectedLocations[i] = 0;
+////                    }
+////                }
+////            }
+////        }
+//
+////        solveSubModel();
+////        nodeUB = computeTotalCost();
+//        if (isMasterSolutionInteger()) {
+//            solveSubModel();
+//            double cost = computeTotalCost();
+//            if (cost < ub){
+//                ub = cost;
+//                best.totalCost = ub;
+//                for (int i = 1; i <= numFacility; i++) {
+//                    if (solution.selectedLocations[i] == 1) {
+//                        best.selectedLocations[i] = 1;
+//                    } else {
+//                        best.selectedLocations[i] = 0;
+//                    }
+//                }
+//            }
+//
+//        }else{
+//            if (useRoundingHeuristic) {
+//                solution = roundingHeuristic2();
+//                if (solution.totalCost < ub) {
+//                    ub = solution.totalCost;
+//                    solveSubModel(solution);
+//                    useHeuristicSolutionToAddCut = true;
+//
+//                    best.totalCost = ub;
+//                    for (int i = 1; i <= numFacility; i++) {
+//                        if (solution.selectedLocations[i] == 1) {
+//                            best.selectedLocations[i] = 1;
+//                        } else {
+//                            best.selectedLocations[i] = 0;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        map<int, double> separator = stabilize();
+//        solveSubModelWithSeprator(separator);
+//        nodeUB = computeTotalCost();
+//        addBendersCutWithSeparator(separator);
+
+
+        /////////////////////////////////////////////////////////////////////////////
+
+
         bool useHeuristicSolutionToAddCut = false;
         Solution solution;
+//        if (useRoundingHeuristic) {
+//            solution = roundingHeuristic2();
+//            if (solution.totalCost < ub) {
+//                ub = solution.totalCost;
+//                solveSubModel(solution);
+//                useHeuristicSolutionToAddCut = true;
+//
+//                best.totalCost = ub;
+//                for (int i = 1; i <= numFacility; i++) {
+//                    if (solution.selectedLocations[i] == 1) {
+//                        best.selectedLocations[i] = 1;
+//                    } else {
+//                        best.selectedLocations[i] = 0;
+//                    }
+//                }
+//            }
+//        }
 
+        solveSubModel();
+        nodeUB = computeTotalCost();
         if (isMasterSolutionInteger()) {
-            solveSubModel();
-            double cost = computeTotalCost();
-            if (cost < ub){
-                ub = cost;
+//            solveSubModel();
+//            double cost = computeTotalCost();
+            if (nodeUB < ub){
+                ub = nodeUB;
                 best.totalCost = ub;
                 for (int i = 1; i <= numFacility; i++) {
                     if (solution.selectedLocations[i] == 1) {
@@ -508,7 +597,7 @@ void bendersDecompositionWithInOut( bool useDualSimplex, bool useRoundingHeurist
 
         }else{
             if (useRoundingHeuristic) {
-                solution = roundingHeuristic();
+                solution = roundingHeuristic2();
                 if (solution.totalCost < ub) {
                     ub = solution.totalCost;
                     solveSubModel(solution);
@@ -526,15 +615,23 @@ void bendersDecompositionWithInOut( bool useDualSimplex, bool useRoundingHeurist
             }
         }
 
-        if (useHeuristicSolutionToAddCut) {
-            addBendersCutForEachSubProblemToMaster(solution);
-        } else {
-            map<int, double> separator = stabilize();
-            solveSubModelWithSeprator(separator);
-            nodeUB = computeTotalCost();
-            addBendersCutWithSeparator(separator);
-//            addBendersCutForEachSubProblemToMaster();
-        }
+        map<int, double> separator = stabilize();
+        solveSubModelWithSeprator(separator);
+//        nodeUB = computeTotalCost();
+        addBendersCutWithSeparator(separator);
+
+
+        ////////////////////////////////////////////////////////////////
+
+//        if (useHeuristicSolutionToAddCut) {
+//            addBendersCutForEachSubProblemToMaster(solution);
+//        } else {
+//            map<int, double> separator = stabilize();
+//            solveSubModelWithSeprator(separator);
+//            nodeUB = computeTotalCost();
+//            addBendersCutWithSeparator(separator);
+////            addBendersCutForEachSubProblemToMaster();
+//        }
 
         if (abs(XPRBgetobjval(masterSolver) - nodeLB) <= 1) {
             LBnoImproveStep++;
@@ -558,7 +655,7 @@ void bendersDecompositionWithInOut( bool useDualSimplex, bool useRoundingHeurist
         nodeLB = XPRBgetobjval(masterSolver);
 
 
-        if ((abs(nodeUB - nodeLB) <= BD_GAP) || nodeLB >= nodeUB)
+        if (abs(nodeUB - nodeLB) <= BD_GAP)
             break;
 
 
@@ -627,54 +724,54 @@ void branching(BranchingConstraintSet &set) {
 
 }
 
-Solution roundingHeuristic() {
-    Solution solution = {{}, 0};
-    int tempLocation[numFacility + 1];
-    for (int i = 1; i <= numFacility; i++) {
-        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
-            tempLocation[i] = 1;
-            solution.totalCost += openingCosts[i];
-        } else {
-            if (XPRBgetsol(masterLocations[i]) <= 0.5) {
-                tempLocation[i] = 0;
-            } else {
-                solution.totalCost += openingCosts[i];
-                tempLocation[i] = 1;
-            }
-        }
-    }
-
-    bool locationSelected[numFacility + 1];
-
-    for (int i = 1; i <= numFacility; i++) {
-        locationSelected[i] = false;
-    }
-
-    for (int j = 1; j <= numCustomer; j++) {
-        int neareastFacility = 0;
-        double nearestDistance = MAX;
-        for (int i = 1; i <= numFacility; i++) {
-            if (tempLocation[i] == 1) {
-                if (servingCosts[i][j] < nearestDistance) {
-                    nearestDistance = servingCosts[i][j];
-                    neareastFacility = i;
-                }
-            }
-        }
-        solution.totalCost += servingCosts[neareastFacility][j];
-        locationSelected[neareastFacility] = true;
-    }
-
-    for (int i = 1; i <= numFacility; i++) {
-        solution.selectedLocations[i] = 0;
-        if (!locationSelected[i] && tempLocation[i] == 1) {
-            solution.totalCost -= openingCosts[i];
-        } else if (locationSelected[i] && tempLocation[i] == 1) {
-            solution.selectedLocations[i] = 1;
-        }
-    }
-    return solution;
-}
+//Solution roundingHeuristic() {
+//    Solution solution = {{}, 0};
+//    int tempLocation[numFacility + 1];
+//    for (int i = 1; i <= numFacility; i++) {
+//        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
+//            tempLocation[i] = 1;
+//            solution.totalCost += openingCosts[i];
+//        } else {
+//            if (XPRBgetsol(masterLocations[i]) <= 0.5) {
+//                tempLocation[i] = 0;
+//            } else {
+//                solution.totalCost += openingCosts[i];
+//                tempLocation[i] = 1;
+//            }
+//        }
+//    }
+//
+//    bool locationSelected[numFacility + 1];
+//
+//    for (int i = 1; i <= numFacility; i++) {
+//        locationSelected[i] = false;
+//    }
+//
+//    for (int j = 1; j <= numCustomer; j++) {
+//        int neareastFacility = 0;
+//        double nearestDistance = MAX;
+//        for (int i = 1; i <= numFacility; i++) {
+//            if (tempLocation[i] == 1) {
+//                if (servingCosts[i][j] < nearestDistance) {
+//                    nearestDistance = servingCosts[i][j];
+//                    neareastFacility = i;
+//                }
+//            }
+//        }
+//        solution.totalCost += servingCosts[neareastFacility][j];
+//        locationSelected[neareastFacility] = true;
+//    }
+//
+//    for (int i = 1; i <= numFacility; i++) {
+//        solution.selectedLocations[i] = 0;
+//        if (!locationSelected[i] && tempLocation[i] == 1) {
+//            solution.totalCost -= openingCosts[i];
+//        } else if (locationSelected[i] && tempLocation[i] == 1) {
+//            solution.selectedLocations[i] = 1;
+//        }
+//    }
+//    return solution;
+//}
 
 Solution roundingHeuristic2() {
     double sortedLocation[numFacility + 1];
@@ -764,6 +861,7 @@ void branchAndCut(bool useOptimalityCutInBendersDecomposition, bool useDualSimpl
 
     if (isMasterSolutionInteger()) {
         cout << "UB = " << ub << " at the root node " << endl;
+        print();
         return;
     }
 
@@ -855,12 +953,12 @@ int main() {
 //        string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/70/70.1";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/150/150.5";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/200/200.10";
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-5";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-5";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/b/gs250b-3";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/500/a/gs500a-2";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/750/a/gs750a-1";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/kmedian/1000-10";
-//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/kmedian/2500-10";
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/kmedian/2500-10";
     readFromFile(fileName);
     start = duration_cast<milliseconds>(
             system_clock::now().time_since_epoch()
@@ -868,7 +966,7 @@ int main() {
 //    bendersDecomposition();
 
 //    branchAndCut(false,true);
-    branchAndCut(true, true, true, false, false);
+    branchAndCut(true, true, true, false, true);
 //    branchAndCutWithInOut(false);
 //    branchAndCutWithDualSimplex(false);
     milliseconds end = duration_cast<milliseconds>(
