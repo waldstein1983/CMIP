@@ -1,69 +1,39 @@
 #include <iostream>
 #include <chrono>
-#include <xprb.h>
+
 #include <map>
-#include <vector>
 #include <fstream>
 #include <sstream>
 #include <iterator>
 #include <cmath>
 #include <algorithm>
 #include <cfloat>
+#include "branching.h"
+#include "decision_var.h"
+#include "model.h"
 
 #define MAX DBL_MAX
 #define BD_GAP 1
+
 
 using namespace std;
 using namespace std::chrono;
 
 int nodeNum = 0;
 
+
+
 #define INT_GAP 0.00001
 
 double LAMDA = 0.2;
 double DELTA = 2 * INT_GAP;
 
-struct BranchingConstraint {
-    string name;
-    int branchingLocationId;
-    int ctrType;
-    int bound;
-};
 
-struct LocalBranchingConstraint {
-    string name;
-//    int branchingLocationId;
-    vector<int> nonZeros;
-    vector<int> zeros;
-    int ctrType;
-    int bound;
-};
-
-struct BranchingConstraintSet {
-    XPRBbasis basis;
-    vector<BranchingConstraint> branchingCons;
-};
-
-struct LocalBranchingConstraintSet {
-    XPRBbasis basis;
-    vector<LocalBranchingConstraint> branchingCons;
-};
 
 milliseconds start;
 
-vector<BranchingConstraintSet> branchingNodes;
-
-vector<LocalBranchingConstraintSet> localBranchingNodes;
-
 int numFacility;
 int numCustomer;
-map<int, XPRBprob> subSolvers;
-XPRBprob masterSolver = XPRBnewprob("master");
-map<int, XPRBvar> masterLocations;
-map<int, XPRBvar> masterAlphas;
-map<int, map<int, XPRBvar>> subCovers;
-
-map<int, map<int, XPRBctr>> subBoundingCtrs;
 
 double ub = MAX;
 
@@ -75,15 +45,6 @@ int globalBendersCutId = 1;
 
 map<int, double> yy;
 
-//facility -> customer -> dual
-map<int, map<int, double>> boundingVarSubDuals;
-
-struct Solution {
-    map<int, int> selectedLocations;
-    double totalCost;
-};
-
-Solution best = {{}, 0};
 
 void print();
 
@@ -422,7 +383,8 @@ bool isMasterSolutionInteger() {
     return true;
 }
 
-void bendersDecomposition(bool useOptimalityCut, bool useDualSimplex, bool useRoundingHeuristic) {
+Solution bendersDecomposition(bool useOptimalityCut, bool useDualSimplex, bool useRoundingHeuristic) {
+    Solution best = {{}, MAX};
     XPRBbasis basis = XPRBsavebasis(masterSolver);
     double nodeLB = 0, nodeUB = MAX;
     while (abs(nodeUB - nodeLB) > 1) {
@@ -440,7 +402,11 @@ void bendersDecomposition(bool useOptimalityCut, bool useDualSimplex, bool useRo
                 addOptimalityCut();
             if (nodeUB < ub) {
                 ub = nodeUB;
-                best.totalCost = ub;
+
+            }
+
+            if(nodeUB < best.totalCost){
+                best.totalCost = nodeUB;
                 for (int i = 1; i <= numFacility; i++) {
                     if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
                         best.selectedLocations[i] = 1;
@@ -454,17 +420,29 @@ void bendersDecomposition(bool useOptimalityCut, bool useDualSimplex, bool useRo
                 solution = roundingHeuristic2();
                 if (solution.totalCost < ub) {
                     ub = solution.totalCost;
-                    solveSubModel(solution);
-                    useHeuristicSolutionToAddCut = true;
 
-                    best.totalCost = ub;
-                    for (int i = 1; i <= numFacility; i++) {
-                        if (solution.selectedLocations[i] == 1) {
-                            best.selectedLocations[i] = 1;
-                        } else {
-                            best.selectedLocations[i] = 0;
-                        }
-                    }
+//                    useHeuristicSolutionToAddCut = true;
+
+//                    best.totalCost = ub;
+//                    for (int i = 1; i <= numFacility; i++) {
+//                        if (solution.selectedLocations[i] == 1) {
+//                            best.selectedLocations[i] = 1;
+//                        } else {
+//                            best.selectedLocations[i] = 0;
+//                        }
+//                    }
+                }
+
+                if(solution.totalCost < best.totalCost){
+                    best = solution;
+//                    best.totalCost = solution.totalCost;
+//                    for (int i = 1; i <= numFacility; i++) {
+//                        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
+//                            best.selectedLocations[i] = 1;
+//                        } else {
+//                            best.selectedLocations[i] = 0;
+//                        }
+//                    }
                 }
             }
         }
@@ -472,6 +450,7 @@ void bendersDecomposition(bool useOptimalityCut, bool useDualSimplex, bool useRo
             break;
 
         if (useHeuristicSolutionToAddCut) {
+            solveSubModel(solution);
             addBendersCutForEachSubProblemToMaster(solution);
         } else {
             addBendersCutForEachSubProblemToMaster();
@@ -485,9 +464,11 @@ void bendersDecomposition(bool useOptimalityCut, bool useDualSimplex, bool useRo
         } else
             XPRBlpoptimise(masterSolver, "");
     }
+    return best;
 }
 
-void bendersDecompositionWithInOut(bool useDualSimplex, bool useRoundingHeuristic) {
+Solution bendersDecompositionWithInOut(bool useDualSimplex, bool useRoundingHeuristic) {
+    Solution best = {{}, 0};
     XPRBbasis basis = XPRBsavebasis(masterSolver);
     for (int i = 1; i <= numFacility; i++) {
         yy[i] = 1;
@@ -682,9 +663,10 @@ void bendersDecompositionWithInOut(bool useDualSimplex, bool useRoundingHeuristi
         } else
             XPRBlpoptimise(masterSolver, "");
     }
+    return best;
 }
 
-void buildLocalBranchingConstraintSet(LocalBranchingConstraintSet &targetSet, int ctrType, int k) {
+void buildLocalBranchingConstraintSet(Solution &best, LocalBranchingConstraintSet &targetSet, int ctrType, int k) {
     LocalBranchingConstraintSet branchingSet = {nullptr, {}};
 
     for (auto &ctr : targetSet.branchingCons) {
@@ -694,7 +676,7 @@ void buildLocalBranchingConstraintSet(LocalBranchingConstraintSet &targetSet, in
     vector<int> nonZeros;
     vector<int> zeros;
     for (int i = 1; i <= numFacility; i++) {
-        if (abs(XPRBgetsol(masterLocations[i]) - 1) <= INT_GAP) {
+        if (best.selectedLocations[i] == 1) {
             nonZeros.push_back(i);
         } else {
             zeros.push_back(i);
@@ -702,12 +684,15 @@ void buildLocalBranchingConstraintSet(LocalBranchingConstraintSet &targetSet, in
     }
 
     if (ctrType == 0) {
-        LocalBranchingConstraint left = {"Left", nonZeros, zeros, 0, k};
+        LocalBranchingConstraint left = {"Left " + nodeNum, nonZeros, zeros, 0, k};
+        nodeNum++;
         branchingSet.branchingCons.push_back(left);
     } else {
-        LocalBranchingConstraint right = {"Right", nonZeros, zeros, 0, k + 1};
+        LocalBranchingConstraint right = {"Right " + nodeNum, nonZeros, zeros, 0, k + 1};
+        nodeNum++;
         branchingSet.branchingCons.push_back(right);
     }
+    localBranchingNodes.insert(localBranchingNodes.begin(), branchingSet);
 }
 
 void buildBranchingConstraintSet(BranchingConstraintSet &targetSet, int branchingLocationId, int ctrType) {
@@ -740,9 +725,9 @@ void buildBranchingConstraintSet(BranchingConstraintSet &targetSet, int branchin
 
 }
 
-void localBranching(LocalBranchingConstraintSet &set, int k) {
-    buildLocalBranchingConstraintSet(set, 0, k);
-    buildLocalBranchingConstraintSet(set, 1, k);
+void localBranching(Solution &best, LocalBranchingConstraintSet &set, int k) {
+    buildLocalBranchingConstraintSet(best, set, 0, k);
+    buildLocalBranchingConstraintSet(best, set, 1, k);
 }
 
 void branching(BranchingConstraintSet &set) {
@@ -909,7 +894,7 @@ void branchAndCut(bool useOptimalityCutInBendersDecomposition, bool useDualSimpl
         return;
     }
 
-    BranchingConstraintSet target = {nodeNum, {}};
+    BranchingConstraintSet target = {nullptr, {}};
     branching(target);
 
     int step = 1;
@@ -969,27 +954,151 @@ void branchAndCut(bool useOptimalityCutInBendersDecomposition, bool useDualSimpl
     }
     cout << "UB = " << ub << endl;
 
-    cout << "Total Cost " << best.totalCost << endl;
-    for (int i = 1; i <= numFacility; i++) {
-        cout << "facility " << i << " -> " << best.selectedLocations[i] << endl;
+//    cout << "Total Cost " << best.totalCost << endl;
+//    for (int i = 1; i <= numFacility; i++) {
+//        cout << "facility " << i << " -> " << best.selectedLocations[i] << endl;
+//    }
+//    for (int j = 1; j <= numCustomer; j++) {
+//        int neareastFacility = 0;
+//        double nearestDistance = MAX;
+//        for (int i = 1; i < numFacility; i++) {
+//            if (abs(best.selectedLocations[i] - 1) <= INT_GAP) {
+//                if (servingCosts[i][j] < nearestDistance) {
+//                    nearestDistance = servingCosts[i][j];
+//                    neareastFacility = i;
+//                }
+//            }
+//        }
+//        cout << "Customer " << j << " -> " << neareastFacility << endl;
+////        solution.totalCost += servingCosts[neareastFacility][j];
+////        locationSelected[neareastFacility] = true;
+//    }
+
+}
+
+void branchAndCutWithLocalBranching(bool useOptimalityCutInBendersDecomposition, bool useDualSimplexInBendersDecomposition,
+                               bool useRoundingHeuristicInBendersDecomposition,
+                               bool useDualSimplexInBranch, bool useInOutStrategyInBendersDecomposition) {
+    XPRBsetmsglevel(masterSolver, 1);
+    initMaster();
+    initSubModel();
+
+    XPRBlpoptimise(masterSolver, "");
+    Solution curBest;
+    if (!useInOutStrategyInBendersDecomposition) {
+        curBest = bendersDecomposition(useOptimalityCutInBendersDecomposition, useDualSimplexInBendersDecomposition,
+                                       useRoundingHeuristicInBendersDecomposition);
+    } else {
+        curBest = bendersDecompositionWithInOut(useDualSimplexInBendersDecomposition,
+                                                useRoundingHeuristicInBendersDecomposition);
     }
-    for (int j = 1; j <= numCustomer; j++) {
-        int neareastFacility = 0;
-        double nearestDistance = MAX;
-        for (int i = 1; i < numFacility; i++) {
-            if (abs(best.selectedLocations[i] - 1) <= INT_GAP) {
-                if (servingCosts[i][j] < nearestDistance) {
-                    nearestDistance = servingCosts[i][j];
-                    neareastFacility = i;
+
+
+    if (isMasterSolutionInteger()) {
+        cout << "UB = " << ub << " at the root node " << endl;
+        print();
+        return;
+    }
+//    print();
+    LocalBranchingConstraintSet target = {nullptr, {}};
+    localBranching(curBest, target, LOCAL_BRANCHING_K);
+
+    int step = 1;
+    while (!localBranchingNodes.empty()) {
+        milliseconds end = duration_cast<milliseconds>(
+                system_clock::now().time_since_epoch()
+        );
+        if (step % 1 == 0) {
+            cout << ub << "   node size " << branchingNodes.size() << " step = " << step << "   Time "
+                 << (end.count() - start.count()) << endl;
+
+        }
+        if ((end.count() - start.count()) / 1000 > 720000) {
+            cout << "Terminate due to time limit of 3600 sec" << endl;
+            break;
+        }
+        target = localBranchingNodes[0];
+        localBranchingNodes.erase(localBranchingNodes.begin());
+
+        for (auto &branching : target.branchingCons) {
+            if (branching.ctrType == 0) {
+                XPRBctr ctr = XPRBnewctr(masterSolver, branching.name.c_str(), XPRB_L);
+                for (auto &id : branching.zeros) {
+                    XPRBaddterm(ctr, masterLocations[id], 1);
+                }
+
+                for (auto &id : branching.nonZeros) {
+                    XPRBaddterm(ctr, masterLocations[id], -1);
+                }
+
+                XPRBaddterm(ctr, nullptr, branching.k - branching.nonZeros.size());
+
+            } else if (branching.ctrType == 1) {
+                XPRBctr ctr = XPRBnewctr(masterSolver, branching.name.c_str(), XPRB_G);
+                for (auto &id : branching.zeros) {
+                    XPRBaddterm(ctr, masterLocations[id], 1);
+                }
+
+                for (auto &id : branching.nonZeros) {
+                    XPRBaddterm(ctr, masterLocations[id], -1);
+                }
+
+                XPRBaddterm(ctr, nullptr, branching.k - branching.nonZeros.size());
+            }
+        }
+
+        if (useDualSimplexInBranch) {
+            XPRBloadmat(masterSolver);
+            XPRBloadbasis(target.basis);
+//            basis = nullptr;
+            XPRBlpoptimise(masterSolver, "d");
+//            basis = XPRBsavebasis(masterSolver);
+        } else {
+            XPRBlpoptimise(masterSolver, "");
+        }
+
+
+        if (XPRBgetlpstat(masterSolver) == XPRB_LP_OPTIMAL) {
+            if (XPRBgetobjval(masterSolver) < ub && abs(XPRBgetobjval(masterSolver) - ub) >= INT_GAP) {
+                Solution sol = bendersDecomposition(useOptimalityCutInBendersDecomposition,
+                                                    useDualSimplexInBendersDecomposition,
+                                                    useRoundingHeuristicInBendersDecomposition);
+                if(sol.totalCost != 0) {
+                    localBranching(sol, target, LOCAL_BRANCHING_K);
                 }
             }
         }
-        cout << "Customer " << j << " -> " << neareastFacility << endl;
-//        solution.totalCost += servingCosts[neareastFacility][j];
-//        locationSelected[neareastFacility] = true;
+
+        for (auto &branching : target.branchingCons) {
+            auto branchingCtr = (XPRBctr) XPRBgetbyname(masterSolver, branching.name.c_str(), XPRB_CTR);
+            XPRBdelctr(branchingCtr);
+        }
+        step++;
     }
+    cout << "UB = " << ub << endl;
+
+//    cout << "Total Cost " << best.totalCost << endl;
+//    for (int i = 1; i <= numFacility; i++) {
+//        cout << "facility " << i << " -> " << best.selectedLocations[i] << endl;
+//    }
+//    for (int j = 1; j <= numCustomer; j++) {
+//        int neareastFacility = 0;
+//        double nearestDistance = MAX;
+//        for (int i = 1; i < numFacility; i++) {
+//            if (abs(best.selectedLocations[i] - 1) <= INT_GAP) {
+//                if (servingCosts[i][j] < nearestDistance) {
+//                    nearestDistance = servingCosts[i][j];
+//                    neareastFacility = i;
+//                }
+//            }
+//        }
+//        cout << "Customer " << j << " -> " << neareastFacility << endl;
+////        solution.totalCost += servingCosts[neareastFacility][j];
+////        locationSelected[neareastFacility] = true;
+//    }
 
 }
+
 
 int main() {
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/simpleExample2.txt";
@@ -997,12 +1106,12 @@ int main() {
 //        string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/70/70.1";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/150/150.5";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/200/200.10";
-//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-5";
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-5";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/b/gs250b-3";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/500/a/gs500a-2";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/750/a/gs750a-1";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/kmedian/1000-10";
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/kmedian/2500-10";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/kmedian/2500-10";
     readFromFile(fileName);
     start = duration_cast<milliseconds>(
             system_clock::now().time_since_epoch()
@@ -1010,7 +1119,8 @@ int main() {
 //    bendersDecomposition();
 
 //    branchAndCut(false,true);
-    branchAndCut(true, true, true, false, true);
+//    branchAndCut(true, true, true, false, true);
+    branchAndCutWithLocalBranching(true, true, true, false, false);
 //    branchAndCutWithInOut(false);
 //    branchAndCutWithDualSimplex(false);
     milliseconds end = duration_cast<milliseconds>(

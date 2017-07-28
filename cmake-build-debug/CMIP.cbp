@@ -86,7 +86,13 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/cfl_bc.cpp">
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/branching.h">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/decision_var.h">
+			<Option target="CMIP"/>
+		</Unit>
+		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/model.h">
 			<Option target="CMIP"/>
 		</Unit>
 		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc.cpp">

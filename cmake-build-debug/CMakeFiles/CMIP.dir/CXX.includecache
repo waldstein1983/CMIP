@@ -6,18 +6,30 @@
 
 #IncludeRegexTransform: 
 
-/home/local/ANT/baohuaw/CLionProjects/CMIP/cfl_bc.cpp
+/home/local/ANT/baohuaw/CLionProjects/CMIP/branching.h
+xprb.h
+-
+vector
+-
+
+/home/local/ANT/baohuaw/CLionProjects/CMIP/decision_var.h
+xprb.h
+-
+map
+-
+
+/home/local/ANT/baohuaw/CLionProjects/CMIP/model.h
+xprb.h
+-
+map
+-
 
 /home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc.cpp
 iostream
 -
 chrono
 -
-xprb.h
--
 map
--
-vector
 -
 fstream
 -
@@ -31,6 +43,12 @@ algorithm
 -
 cfloat
 -
+branching.h
+/home/local/ANT/baohuaw/CLionProjects/CMIP/branching.h
+decision_var.h
+/home/local/ANT/baohuaw/CLionProjects/CMIP/decision_var.h
+model.h
+/home/local/ANT/baohuaw/CLionProjects/CMIP/model.h
 
 /opt/xpressmp/include/xprb.h
 
