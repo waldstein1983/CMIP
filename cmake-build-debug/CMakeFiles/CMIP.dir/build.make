@@ -57,249 +57,41 @@ include CMakeFiles/CMIP.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/CMIP.dir/flags.make
 
-CMakeFiles/CMIP.dir/ufl_solve.cpp.o: CMakeFiles/CMIP.dir/flags.make
-CMakeFiles/CMIP.dir/ufl_solve.cpp.o: ../ufl_solve.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/local/ANT/baohuaw/CLionProjects/CMIP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CMIP.dir/ufl_solve.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CMIP.dir/ufl_solve.cpp.o -c /home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_solve.cpp
+CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o: CMakeFiles/CMIP.dir/flags.make
+CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o: ../ufl_bc_bd.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/local/ANT/baohuaw/CLionProjects/CMIP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o -c /home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc_bd.cpp
 
-CMakeFiles/CMIP.dir/ufl_solve.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CMIP.dir/ufl_solve.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_solve.cpp > CMakeFiles/CMIP.dir/ufl_solve.cpp.i
+CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc_bd.cpp > CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.i
 
-CMakeFiles/CMIP.dir/ufl_solve.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CMIP.dir/ufl_solve.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_solve.cpp -o CMakeFiles/CMIP.dir/ufl_solve.cpp.s
+CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc_bd.cpp -o CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.s
 
-CMakeFiles/CMIP.dir/ufl_solve.cpp.o.requires:
+CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o.requires:
 
-.PHONY : CMakeFiles/CMIP.dir/ufl_solve.cpp.o.requires
+.PHONY : CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o.requires
 
-CMakeFiles/CMIP.dir/ufl_solve.cpp.o.provides: CMakeFiles/CMIP.dir/ufl_solve.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_solve.cpp.o.provides.build
-.PHONY : CMakeFiles/CMIP.dir/ufl_solve.cpp.o.provides
+CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o.provides: CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o.requires
+	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o.provides.build
+.PHONY : CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o.provides
 
-CMakeFiles/CMIP.dir/ufl_solve.cpp.o.provides.build: CMakeFiles/CMIP.dir/ufl_solve.cpp.o
-
-
-CMakeFiles/CMIP.dir/local_branching.cpp.o: CMakeFiles/CMIP.dir/flags.make
-CMakeFiles/CMIP.dir/local_branching.cpp.o: ../local_branching.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/local/ANT/baohuaw/CLionProjects/CMIP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/CMIP.dir/local_branching.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CMIP.dir/local_branching.cpp.o -c /home/local/ANT/baohuaw/CLionProjects/CMIP/local_branching.cpp
-
-CMakeFiles/CMIP.dir/local_branching.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CMIP.dir/local_branching.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/local/ANT/baohuaw/CLionProjects/CMIP/local_branching.cpp > CMakeFiles/CMIP.dir/local_branching.cpp.i
-
-CMakeFiles/CMIP.dir/local_branching.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CMIP.dir/local_branching.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/local/ANT/baohuaw/CLionProjects/CMIP/local_branching.cpp -o CMakeFiles/CMIP.dir/local_branching.cpp.s
-
-CMakeFiles/CMIP.dir/local_branching.cpp.o.requires:
-
-.PHONY : CMakeFiles/CMIP.dir/local_branching.cpp.o.requires
-
-CMakeFiles/CMIP.dir/local_branching.cpp.o.provides: CMakeFiles/CMIP.dir/local_branching.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/local_branching.cpp.o.provides.build
-.PHONY : CMakeFiles/CMIP.dir/local_branching.cpp.o.provides
-
-CMakeFiles/CMIP.dir/local_branching.cpp.o.provides.build: CMakeFiles/CMIP.dir/local_branching.cpp.o
-
-
-CMakeFiles/CMIP.dir/branching.cpp.o: CMakeFiles/CMIP.dir/flags.make
-CMakeFiles/CMIP.dir/branching.cpp.o: ../branching.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/local/ANT/baohuaw/CLionProjects/CMIP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/CMIP.dir/branching.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CMIP.dir/branching.cpp.o -c /home/local/ANT/baohuaw/CLionProjects/CMIP/branching.cpp
-
-CMakeFiles/CMIP.dir/branching.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CMIP.dir/branching.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/local/ANT/baohuaw/CLionProjects/CMIP/branching.cpp > CMakeFiles/CMIP.dir/branching.cpp.i
-
-CMakeFiles/CMIP.dir/branching.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CMIP.dir/branching.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/local/ANT/baohuaw/CLionProjects/CMIP/branching.cpp -o CMakeFiles/CMIP.dir/branching.cpp.s
-
-CMakeFiles/CMIP.dir/branching.cpp.o.requires:
-
-.PHONY : CMakeFiles/CMIP.dir/branching.cpp.o.requires
-
-CMakeFiles/CMIP.dir/branching.cpp.o.provides: CMakeFiles/CMIP.dir/branching.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/branching.cpp.o.provides.build
-.PHONY : CMakeFiles/CMIP.dir/branching.cpp.o.provides
-
-CMakeFiles/CMIP.dir/branching.cpp.o.provides.build: CMakeFiles/CMIP.dir/branching.cpp.o
-
-
-CMakeFiles/CMIP.dir/ufl_model.cpp.o: CMakeFiles/CMIP.dir/flags.make
-CMakeFiles/CMIP.dir/ufl_model.cpp.o: ../ufl_model.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/local/ANT/baohuaw/CLionProjects/CMIP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/CMIP.dir/ufl_model.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CMIP.dir/ufl_model.cpp.o -c /home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_model.cpp
-
-CMakeFiles/CMIP.dir/ufl_model.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CMIP.dir/ufl_model.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_model.cpp > CMakeFiles/CMIP.dir/ufl_model.cpp.i
-
-CMakeFiles/CMIP.dir/ufl_model.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CMIP.dir/ufl_model.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_model.cpp -o CMakeFiles/CMIP.dir/ufl_model.cpp.s
-
-CMakeFiles/CMIP.dir/ufl_model.cpp.o.requires:
-
-.PHONY : CMakeFiles/CMIP.dir/ufl_model.cpp.o.requires
-
-CMakeFiles/CMIP.dir/ufl_model.cpp.o.provides: CMakeFiles/CMIP.dir/ufl_model.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_model.cpp.o.provides.build
-.PHONY : CMakeFiles/CMIP.dir/ufl_model.cpp.o.provides
-
-CMakeFiles/CMIP.dir/ufl_model.cpp.o.provides.build: CMakeFiles/CMIP.dir/ufl_model.cpp.o
-
-
-CMakeFiles/CMIP.dir/rounding_heu.cpp.o: CMakeFiles/CMIP.dir/flags.make
-CMakeFiles/CMIP.dir/rounding_heu.cpp.o: ../rounding_heu.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/local/ANT/baohuaw/CLionProjects/CMIP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/CMIP.dir/rounding_heu.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CMIP.dir/rounding_heu.cpp.o -c /home/local/ANT/baohuaw/CLionProjects/CMIP/rounding_heu.cpp
-
-CMakeFiles/CMIP.dir/rounding_heu.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CMIP.dir/rounding_heu.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/local/ANT/baohuaw/CLionProjects/CMIP/rounding_heu.cpp > CMakeFiles/CMIP.dir/rounding_heu.cpp.i
-
-CMakeFiles/CMIP.dir/rounding_heu.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CMIP.dir/rounding_heu.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/local/ANT/baohuaw/CLionProjects/CMIP/rounding_heu.cpp -o CMakeFiles/CMIP.dir/rounding_heu.cpp.s
-
-CMakeFiles/CMIP.dir/rounding_heu.cpp.o.requires:
-
-.PHONY : CMakeFiles/CMIP.dir/rounding_heu.cpp.o.requires
-
-CMakeFiles/CMIP.dir/rounding_heu.cpp.o.provides: CMakeFiles/CMIP.dir/rounding_heu.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/rounding_heu.cpp.o.provides.build
-.PHONY : CMakeFiles/CMIP.dir/rounding_heu.cpp.o.provides
-
-CMakeFiles/CMIP.dir/rounding_heu.cpp.o.provides.build: CMakeFiles/CMIP.dir/rounding_heu.cpp.o
-
-
-CMakeFiles/CMIP.dir/benders_cut.cpp.o: CMakeFiles/CMIP.dir/flags.make
-CMakeFiles/CMIP.dir/benders_cut.cpp.o: ../benders_cut.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/local/ANT/baohuaw/CLionProjects/CMIP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/CMIP.dir/benders_cut.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CMIP.dir/benders_cut.cpp.o -c /home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut.cpp
-
-CMakeFiles/CMIP.dir/benders_cut.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CMIP.dir/benders_cut.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut.cpp > CMakeFiles/CMIP.dir/benders_cut.cpp.i
-
-CMakeFiles/CMIP.dir/benders_cut.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CMIP.dir/benders_cut.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut.cpp -o CMakeFiles/CMIP.dir/benders_cut.cpp.s
-
-CMakeFiles/CMIP.dir/benders_cut.cpp.o.requires:
-
-.PHONY : CMakeFiles/CMIP.dir/benders_cut.cpp.o.requires
-
-CMakeFiles/CMIP.dir/benders_cut.cpp.o.provides: CMakeFiles/CMIP.dir/benders_cut.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/benders_cut.cpp.o.provides.build
-.PHONY : CMakeFiles/CMIP.dir/benders_cut.cpp.o.provides
-
-CMakeFiles/CMIP.dir/benders_cut.cpp.o.provides.build: CMakeFiles/CMIP.dir/benders_cut.cpp.o
-
-
-CMakeFiles/CMIP.dir/branch_cut.cpp.o: CMakeFiles/CMIP.dir/flags.make
-CMakeFiles/CMIP.dir/branch_cut.cpp.o: ../branch_cut.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/local/ANT/baohuaw/CLionProjects/CMIP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/CMIP.dir/branch_cut.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CMIP.dir/branch_cut.cpp.o -c /home/local/ANT/baohuaw/CLionProjects/CMIP/branch_cut.cpp
-
-CMakeFiles/CMIP.dir/branch_cut.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CMIP.dir/branch_cut.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/local/ANT/baohuaw/CLionProjects/CMIP/branch_cut.cpp > CMakeFiles/CMIP.dir/branch_cut.cpp.i
-
-CMakeFiles/CMIP.dir/branch_cut.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CMIP.dir/branch_cut.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/local/ANT/baohuaw/CLionProjects/CMIP/branch_cut.cpp -o CMakeFiles/CMIP.dir/branch_cut.cpp.s
-
-CMakeFiles/CMIP.dir/branch_cut.cpp.o.requires:
-
-.PHONY : CMakeFiles/CMIP.dir/branch_cut.cpp.o.requires
-
-CMakeFiles/CMIP.dir/branch_cut.cpp.o.provides: CMakeFiles/CMIP.dir/branch_cut.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/branch_cut.cpp.o.provides.build
-.PHONY : CMakeFiles/CMIP.dir/branch_cut.cpp.o.provides
-
-CMakeFiles/CMIP.dir/branch_cut.cpp.o.provides.build: CMakeFiles/CMIP.dir/branch_cut.cpp.o
-
-
-CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o: CMakeFiles/CMIP.dir/flags.make
-CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o: ../branch_cut_lb.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/local/ANT/baohuaw/CLionProjects/CMIP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o -c /home/local/ANT/baohuaw/CLionProjects/CMIP/branch_cut_lb.cpp
-
-CMakeFiles/CMIP.dir/branch_cut_lb.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CMIP.dir/branch_cut_lb.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/local/ANT/baohuaw/CLionProjects/CMIP/branch_cut_lb.cpp > CMakeFiles/CMIP.dir/branch_cut_lb.cpp.i
-
-CMakeFiles/CMIP.dir/branch_cut_lb.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CMIP.dir/branch_cut_lb.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/local/ANT/baohuaw/CLionProjects/CMIP/branch_cut_lb.cpp -o CMakeFiles/CMIP.dir/branch_cut_lb.cpp.s
-
-CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o.requires:
-
-.PHONY : CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o.requires
-
-CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o.provides: CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o.provides.build
-.PHONY : CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o.provides
-
-CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o.provides.build: CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o
-
-
-CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o: CMakeFiles/CMIP.dir/flags.make
-CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o: ../benders_cut_inout.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/local/ANT/baohuaw/CLionProjects/CMIP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o -c /home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut_inout.cpp
-
-CMakeFiles/CMIP.dir/benders_cut_inout.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/CMIP.dir/benders_cut_inout.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut_inout.cpp > CMakeFiles/CMIP.dir/benders_cut_inout.cpp.i
-
-CMakeFiles/CMIP.dir/benders_cut_inout.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/CMIP.dir/benders_cut_inout.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/local/ANT/baohuaw/CLionProjects/CMIP/benders_cut_inout.cpp -o CMakeFiles/CMIP.dir/benders_cut_inout.cpp.s
-
-CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o.requires:
-
-.PHONY : CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o.requires
-
-CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o.provides: CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o.requires
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o.provides.build
-.PHONY : CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o.provides
-
-CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o.provides.build: CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o
+CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o.provides.build: CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o
 
 
 # Object files for target CMIP
 CMIP_OBJECTS = \
-"CMakeFiles/CMIP.dir/ufl_solve.cpp.o" \
-"CMakeFiles/CMIP.dir/local_branching.cpp.o" \
-"CMakeFiles/CMIP.dir/branching.cpp.o" \
-"CMakeFiles/CMIP.dir/ufl_model.cpp.o" \
-"CMakeFiles/CMIP.dir/rounding_heu.cpp.o" \
-"CMakeFiles/CMIP.dir/benders_cut.cpp.o" \
-"CMakeFiles/CMIP.dir/branch_cut.cpp.o" \
-"CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o" \
-"CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o"
+"CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o"
 
 # External object files for target CMIP
 CMIP_EXTERNAL_OBJECTS =
 
-CMIP: CMakeFiles/CMIP.dir/ufl_solve.cpp.o
-CMIP: CMakeFiles/CMIP.dir/local_branching.cpp.o
-CMIP: CMakeFiles/CMIP.dir/branching.cpp.o
-CMIP: CMakeFiles/CMIP.dir/ufl_model.cpp.o
-CMIP: CMakeFiles/CMIP.dir/rounding_heu.cpp.o
-CMIP: CMakeFiles/CMIP.dir/benders_cut.cpp.o
-CMIP: CMakeFiles/CMIP.dir/branch_cut.cpp.o
-CMIP: CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o
-CMIP: CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o
+CMIP: CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o
 CMIP: CMakeFiles/CMIP.dir/build.make
 CMIP: CMakeFiles/CMIP.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/local/ANT/baohuaw/CLionProjects/CMIP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable CMIP"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/local/ANT/baohuaw/CLionProjects/CMIP/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable CMIP"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/CMIP.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -307,15 +99,7 @@ CMakeFiles/CMIP.dir/build: CMIP
 
 .PHONY : CMakeFiles/CMIP.dir/build
 
-CMakeFiles/CMIP.dir/requires: CMakeFiles/CMIP.dir/ufl_solve.cpp.o.requires
-CMakeFiles/CMIP.dir/requires: CMakeFiles/CMIP.dir/local_branching.cpp.o.requires
-CMakeFiles/CMIP.dir/requires: CMakeFiles/CMIP.dir/branching.cpp.o.requires
-CMakeFiles/CMIP.dir/requires: CMakeFiles/CMIP.dir/ufl_model.cpp.o.requires
-CMakeFiles/CMIP.dir/requires: CMakeFiles/CMIP.dir/rounding_heu.cpp.o.requires
-CMakeFiles/CMIP.dir/requires: CMakeFiles/CMIP.dir/benders_cut.cpp.o.requires
-CMakeFiles/CMIP.dir/requires: CMakeFiles/CMIP.dir/branch_cut.cpp.o.requires
-CMakeFiles/CMIP.dir/requires: CMakeFiles/CMIP.dir/branch_cut_lb.cpp.o.requires
-CMakeFiles/CMIP.dir/requires: CMakeFiles/CMIP.dir/benders_cut_inout.cpp.o.requires
+CMakeFiles/CMIP.dir/requires: CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o.requires
 
 .PHONY : CMakeFiles/CMIP.dir/requires
 

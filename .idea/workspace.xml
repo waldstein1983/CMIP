@@ -12,28 +12,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea50ad4d-f4f6-4024-a791-6f9b9610ddd8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/benders_cut.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/benders_cut_inout.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/benders_cut_inout.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/branch_cut.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/branch_cut.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/branch_cut_lb.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/branch_cut_lb.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/branching.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/local_branching.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/local_branching.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/rounding_heu.cpp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ufl.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ufl_model.h" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ufl_solve.cpp" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ufl_bc.cpp" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/model.h" afterPath="$PROJECT_DIR$/ufl_model.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/problem.h" afterPath="$PROJECT_DIR$/ufl.cpp" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/rounding_heuristic.h" afterPath="$PROJECT_DIR$/rounding_heu.h" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ufl_bc_bd.cpp" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/benders_cut.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/benders_cut.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/benders_cut_inout.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/benders_cut_inout.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/branch_cut.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/branch_cut.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/branch_cut_lb.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/branch_cut_lb.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/branching.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/branching.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/local_branching.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/local_branching.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/rounding_heu.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/rounding_heu.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ufl_model.cpp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ufl_model.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ufl_solve.cpp" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/benders_cut.h" afterPath="$PROJECT_DIR$/benders_cut.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/branching.h" afterPath="$PROJECT_DIR$/branching.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMIP.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/CMIP.cbp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/CXX.includecache" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/DependInfo.cmake" />
@@ -60,114 +58,95 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ufl_solve.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ufl_solve.cpp">
+      <file leaf-file-name="ufl_bc_bd.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ufl_bc_bd.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="67">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="-89">
+              <caret line="993" column="9" lean-forward="true" selection-start-line="993" selection-start-column="9" selection-end-line="993" selection-end-column="9" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#237#254#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="branching.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/branching.h">
+      <file leaf-file-name="gs250a-1.opt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/a/gs250a-1.opt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-              <folding>
-                <element signature="e#112#129#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ufl.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ufl.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding>
-                <element signature="e#90#104#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="local_branching.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/local_branching.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-              <folding>
-                <element signature="e#104#121#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="branching.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/branching.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="branch_cut.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/branch_cut.h">
+      <file leaf-file-name="gs250a-4.bub" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/a/gs250a-4.bub">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="92" lean-forward="false" selection-start-line="9" selection-start-column="92" selection-end-line="9" selection-end-column="92" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="branch_cut.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/branch_cut.cpp">
+      <file leaf-file-name="gs500a-2.bub" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/500/a/gs500a-2.bub">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-465">
-              <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-              <folding>
-                <element signature="e#40#57#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="xprb.h" pinned="false" current-in-tab="false">
-        <entry file="file:///opt/xpressmp/include/xprb.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="145" column="31" lean-forward="false" selection-start-line="145" selection-start-column="31" selection-end-line="145" selection-end-column="31" />
+            <state relative-caret-position="18">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="rounding_heu.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rounding_heu.cpp">
+      <file leaf-file-name="stl_vector.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/include/c++/5/bits/stl_vector.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="244">
+              <caret line="914" column="0" lean-forward="false" selection-start-line="914" selection-start-column="0" selection-end-line="914" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ufl_model.h" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ufl_model.h">
+      <file leaf-file-name="gs250a-5.bub" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/a/gs250a-5.bub">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding>
-                <element signature="e#84#101#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="200.10.opt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/ufl/GalvaoRaggi/200/200.10.opt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="150.5.opt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/ufl/GalvaoRaggi/150/150.5.opt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="18">
+              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -195,6 +174,7 @@
       <find>yy</find>
       <find>sort</find>
       <find>compara</find>
+      <find>target</find>
     </findStrings>
     <replaceStrings>
       <replace>XPRB_INFINITY</replace>
@@ -213,34 +193,36 @@
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/xbelsc.cxx" />
         <option value="$PROJECT_DIR$/ufl_bd.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/750/a/gs750a-1.bub" />
         <option value="$PROJECT_DIR$/cfl_bc.cpp" />
         <option value="$PROJECT_DIR$/decision_var.h" />
         <option value="$PROJECT_DIR$/rounding_heuristic.h" />
         <option value="$PROJECT_DIR$/local_branching.cpp" />
-        <option value="$PROJECT_DIR$/branching.cpp" />
         <option value="$PROJECT_DIR$/model.cpp" />
         <option value="$PROJECT_DIR$/model.h" />
         <option value="$PROJECT_DIR$/problem.h" />
         <option value="$PROJECT_DIR$/problem.cpp" />
-        <option value="$PROJECT_DIR$/rounding_heu.h" />
         <option value="$PROJECT_DIR$/rounding_heu.cpp" />
         <option value="$PROJECT_DIR$/branch_cut.h" />
         <option value="$PROJECT_DIR$/branch_cut_lb.h" />
-        <option value="$PROJECT_DIR$/branch_cut_lb.cpp" />
         <option value="$PROJECT_DIR$/ufl_bc.cpp" />
-        <option value="$PROJECT_DIR$/ufl.cpp" />
-        <option value="$PROJECT_DIR$/benders_cut.h" />
         <option value="$PROJECT_DIR$/benders_cut.cpp" />
         <option value="$PROJECT_DIR$/benders_cut_inout.h" />
         <option value="$PROJECT_DIR$/benders_cut_inout.cpp" />
-        <option value="$PROJECT_DIR$/branch_cut.cpp" />
-        <option value="$PROJECT_DIR$/ufl.h" />
-        <option value="$PROJECT_DIR$/ufl_solve.cpp" />
-        <option value="$PROJECT_DIR$/branching.h" />
         <option value="$PROJECT_DIR$/local_branching.h" />
+        <option value="$PROJECT_DIR$/branch_cut_lb.cpp" />
+        <option value="$PROJECT_DIR$/branching.h" />
+        <option value="$PROJECT_DIR$/branching.cpp" />
+        <option value="$PROJECT_DIR$/ufl.h" />
+        <option value="$PROJECT_DIR$/ufl.cpp" />
+        <option value="$PROJECT_DIR$/ufl_model.cpp" />
         <option value="$PROJECT_DIR$/ufl_model.h" />
+        <option value="$PROJECT_DIR$/rounding_heu.h" />
+        <option value="$PROJECT_DIR$/benders_cut.h" />
+        <option value="$PROJECT_DIR$/branch_cut.cpp" />
+        <option value="$PROJECT_DIR$/ufl_solve.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/ufl_bc_bd.cpp" />
       </list>
     </option>
   </component>
@@ -295,6 +277,54 @@
               <item name="CMIP" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
               <item name="ufl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="ufl" type="462c0819:PsiDirectoryNode" />
+              <item name="GalvaoRaggi" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="ufl" type="462c0819:PsiDirectoryNode" />
+              <item name="KoerkelGhosh-sym" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="ufl" type="462c0819:PsiDirectoryNode" />
+              <item name="KoerkelGhosh-sym" type="462c0819:PsiDirectoryNode" />
+              <item name="250" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="ufl" type="462c0819:PsiDirectoryNode" />
+              <item name="KoerkelGhosh-sym" type="462c0819:PsiDirectoryNode" />
+              <item name="250" type="462c0819:PsiDirectoryNode" />
+              <item name="a" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="ufl" type="462c0819:PsiDirectoryNode" />
+              <item name="KoerkelGhosh-sym" type="462c0819:PsiDirectoryNode" />
+              <item name="500" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="ufl" type="462c0819:PsiDirectoryNode" />
+              <item name="KoerkelGhosh-sym" type="462c0819:PsiDirectoryNode" />
+              <item name="500" type="462c0819:PsiDirectoryNode" />
+              <item name="a" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
@@ -538,12 +568,12 @@
       <workItem from="1500428366011" duration="28970000" />
       <workItem from="1500515624341" duration="1142000" />
       <workItem from="1500516775920" duration="89831000" />
-      <workItem from="1501063058385" duration="31398000" />
+      <workItem from="1501063058385" duration="49269000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151341000" />
+    <option name="totallyTimeSpent" value="169212000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -558,14 +588,14 @@
     <frame x="75" y="6" width="2497" height="1452" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32713178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32713178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.348062" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19395672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4108527" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -629,12 +659,22 @@
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/ufl_solve.cpp</url>
-          <line>33</line>
-          <option name="timeStamp" value="106" />
+          <url>file://$PROJECT_DIR$/ufl_bc_bd.cpp</url>
+          <line>1348</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ufl_bc_bd.cpp</url>
+          <line>1187</line>
+          <option name="timeStamp" value="110" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/ufl_bc_bd.cpp</url>
+          <line>1043</line>
+          <option name="timeStamp" value="120" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="108" />
+      <option name="time" value="121" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
@@ -649,20 +689,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/ufl/GalvaoRaggi/50/50.1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/ufl/GalvaoRaggi/50/50.1.opt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/a/gs250a-2.bub">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -671,13 +697,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/a/gs250a-3.bub">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/a/gs250a-4.bub">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -764,14 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/ufl/GalvaoRaggi/150/150.5.opt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/500/a/gs500a-5.bub">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -792,14 +803,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/500/a/gs500a-2.bub">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -844,7 +847,215 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/decision_var.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/branch_cut_lb.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="110" lean-forward="false" selection-start-line="9" selection-start-column="110" selection-end-line="9" selection-end-column="110" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ufl_bd.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="219" column="26" lean-forward="false" selection-start-line="219" selection-start-column="26" selection-end-line="219" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/xpressmp/include/xprb.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="145" column="31" lean-forward="false" selection-start-line="145" selection-start-column="31" selection-end-line="145" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ufl.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ufl.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="9" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ufl_model.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="45" column="2" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="45" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ufl_model.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="533">
+          <caret line="202" column="49" lean-forward="false" selection-start-line="202" selection-start-column="49" selection-end-line="202" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/branching.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="58" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local_branching.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/local_branching.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/benders_cut.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="713">
+          <caret line="143" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="143" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/benders_cut.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/branching.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rounding_heu.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rounding_heu.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="74" column="1" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="74" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/benders_cut_inout.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="13" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/benders_cut_inout.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="235" column="1" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="235" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/branch_cut.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="92" lean-forward="false" selection-start-line="9" selection-start-column="92" selection-end-line="9" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/branch_cut.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="117" column="1" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="117" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/branch_cut_lb.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="137" column="1" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="137" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/ufl/GalvaoRaggi/150/150.5.opt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/ufl/GalvaoRaggi/200/200.10.opt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/bits/stl_vector.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="914" column="0" lean-forward="false" selection-start-line="914" selection-start-column="0" selection-end-line="914" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/a/gs250a-4.bub">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/a/gs250a-1.opt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -860,208 +1071,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/include/c++/5/bits/stl_vector.h">
+    <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/500/a/gs500a-2.bub">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
-          <caret line="256" column="0" lean-forward="false" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/decision_var.h">
+    <entry file="file://$PROJECT_DIR$/ufl_bc_bd.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local_branching.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="36" column="76" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/branch_cut_lb.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="110" lean-forward="false" selection-start-line="9" selection-start-column="110" selection-end-line="9" selection-end-column="110" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/branch_cut_lb.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1483">
-          <caret line="13" column="19" lean-forward="false" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-          <folding>
-            <element signature="e#40#57#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ufl.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="9" column="18" lean-forward="false" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding>
-            <element signature="e#41#60#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rounding_heu.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#110#132#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ufl_model.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="497">
-          <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="30" />
-          <folding>
-            <element signature="e#40#59#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ufl_bd.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="219" column="26" lean-forward="false" selection-start-line="219" selection-start-column="26" selection-end-line="219" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/benders_cut.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/benders_cut.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/benders_cut_inout.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/benders_cut_inout.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="28" column="82" lean-forward="false" selection-start-line="28" selection-start-column="82" selection-end-line="28" selection-end-column="82" />
-          <folding>
-            <element signature="e#41#71#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/branch_cut.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="92" lean-forward="false" selection-start-line="9" selection-start-column="92" selection-end-line="9" selection-end-column="92" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/branch_cut.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-465">
-          <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-          <folding>
-            <element signature="e#40#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ufl.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding>
-            <element signature="e#90#104#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///opt/xpressmp/include/xprb.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="145" column="31" lean-forward="false" selection-start-line="145" selection-start-column="31" selection-end-line="145" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rounding_heu.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ufl_solve.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="67">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="-89">
+          <caret line="993" column="9" lean-forward="true" selection-start-line="993" selection-start-column="9" selection-end-line="993" selection-end-column="9" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/local_branching.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-          <folding>
-            <element signature="e#104#121#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/branching.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="e#112#129#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/branching.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ufl_model.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#84#101#0" expanded="true" />
+            <element signature="e#237#254#0" expanded="true" />
           </folding>
         </state>
       </provider>
