@@ -4,15 +4,10 @@
 #include <iterator>
 #include <algorithm>
 #include <cfloat>
-#include <cmath>
 #include <fstream>
 #include <sstream>
-#include <vector>
-//#include "branching.h"
-//#include "branch_cut.h"
 
 #include <xprb.h>
-#include <cfloat>
 
 #define BD_GAP 1
 #define INT_GAP 0.00001

@@ -15,7 +15,7 @@ set(SOURCE_FILES
 #        rounding_heu.cpp
 #        benders_cut.cpp
 #        branch_cut.h branch_cut.cpp branch_cut_lb.h branch_cut_lb.cpp benders_cut_inout.h benders_cut_inout.cpp
-        )
+        cfl_bc_bd.cpp)
 
 set(XPRESS_INC_DIR /opt/xpressmp/include)
 set(XPRESS_LINK_DIR /opt/xpressmp/lib)
