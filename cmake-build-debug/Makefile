@@ -150,33 +150,6 @@ cfl_bc_bd.cpp.s:
 	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/cfl_bc_bd.cpp.s
 .PHONY : cfl_bc_bd.cpp.s
 
-ufl_bc_bd.o: ufl_bc_bd.cpp.o
-
-.PHONY : ufl_bc_bd.o
-
-# target to build an object file
-ufl_bc_bd.cpp.o:
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.o
-.PHONY : ufl_bc_bd.cpp.o
-
-ufl_bc_bd.i: ufl_bc_bd.cpp.i
-
-.PHONY : ufl_bc_bd.i
-
-# target to preprocess a source file
-ufl_bc_bd.cpp.i:
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.i
-.PHONY : ufl_bc_bd.cpp.i
-
-ufl_bc_bd.s: ufl_bc_bd.cpp.s
-
-.PHONY : ufl_bc_bd.s
-
-# target to generate assembly for a file
-ufl_bc_bd.cpp.s:
-	$(MAKE) -f CMakeFiles/CMIP.dir/build.make CMakeFiles/CMIP.dir/ufl_bc_bd.cpp.s
-.PHONY : ufl_bc_bd.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -189,9 +162,6 @@ help:
 	@echo "... cfl_bc_bd.o"
 	@echo "... cfl_bc_bd.i"
 	@echo "... cfl_bc_bd.s"
-	@echo "... ufl_bc_bd.o"
-	@echo "... ufl_bc_bd.i"
-	@echo "... ufl_bc_bd.s"
 .PHONY : help
 
 

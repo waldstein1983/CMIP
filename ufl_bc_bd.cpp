@@ -1339,7 +1339,7 @@ int main() {
                      useDualSimplexInBendersDecomposition,
                      useRoundingHeuristicInBendersDecomposition,
                      useDualSimplexInBranch,
-                     useInOutStrategyInBendersDecomposition);
+                      useInOutStrategyInBendersDecomposition);
     }else{
         branchAndCutWithLocalBranching(useOptimalityCutInBendersDecomposition,
                      useDualSimplexInBendersDecomposition,

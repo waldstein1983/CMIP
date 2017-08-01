@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc_bd.cpp
+/home/local/ANT/baohuaw/CLionProjects/CMIP/cfl_bc_bd.cpp
 iostream
 -
 chrono
@@ -19,17 +19,11 @@ algorithm
 -
 cfloat
 -
-cmath
--
 fstream
 -
 sstream
 -
-vector
--
 xprb.h
--
-cfloat
 -
 
 /opt/xpressmp/include/xprb.h

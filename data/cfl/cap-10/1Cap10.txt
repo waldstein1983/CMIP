@@ -7065,4 +7065,3 @@ Facility  Client  Transportation Cost   Demand
    100       98          138.5              4
    100       99            6.4              3
    100      100           46.8              1
-

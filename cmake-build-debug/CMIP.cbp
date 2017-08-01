@@ -89,9 +89,6 @@
 		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/cfl_bc_bd.cpp">
 			<Option target="CMIP"/>
 		</Unit>
-		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc_bd.cpp">
-			<Option target="CMIP"/>
-		</Unit>
 		<Unit filename="/home/local/ANT/baohuaw/CLionProjects/CMIP/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

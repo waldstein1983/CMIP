@@ -4,17 +4,7 @@ project(CMIP)
 set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
-#        ufl_bd.cpp
-#        xbcutstk.cxx
-        ufl_bc_bd.cpp
-#        branching.h
-#        rounding_heu.h
-#        benders_cut.h
-#        local_branching.h local_branching.cpp
-#        branching.cpp
-#        rounding_heu.cpp
-#        benders_cut.cpp
-#        branch_cut.h branch_cut.cpp branch_cut_lb.h branch_cut_lb.cpp benders_cut_inout.h benders_cut_inout.cpp
+#        ufl_bc_bd.cpp
         cfl_bc_bd.cpp)
 
 set(XPRESS_INC_DIR /opt/xpressmp/include)

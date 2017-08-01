@@ -12,18 +12,58 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea50ad4d-f4f6-4024-a791-6f9b9610ddd8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/cfl_bc_bd.cpp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap101" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap102" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap103" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap104" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap121" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap122" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap123" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap124" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap131" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap132" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap133" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap134" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap61" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap62" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap63" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap64" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap71" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap72" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap73" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap74" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap91" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap92" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap93" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/cap94" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/capa1" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/capa2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/capa3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/capa4" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/capb1" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/capb2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/capb3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/capb4" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/capc1" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/capc2" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/capc3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/cfl/Beasley/capc4" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cfl_bc_bd.cpp" afterPath="$PROJECT_DIR$/cfl_bc_bd.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMIP.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/CMIP.cbp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/CXX.includecache" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/DependInfo.cmake" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/build.make" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/cmake_clean.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/cmake_clean.cmake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/depend.internal" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/depend.internal" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/depend.make" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/link.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/link.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/progress.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/progress.make" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/cfl/cap-10/1Cap10.txt" afterPath="$PROJECT_DIR$/data/cfl/cap-10/1Cap10.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ufl_bc_bd.cpp" afterPath="$PROJECT_DIR$/ufl_bc_bd.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -42,8 +82,8 @@
       <file leaf-file-name="ufl_bc_bd.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ufl_bc_bd.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="750" column="11" lean-forward="true" selection-start-line="750" selection-start-column="11" selection-end-line="750" selection-end-column="11" />
+            <state relative-caret-position="360">
+              <caret line="851" column="10" lean-forward="false" selection-start-line="851" selection-start-column="10" selection-end-line="851" selection-end-column="10" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -54,8 +94,8 @@
       <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+            <state relative-caret-position="126">
+              <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -64,8 +104,48 @@
       <file leaf-file-name="1Cap10.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/cfl/cap-10/1Cap10.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="38" column="26" lean-forward="false" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+            <state relative-caret-position="-23424">
+              <caret line="5014" column="14" lean-forward="false" selection-start-line="5014" selection-start-column="14" selection-end-line="5014" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cap61" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/cap61">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="335">
+              <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="50.1" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/ufl/GalvaoRaggi/50/50.1">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2Cap10.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/cfl/cap-10/2Cap10.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="4Cap10.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/cfl/cap-10/4Cap10.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -74,8 +154,8 @@
       <file leaf-file-name="cfl_bc_bd.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cfl_bc_bd.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="659">
-              <caret line="209" column="0" lean-forward="true" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
+            <state relative-caret-position="314">
+              <caret line="701" column="88" lean-forward="false" selection-start-line="701" selection-start-column="88" selection-end-line="701" selection-end-column="88" />
               <folding>
                 <element signature="e#40#59#0" expanded="true" />
               </folding>
@@ -83,61 +163,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gs250a-1.opt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/a/gs250a-1.opt">
+      <file leaf-file-name="cap62" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/cap62">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="306">
+              <caret line="17" column="34" lean-forward="true" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gs250a-4.bub" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/a/gs250a-4.bub">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gs500a-2.bub" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/500/a/gs500a-2.bub">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="18">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stl_vector.h" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/include/c++/5/bits/stl_vector.h">
+      <file leaf-file-name="basic_string.h" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/include/c++/5/bits/basic_string.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="244">
-              <caret line="914" column="0" lean-forward="false" selection-start-line="914" selection-start-column="0" selection-end-line="914" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gs250a-5.bub" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/a/gs250a-5.bub">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="200.10.opt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/ufl/GalvaoRaggi/200/200.10.opt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="5343" column="0" lean-forward="false" selection-start-line="5343" selection-start-column="0" selection-end-line="5343" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -167,11 +207,18 @@
       <find>sort</find>
       <find>compara</find>
       <find>target</find>
+      <find>8</find>
+      <find>77</find>
+      <find>13704965</find>
+      <find>masterLocations</find>
+      <find>fcltCstmFracs</find>
     </findStrings>
     <replaceStrings>
       <replace>XPRB_INFINITY</replace>
       <replace>MAX</replace>
       <replace>Solution</replace>
+      <replace>y</replace>
+      <replace>x</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -214,6 +261,7 @@
         <option value="$PROJECT_DIR$/branch_cut.cpp" />
         <option value="$PROJECT_DIR$/ufl_solve.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/data/cfl/cap-10/1Cap10.txt" />
         <option value="$PROJECT_DIR$/ufl_bc_bd.cpp" />
         <option value="$PROJECT_DIR$/cfl_bc_bd.cpp" />
       </list>
@@ -273,6 +321,20 @@
             </path>
             <path>
               <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="cfl" type="462c0819:PsiDirectoryNode" />
+              <item name="Beasley" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="cfl" type="462c0819:PsiDirectoryNode" />
+              <item name="cap-10" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -284,13 +346,14 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc.cpp" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc_bd.cpp" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data/cfl/Beasley" />
       <recent name="$PROJECT_DIR$/data/cfl" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/data" />
@@ -514,12 +577,12 @@
       <workItem from="1500428366011" duration="28970000" />
       <workItem from="1500515624341" duration="1142000" />
       <workItem from="1500516775920" duration="89831000" />
-      <workItem from="1501063058385" duration="58685000" />
+      <workItem from="1501063058385" duration="73520000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178628000" />
+    <option name="totallyTimeSpent" value="193463000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -539,13 +602,13 @@
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.348062" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.58217055" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19395672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4108527" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57984495" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -564,15 +627,15 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.348062" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.58217055" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1923234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19395672" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35891473" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.57984495" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -620,72 +683,48 @@
           <line>1038</line>
           <option name="timeStamp" value="120" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/cfl_bc_bd.cpp</url>
+          <line>422</line>
+          <option name="timeStamp" value="124" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/cfl_bc_bd.cpp</url>
+          <line>355</line>
+          <option name="timeStamp" value="138" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/cfl_bc_bd.cpp</url>
+          <line>723</line>
+          <option name="timeStamp" value="141" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/cfl_bc_bd.cpp</url>
+          <line>706</line>
+          <option name="timeStamp" value="144" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="121" />
+      <option name="time" value="145" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
-        <watch expression="locationSelected" language="ObjectiveC" />
-        <watch expression="solution" language="ObjectiveC" />
-        <watch expression="yy" language="ObjectiveC" />
-        <watch expression="sortedLocation[i]" language="ObjectiveC" />
-        <watch expression="roundingLocation" language="ObjectiveC" />
         <watch expression="branching" language="ObjectiveC" />
+        <watch expression="capacities" language="ObjectiveC" />
+        <watch expression="openingCosts" language="ObjectiveC" />
         <watch expression="ub" language="ObjectiveC" />
+        <watch expression="numCustomer" language="ObjectiveC" />
+        <watch expression="numFacility" language="ObjectiveC" />
+        <watch expression="openingCosts" language="ObjectiveC" />
+        <watch expression="tokens" language="ObjectiveC" />
+        <watch expression="demands" language="ObjectiveC" />
+        <watch expression="demands[77]" language="ObjectiveC" />
+        <watch expression="servingCosts" language="ObjectiveC" />
+        <watch expression="fracCnsrvtnCtrs" language="ObjectiveC" />
+        <watch expression="kpObjVals" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/b/gs250b-1.bub">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/b/gs250b-2.bub">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/250/b/gs250b-3.bub">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/750/a/gs750a-1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/5/bits/stl_map.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="185" column="0" lean-forward="false" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/750/a/gs750a-2.bub">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/ufl/KoerkelGhosh-sym/750/a/gs750a-2">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/ufl/kmedian/1000-10">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1004,36 +1043,92 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/cfl/cap-10/1Cap10.txt">
+    <entry file="file://$PROJECT_DIR$/data/cfl/cap-10/4Cap10.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="38" column="26" lean-forward="false" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/ufl/GalvaoRaggi/50/50.1">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/cfl/cap-10/2Cap10.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="35" lean-forward="false" selection-start-line="0" selection-start-column="35" selection-end-line="0" selection-end-column="35" />
+        <state relative-caret-position="126">
+          <caret line="7" column="19" lean-forward="false" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/bits/basic_string.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="5343" column="0" lean-forward="false" selection-start-line="5343" selection-start-column="0" selection-end-line="5343" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/cap41.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="23" lean-forward="false" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/cfl/cap-10/1Cap10.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-23424">
+          <caret line="5014" column="14" lean-forward="false" selection-start-line="5014" selection-start-column="14" selection-end-line="5014" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ufl_bc_bd.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="750" column="11" lean-forward="true" selection-start-line="750" selection-start-column="11" selection-end-line="750" selection-end-column="11" />
+        <state relative-caret-position="360">
+          <caret line="851" column="10" lean-forward="false" selection-start-line="851" selection-start-column="10" selection-end-line="851" selection-end-column="10" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/cap62">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="34" lean-forward="true" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/cap61">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/cfl_bc_bd.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="659">
-          <caret line="209" column="0" lean-forward="true" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
+        <state relative-caret-position="314">
+          <caret line="701" column="88" lean-forward="false" selection-start-line="701" selection-start-column="88" selection-end-line="701" selection-end-column="88" />
           <folding>
             <element signature="e#40#59#0" expanded="true" />
           </folding>
