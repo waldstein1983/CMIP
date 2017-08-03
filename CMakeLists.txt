@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 11)
 
 set(SOURCE_FILES
 #        ufl_bc_bd.cpp
-        cfl_bc_bd.cpp)
+        cfl_bc_bd2.cpp)
 
 set(XPRESS_INC_DIR /opt/xpressmp/include)
 set(XPRESS_LINK_DIR /opt/xpressmp/lib)

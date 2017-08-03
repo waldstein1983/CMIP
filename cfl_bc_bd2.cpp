@@ -13,7 +13,7 @@
 
 #include <xprb.h>
 
-#define BD_TERMINATE_GAP 100
+#define BD_TERMINATION_GAP 10
 #define INT_GAP 0.00001
 #define MAX DBL_MAX
 
@@ -24,8 +24,6 @@ int numFacility;
 int numCustomer;
 
 double ub = MAX;
-
-int globalBendersCutId = 1;
 
 map<int, double> openingCosts;
 map<int, double> capacities;
@@ -139,7 +137,7 @@ void initOriginal() {
 
     for (int i = 1; i <= numFacility; i++) {
         for (int j = 1; j <= numCustomer; j++) {
-            x[i][j] = XPRBnewvar(originalSolver, XPRB_PL, XPRBnewname("x_%d_%d", i, j), 0, 1);
+            x[i][j] = XPRBnewvar(originalSolver, XPRB_PL, XPRBnewname("x_%d_%d", i, j), 0, MAX);
         }
 
     }
@@ -151,13 +149,13 @@ void initOriginal() {
 
     for (int i = 1; i <= numFacility; i++) {
         for (int j = 1; j <= numCustomer; j++) {
-            XPRBaddterm(obj, x[i][j], servingCosts[i][j] * demands[j]);
-//            XPRBaddterm(obj, x[i][j], servingCosts[i][j]);
+//            XPRBaddterm(obj, x[i][j], servingCosts[i][j] * demands[j]);
+            XPRBaddterm(obj, x[i][j], servingCosts[i][j]);
         }
 
     }
 
-//    XPRBprintctr(obj);
+    XPRBprintctr(obj);
     XPRBsetobj(originalSolver, obj);
 
     XPRBctr totalCapacity = XPRBnewctr(originalSolver, "Sum Capacity >= Sum Demand", XPRB_G);
@@ -180,7 +178,7 @@ void initOriginal() {
             XPRBaddterm(demandConserv, x[i][j], 1.0);
 
         }
-        XPRBaddterm(demandConserv, nullptr, 1);
+        XPRBaddterm(demandConserv, nullptr, demands[j]);
 //        XPRBprintctr(demandConserv);
     }
 
@@ -189,7 +187,7 @@ void initOriginal() {
         for (int j = 1; j <= numCustomer; j++) {
             XPRBctr ctr = XPRBnewctr(originalSolver, XPRBnewname("Bouding %d %d ", i, j), XPRB_L);
             XPRBaddterm(ctr, x[i][j], 1);
-            XPRBaddterm(ctr, y[i], -1);
+            XPRBaddterm(ctr, y[i], -MAX);
             XPRBaddterm(ctr, nullptr, 0);
 
 //            XPRBprintctr(ctr);
@@ -200,15 +198,15 @@ void initOriginal() {
     for (int i = 1; i <= numFacility; i++) {
         XPRBctr ctr = XPRBnewctr(originalSolver, XPRBnewname("Capacity %d", i), XPRB_L);
         for (int j = 1; j <= numCustomer; j++) {
-            XPRBaddterm(ctr, x[i][j], demands[j]);
-//            XPRBaddterm(ctr, x[i][j], 1);
+//            XPRBaddterm(ctr, x[i][j], demands[j]);
+            XPRBaddterm(ctr, x[i][j], 1);
 //            cout << -capacities[i] << endl;
 
         }
         XPRBaddterm(ctr, y[i], -capacities[i]);
         XPRBaddterm(ctr, nullptr, 0);
 
-//        XPRBprintctr(ctr);
+        XPRBprintctr(ctr);
 //        capacityCtrs[i] = ctr;
     }
 
@@ -221,35 +219,11 @@ void initOriginal() {
 void printSubVar() {
     for (int i = 1; i <= numFacility; i++) {
         for (int j = 1; j <= numCustomer; j++) {
-            if (abs(XPRBgetsol(x[i][j]) - 0) > INT_GAP) {
-                cout << "facility " << i << " -> Customer " << j << "   " << XPRBgetsol(x[i][j]) << "    "
-                     << XPRBgetsol(x[i][j]) * demands[j] << endl;
+            if(XPRBgetsol(x[i][j]) > 0){
+                cout << "facility " << i << " -> Customer " << j << "   " << XPRBgetsol(x[i][j]) << endl;
             }
         }
-    }
-}
 
-void verifySolution() {
-    for (int i = 1; i <= numFacility; i++) {
-        double total = 0;
-        for (int j = 1; j <= numCustomer; j++) {
-            total += XPRBgetsol(x[i][j]) * demands[j];
-        }
-
-        if (total > capacities[i]) {
-            cout << "Capacity violation of facility " << i << endl;
-        }
-    }
-
-    for (int j = 1; j <= numCustomer; j++) {
-        double total = 0;
-        for (int i = 1; i <= numFacility; i++) {
-            total += XPRBgetsol(x[i][j]) * demands[j];
-        }
-
-        if (total != demands[j]) {
-            cout << "Demand violation of customer " << j << endl;
-        }
     }
 }
 
@@ -258,21 +232,20 @@ void solveOriginalModel() {
     XPRBmipoptimise(originalSolver, "");
     cout << "Optimal -> " << XPRBgetobjval(originalSolver) << endl;
 
-//
-    verifySolution();
-
     XPRBdelprob(originalSolver);
     XPRBfinish;
-
+//    printMasterVar();
+//    printSubVar();
 }
 
 ///////////////////////////////////////
 //build sub model
+
 void initSubModel() {
     XPRBsetmsglevel(subSolver, 1);
     for (int i = 1; i <= numFacility; i++) {
         for (int j = 1; j <= numCustomer; j++) {
-            x[i][j] = XPRBnewvar(subSolver, XPRB_PL, XPRBnewname("x_%d_%d", i, j), 0, 1);
+            x[i][j] = XPRBnewvar(subSolver, XPRB_PL, XPRBnewname("x_%d_%d", i, j), 0, MAX);
         }
 
     }
@@ -280,8 +253,7 @@ void initSubModel() {
     XPRBctr obj = XPRBnewctr(subSolver, XPRBnewname("SubObj"), XPRB_N);
     for (int i = 1; i <= numFacility; i++) {
         for (int j = 1; j <= numCustomer; j++) {
-            double coeff = servingCosts[i][j] * demands[j];
-            XPRBaddterm(obj, x[i][j], servingCosts[i][j] * demands[j]);
+            XPRBaddterm(obj, x[i][j], servingCosts[i][j]);
         }
 
     }
@@ -290,30 +262,30 @@ void initSubModel() {
 
 
     for (int j = 1; j <= numCustomer; j++) {
-        XPRBctr fracConserv = XPRBnewctr(subSolver, XPRBnewname("Sum_i x_i_d% == 1", j), XPRB_E);
+        XPRBctr ctr = XPRBnewctr(subSolver, XPRBnewname("demand_%d", j), XPRB_E);
         for (int i = 1; i <= numFacility; i++) {
-            XPRBaddterm(fracConserv, x[i][j], 1.0);
+            XPRBaddterm(ctr, x[i][j], 1.0);
         }
-        XPRBaddterm(fracConserv, nullptr, 1.0);
+        XPRBaddterm(ctr, nullptr, demands[j]);
 
-        fracCnsrvtnCtrs[j] = fracConserv;
+        fracCnsrvtnCtrs[j] = ctr;
     }
 
 
+//    for (int i = 1; i <= numFacility; i++) {
+//        for (int j = 1; j <= numCustomer; j++) {
+//            XPRBctr ctr = XPRBnewctr(subSolver, XPRBnewname("Bounding_%d_%d", i, j), XPRB_L);
+//            XPRBaddterm(ctr, x[i][j], 1);
+//            XPRBaddterm(ctr, nullptr, 0);
+//
+//            boundingCtrs[i][j] = ctr;
+//        }
+//    }
+
     for (int i = 1; i <= numFacility; i++) {
+        XPRBctr ctr = XPRBnewctr(subSolver, XPRBnewname("Cap"), XPRB_L);
         for (int j = 1; j <= numCustomer; j++) {
-            XPRBctr ctr = XPRBnewctr(subSolver, XPRBnewname("x_%d_d% <= y_d%", i, j, i), XPRB_L);
             XPRBaddterm(ctr, x[i][j], 1);
-            XPRBaddterm(ctr, nullptr, 0);
-
-            boundingCtrs[i][j] = ctr;
-        }
-    }
-
-    for (int i = 1; i <= numFacility; i++) {
-        XPRBctr ctr = XPRBnewctr(subSolver, XPRBnewname("Sum_j x_d%_j <= Capacity d%", i, i), XPRB_L);
-        for (int j = 1; j <= numCustomer; j++) {
-            XPRBaddterm(ctr, x[i][j], demands[j]);
         }
         XPRBaddterm(ctr, nullptr, 0);
         capacityCtrs[i] = ctr;
@@ -323,41 +295,39 @@ void initSubModel() {
 }
 
 void initKnapSack() {
-//    map<int, XPRBvar> z;
     for (int j = 1; j <= numCustomer; j++) {
-        kpVars[j] = XPRBnewvar(kp, XPRB_PL, XPRBnewname("z_%d", j), 0, 1);
+        kpVars[j] = XPRBnewvar(kp, XPRB_PL, XPRBnewname("z_%d", j), 0, MAX);
     }
     kpObj = XPRBnewctr(kp, "Obj", XPRB_N);
 
     for (int j = 1; j <= numCustomer; j++) {
         XPRBaddterm(kpObj, kpVars[j], 1);
     }
+    XPRBsetobj(kp, kpObj);
 
     kpCtr = XPRBnewctr(kp, XPRBnewname("capacity"), XPRB_L);
     for (int j = 1; j <= numCustomer; j++) {
-        XPRBaddterm(kpCtr, kpVars[j], demands[j]);
+        XPRBaddterm(kpCtr, kpVars[j], 1);
     }
     XPRBaddterm(kpCtr, nullptr, MAX);
 
-    XPRBsetobj(kp, kpObj);
+
 }
 
 void solveSubModel() {
-
 //    cout << "Solving sub model.." << endl;
-    for (int i = 1; i <= numFacility; i++) {
-//        cout << XPRBgetsol(y[i]) << endl;
-        for (int j = 1; j <= numCustomer; j++) {
-            XPRBsetterm(boundingCtrs[i][j], nullptr, XPRBgetsol(y[i]));
-//            XPRBprintctr(boundingCtrs[i][j]);
-        }
-
-
-//        XPRBsetrange(subBoundingCtrs[it->first][i], -MAX, XPRBgetsol(y[i]));
-    }
+//    for (int i = 1; i <= numFacility; i++) {
+//        for (int j = 1; j <= numCustomer; j++) {
+//            XPRBsetterm(boundingCtrs[i][j], nullptr, XPRBgetsol(y[i]) * capacities[i]);
+////            XPRBprintctr(boundingCtrs[i][j]);
+//        }
+//
+////        XPRBsetrange(subBoundingCtrs[it->first][i], -MAX, XPRBgetsol(y[i]));
+//    }
 
     for (int i = 1; i <= numFacility; i++) {
         XPRBsetterm(capacityCtrs[i], nullptr, XPRBgetsol(y[i]) * capacities[i]);
+//        XPRBprintctr(capacityCtrs[i]);
     }
 
     XPRBlpoptimise(subSolver, "");
@@ -378,7 +348,7 @@ map<int, double> solveKnapSacks() {
     for (int i = 1; i <= numFacility; i++) {
         for (int j = 1; j <= numCustomer; j++) {
             double coeff = 0;
-            coeff += demands[j] * servingCosts[i][j];
+            coeff += servingCosts[i][j];
             coeff -= fracCnsrvtnDuals[j];
             XPRBsetterm(kpObj, kpVars[j], coeff);
         }
@@ -407,7 +377,7 @@ void addBendersCut() {
 
     double totalDual = 0;
     for (int j = 1; j <= numCustomer; j++) {
-        totalDual += fracCnsrvtnDuals[j];
+        totalDual += fracCnsrvtnDuals[j] * demands[j];
     }
 
     map<int, double> kpObjVals = solveKnapSacks();
@@ -421,6 +391,7 @@ void addBendersCut() {
     }
 
     XPRBaddterm(cut, nullptr, totalDual);
+//    XPRBprintctr(cut);
 }
 
 double computeTotalCost() {
@@ -433,7 +404,7 @@ double computeTotalCost() {
     for (int i = 1; i <= numFacility; i++) {
         for (int j = 1; j <= numCustomer; j++) {
 //            cout << XPRBgetsol(x[i][j]) << endl;
-            currentUb += XPRBgetsol(x[i][j]) * servingCosts[i][j] * demands[j];
+            currentUb += XPRBgetsol(x[i][j]) * servingCosts[i][j];
         }
     }
     return currentUb;
@@ -461,7 +432,7 @@ Solution bendersDecomposition(bool useOptimalityCut, bool useDualSimplex, bool u
         solveSubModel();
 //        printSubVar();
         nodeUB = computeTotalCost();
-        cout << nodeLB << " , " << nodeUB << endl;
+//        cout << nodeLB << " , " << nodeUB << endl;
 
         bool useHeuristicSolutionToAddCut = false;
         Solution solution;
@@ -515,7 +486,7 @@ Solution bendersDecomposition(bool useOptimalityCut, bool useDualSimplex, bool u
 //                }
 //            }
         }
-        if (abs(nodeUB - nodeLB) <= BD_TERMINATE_GAP)
+        if (abs(nodeUB - nodeLB) <= BD_TERMINATION_GAP)
             break;
         addBendersCut();
 //
@@ -619,7 +590,6 @@ void branchAndCut(bool useOptimalityCutInBendersDecomposition, bool useDualSimpl
 
 
     if (isMasterSolutionInteger()) {
-        cout << fixed;
         cout << "UB = " << ub << " at the root node " << endl;
 //        print();
         return;
@@ -683,7 +653,7 @@ void branchAndCut(bool useOptimalityCutInBendersDecomposition, bool useDualSimpl
         }
         step++;
     }
-    cout << "UB = " << ub << endl;
+    cout << fixed << "UB = " << ub << endl;
 }
 
 void readFromFile(const string &fileName) {
@@ -756,7 +726,7 @@ int main() {
     start = duration_cast<milliseconds>(
             system_clock::now().time_since_epoch()
     );
-    solveOriginalModel();
+//    solveOriginalModel();
 
 //    bendersDecomposition();
 

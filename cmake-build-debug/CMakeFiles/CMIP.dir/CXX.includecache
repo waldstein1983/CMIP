@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/local/ANT/baohuaw/CLionProjects/CMIP/cfl_bc_bd.cpp
+/home/local/ANT/baohuaw/CLionProjects/CMIP/cfl_bc_bd2.cpp
 iostream
 -
 chrono

@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/CMIP.dir/cfl_bc_bd.cpp.o"
+  "CMakeFiles/CMIP.dir/cfl_bc_bd2.cpp.o"
   "CMIP.pdb"
   "CMIP"
 )
