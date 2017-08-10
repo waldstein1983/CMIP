@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -13,6 +14,15 @@ struct Node {
     int earliestTime;
     int latestTime;
     int demand;
+
+    bool operator<(const Node &other) const {
+        return earliestTime < other.earliestTime;
+    }
+
+    bool operator==(const Node& other) {
+        return this == &other;
+
+    }
 };
 
 struct Arc {
@@ -24,13 +34,18 @@ struct Arc {
 
 struct Label {
     Node node;
-    Label preLabel;
+    Label *preLabel;
     double cost;
     int arrivalTime;
     int curDemand;
 
     bool operator<(const Label &other) const {
         return arrivalTime < other.arrivalTime;
+    }
+
+    bool operator==(const Label& other) {
+        return this == &other;
+
     }
 };
 
@@ -45,24 +60,38 @@ map<Node, vector<Arc>> outArcs;
 map<int, Node> nodes;
 
 void init() {
-    nodes[0] = {0, 0, 0, 0};
+//    Node n0 = {0, 0, 0, 0};
+    nodes[0] =  {0, 0, 0, 0};
+//    Node n1 = {1, 6, 14, 0};
     nodes[1] = {1, 6, 14, 0};
+//    Node n2 = {2, 9, 12, 0};
     nodes[2] = {2, 9, 12, 0};
+//    Node n3 = {3, 8, 12, 0};
     nodes[3] = {3, 8, 12, 0};
+//    Node n4 = {4, 9, 35, 0};
     nodes[4] = {4, 9, 35, 0};
+//    Node n5 = {5, 15, 25, 0};
     nodes[5] = {5, 15, 25, 0};
 
+//    Arc out01 = {nodes[0], nodes[1], 3, 8};
     outArcs[nodes[0]].push_back({nodes[0], nodes[1], 3, 8});
+//    Arc out02 = {nodes[0], nodes[2], 5, 5};
     outArcs[nodes[0]].push_back({nodes[0], nodes[2], 5, 5});
+//    Arc out03 = {nodes[0], nodes[3], 2, 12};
     outArcs[nodes[0]].push_back({nodes[0], nodes[3], 2, 12});
 
+//    Arc out14 = {nodes[1], nodes[4], 13, 4};
     outArcs[nodes[1]].push_back({nodes[1], nodes[4], 13, 4});
+//    Arc out15 = {nodes[1], nodes[5], 6, 6};
     outArcs[nodes[1]].push_back({nodes[1], nodes[5], 6, 6});
 
+//    Arc out24 = {nodes[2], nodes[4], 8, 2};
     outArcs[nodes[2]].push_back({nodes[2], nodes[4], 8, 2});
 
+//    Arc out34 = {nodes[3], nodes[4], 16, 4};
     outArcs[nodes[3]].push_back({nodes[3], nodes[4], 16, 4});
 
+//    Arc out54 = {nodes[5], nodes[4], 3, 7};
     outArcs[nodes[5]].push_back({nodes[5], nodes[4], 3, 7});
 }
 
@@ -81,7 +110,10 @@ void shortestPath(Node &source) {
                 targetLabel.arrivalTime + arc.time <= arc.target.latestTime &&
                 targetLabel.curDemand + arc.target.demand <= capacity) {
                 if (nodeLabels.count(arc.target) == 0) {
-                    nodeLabels[arc.target].push_back({arc.target, targetLabel, targetLabel.cost + arc.cost,
+//                    Label newLabel = {arc.target, &targetLabel, targetLabel.cost + arc.cost,
+//                                      max(targetLabel.arrivalTime + arc.time, arc.target.earliestTime),
+//                                      targetLabel.curDemand + arc.target.demand};
+                    nodeLabels[arc.target].push_back({arc.target, &targetLabel, targetLabel.cost + arc.cost,
                                                       max(targetLabel.arrivalTime + arc.time, arc.target.earliestTime),
                                                       targetLabel.curDemand + arc.target.demand});
                 } else {
@@ -90,16 +122,24 @@ void shortestPath(Node &source) {
                          it != nodeLabels[arc.target].end(); /*it++*/) {
 
                         if (it->cost >= targetLabel.cost + arc.cost &&
-                                it->arrivalTime >= targetLabel.arrivalTime + arc.time &&
-                                it->curDemand >= targetLabel.curDemand + arc.target.demand){
+                            it->arrivalTime >= targetLabel.arrivalTime + arc.time &&
+                            it->curDemand >= targetLabel.curDemand + arc.target.demand) {
 
-                            NPS.erase(remove_if(NPS.begin(), NPS.end(), it),NPS.end());
+                            for (auto it2 = NPS.begin(); it2 != NPS.end(); /*it++*/) {
+                                if((*it2) == (*it)){
+                                    it2 = NPS.erase(it2);
+                                }else{
+                                    it2++;
+                                }
+                            }
+
+
                             it = nodeLabels[arc.target].erase(it);
 
-                        } else{
-                            if(it->cost <= targetLabel.cost + arc.cost &&
-                                    it->arrivalTime <= targetLabel.arrivalTime + arc.time &&
-                                    it->curDemand <= targetLabel.curDemand + arc.target.demand){
+                        } else {
+                            if (it->cost <= targetLabel.cost + arc.cost &&
+                                it->arrivalTime <= targetLabel.arrivalTime + arc.time &&
+                                it->curDemand <= targetLabel.curDemand + arc.target.demand) {
                                 addNewLabel = false;
                                 break;
                             }
@@ -108,8 +148,8 @@ void shortestPath(Node &source) {
 
                     }
 
-                    if(addNewLabel){
-                        Label newLabel = {arc.target, targetLabel, targetLabel.cost + arc.cost,
+                    if (addNewLabel) {
+                        Label newLabel = {arc.target, &targetLabel, targetLabel.cost + arc.cost,
                                           max(targetLabel.arrivalTime + arc.time, arc.target.earliestTime),
                                           targetLabel.curDemand + arc.target.demand};
                         nodeLabels[arc.target].push_back(newLabel);
@@ -121,4 +161,31 @@ void shortestPath(Node &source) {
             }
         }
     }
+
+    for (auto &node : nodeLabels) {
+        for (auto &label : node.second) {
+            Label *targetLabel = &label;
+            if (targetLabel->arrivalTime > targetLabel->node.latestTime) {
+                cout << "Node " << targetLabel->node.id << " violate time window" << endl;
+                return;
+            }
+            string path = to_string(targetLabel->node.id);
+
+            while (targetLabel->preLabel != nullptr) {
+                path = targetLabel->preLabel->node.id + " - " + path;
+                targetLabel = targetLabel->preLabel;
+                if (targetLabel->arrivalTime > targetLabel->node.latestTime) {
+                    cout << "Node " << targetLabel->node.id << " violate time window" << endl;
+                    return;
+                }
+            }
+            cout << "Path from " << source.id << " to " << label.node.id << "   ->   " << path << "   cost: "
+                 << label.cost << endl;
+//            System.out.println("Path from " + source.id + " to " + label.node.id + "  ->  " + path + "  cost: " + label.cost);
+        }
+    }
+}
+
+int main() {
+    return 0;
 }
