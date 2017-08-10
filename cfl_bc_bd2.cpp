@@ -1,5 +1,6 @@
 //
 // Created by baohuaw on 8/1/17.
+// This implementation is similar to cfl_bc_bd, with the difference that xij is the demand portion of j which is assigned to location i
 //
 
 #include <iostream>
@@ -717,7 +718,7 @@ int main() {
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/GalvaoRaggi/200/200.10";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/a/gs250a-5";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/250/b/gs250b-3";
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/cfl/Beasley/capa1";
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/cfl/Beasley/cap63";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/KoerkelGhosh-sym/750/a/gs750a-1";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/kmedian/1000-10";
 //    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/ufl/kmedian/2500-10";

@@ -1,5 +1,6 @@
 //
 // Created by baohuaw on 8/1/17.
+// This implementation should ref. Fesichetti's paper, where xij is the ratio that demand j is assigned to location i
 //
 
 #include <iostream>
