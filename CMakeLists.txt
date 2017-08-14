@@ -6,7 +6,8 @@ set(CMAKE_CXX_STANDARD 11)
 set(SOURCE_FILES
 #        ufl_bc_bd.cpp
 #        cfl_bc_bd2.cpp
-        esp.cpp
+#        esp.cpp
+        vrptw.cpp
         )
 
 set(XPRESS_INC_DIR /opt/xpressmp/include)

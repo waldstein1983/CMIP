@@ -2,12 +2,14 @@
 // Created by baohuaw on 8/8/17.
 // Elementary Shortest Path Problem, ESPP
 //
+
 #include <vector>
 #include <map>
 #include <algorithm>
 #include <iostream>
 
 using namespace std;
+
 
 struct Node {
     int id;
@@ -54,13 +56,6 @@ struct Label {
                                                                                             cost(cost),
                                                                                             arrivalTime(arrivalTime),
                                                                                             curDemand(curDemand) {};
-
-
-//    virtual ~Label() {
-//        delete preLabel;
-//
-//    }
-
 };
 
 vector<Label *> NPS;
@@ -72,6 +67,8 @@ map<Node, vector<Label *>> nodeLabels;
 map<Node, vector<Arc>> outArcs;
 
 map<int, Node> nodes;
+
+
 
 void init() {
     nodes[0] = {0, 0, 0, 0, 0};
@@ -119,7 +116,6 @@ void shortestPath(Node &source) {
                 } else {
                     bool addNewLabel = true;
                     for (auto it = nodeLabels[arc.target].begin(); it != nodeLabels[arc.target].end();) {
-
                         if ((*it)->cost >= targetLabel->cost + arc.cost + arc.target.cost &&
                             (*it)->arrivalTime >= targetLabel->arrivalTime + arc.time &&
                             (*it)->curDemand >= targetLabel->curDemand + arc.target.demand) {
@@ -159,8 +155,6 @@ void shortestPath(Node &source) {
                         nodeLabels[arc.target].push_back(newLabel);
                         NPS.push_back(newLabel);
                     }
-
-
                 }
             }
         }
@@ -198,8 +192,9 @@ void shortestPath(Node &source) {
     nodeLabels.clear();
 }
 
-int main() {
-    init();
-    shortestPath(nodes[0]);
-    return 0;
-}
+//int main() {
+//    init();
+//    shortestPath(nodes[0]);
+////    shortestPath()
+//    return 0;
+//}
