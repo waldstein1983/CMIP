@@ -67,10 +67,11 @@ struct Label {
 };
 
 struct Path {
+    int id;
     Node source;
     Node target;
-    vector<Node*> content;
-
+    vector<Node *> content;
+    int cost;
 };
 
 struct Vehicle {
@@ -90,7 +91,7 @@ struct InsertingTuple {
     }
 };
 
-map<Vehicle*, vector<Path>> vehiclePaths;
+map<Vehicle *, vector<Path>> vehiclePaths;
 
 map<Node, vector<Path>> allPaths;
 
@@ -107,9 +108,10 @@ map<Node, vector<Arc>> outArcs;
 Node virtualSource;
 Node virtualTarget;
 map<int, Node> nodes;
-vector<Node*> unhandledTasks;
+vector<Node *> unhandledTasks;
 
 XPRBprob model = XPRBnewprob("vrptw");
+map<Vehicle *, map<Path *, XPRBvar>> x_v_p;
 
 vector<Path> shortestPath(Node &source) {
     auto *sourceLabel = new Label(source, nullptr, 0, 0, 0);
@@ -183,7 +185,7 @@ vector<Path> shortestPath(Node &source) {
     vector<Path> paths;
     for (auto &node : nodeLabels) {
         for (auto &label : node.second) {
-            vector<Node*> content;
+            vector<Node *> content;
             Label *targetLabel = label;
             if (targetLabel->arrivalTime > targetLabel->node.latestTime) {
                 cout << "Node " << targetLabel->node.id << " violate time window" << endl;
@@ -234,7 +236,7 @@ void readFromFile(const string &fileName) {
         if (lineId == 1) {
             cout << str << endl;
         } else if (lineId < 10) {
-            if(lineId < 7)
+            if (lineId < 7)
                 cout << str << endl;
         } else if (lineId == 10) {
             vector<string> tokens;
@@ -301,7 +303,7 @@ void initArcs() {
     }
 }
 
-int detourDistance(Vehicle* vehicle, int pos, Node* insertion) {
+int detourDistance(Vehicle *vehicle, int pos, Node *insertion) {
     double prev_x, prev_y, next_x, next_y;
     if (pos == 0) {
         prev_x = virtualSource.x;
@@ -325,7 +327,7 @@ int detourDistance(Vehicle* vehicle, int pos, Node* insertion) {
     return detour;
 }
 
-bool checkVehicleCapacity(Vehicle* vehicle, Node* insertion) {
+bool checkVehicleCapacity(Vehicle *vehicle, Node *insertion) {
     int total = 0;
     for (auto &node : vehicle->path.content) {
         total += node->demand;
@@ -333,8 +335,8 @@ bool checkVehicleCapacity(Vehicle* vehicle, Node* insertion) {
     return total + insertion->demand <= vehicle->capacity;
 }
 
-bool checkVehicleTimeWindow(Vehicle* vehicle, Node* insertion, int pos) {
-    vector<Node*> temp;
+bool checkVehicleTimeWindow(Vehicle *vehicle, Node *insertion, int pos) {
+    vector<Node *> temp;
     for (auto &node : vehicle->path.content) {
         temp.push_back(node);
     }
@@ -378,7 +380,7 @@ bool checkVehicleTimeWindow(Vehicle* vehicle, Node* insertion, int pos) {
     return true;
 }
 
-Vehicle* findEmptyVehicle(Node *insertion) {
+Vehicle *findEmptyVehicle(Node *insertion) {
     for (auto &vehicle : vehicles) {
         if (!vehiclePaths[&vehicle].empty()) {
             continue;
@@ -395,7 +397,7 @@ Vehicle* findEmptyVehicle(Node *insertion) {
     return nullptr;
 }
 
-InsertingTuple *findNextInsertingTuple(Vehicle* vehicle) {
+InsertingTuple *findNextInsertingTuple(Vehicle *vehicle) {
     vector<InsertingTuple> tuples;
     for (auto &task : unhandledTasks) {
         if (!checkVehicleCapacity(vehicle, task)) {
@@ -431,7 +433,7 @@ InsertingTuple *findNextInsertingTuple(Vehicle* vehicle) {
 
 void buildPath() {
     double maxScore = -MAX;
-    Node* maxScoreTask = nullptr;
+    Node *maxScoreTask = nullptr;
     for (auto &task : unhandledTasks) {
         double detourDuration = distance(virtualSource.x, virtualSource.y, task->x, task->y);
         double score = 0;
@@ -446,9 +448,8 @@ void buildPath() {
     }
 
 
-
-    Vehicle* vehicle = findEmptyVehicle(maxScoreTask);
-    if(vehicle == nullptr)
+    Vehicle *vehicle = findEmptyVehicle(maxScoreTask);
+    if (vehicle == nullptr)
         return;
     vehicle->path.content.push_back(maxScoreTask);
 
@@ -463,8 +464,9 @@ void buildPath() {
     InsertingTuple *insertingTuple = findNextInsertingTuple(vehicle);
 
     while (insertingTuple != nullptr) {
-        insertingTuple->vehicle->path.content.insert(insertingTuple->vehicle->path.content.begin() + insertingTuple->pos,
-                                                     insertingTuple->insertion);
+        insertingTuple->vehicle->path.content.insert(
+                insertingTuple->vehicle->path.content.begin() + insertingTuple->pos,
+                insertingTuple->insertion);
 
         for (auto it = unhandledTasks.begin(); it != unhandledTasks.end();) {
             if ((*it)->id == insertingTuple->insertion->id) {
@@ -484,6 +486,19 @@ void initVehicles() {
     }
 }
 
+void computePathCost(Path &path){
+    int pathCost = 0;
+    pathCost += distance(virtualSource.x, virtualSource.y,path.content[0]->x, path.content[0]->y);
+    for (int i = 1; i < path.content.size(); i++) {
+        pathCost += distance(path.content[i - 1]->x, path.content[i - 1]->y,
+                             path.content[i]->x, path.content[i]->y);
+    }
+    pathCost += distance(virtualTarget.x, virtualTarget.y, path.content[path.content.size() - 1]->x,
+                         path.content[path.content.size() - 1]->y);
+    path.cost = pathCost;
+//    return pathCost;
+}
+
 void initPathSet() {
     for (auto &node : nodes) {
         unhandledTasks.push_back(&node.second);
@@ -493,18 +508,53 @@ void initPathSet() {
         buildPath();
     }
 
-    for(auto &vehicle : vehicles){
-        if(vehicle.path.content.empty())
+    for (auto &vehicle : vehicles) {
+        if (vehicle.path.content.empty())
             continue;
         cout << "Vehicle " << vehicle.id << endl;
         string path = to_string(virtualSource.id);
-        for(int i = 0;i < vehicle.path.content.size();i++){
+        for (int i = 0; i < vehicle.path.content.size(); i++) {
             path = path + " -> " + to_string(vehicle.path.content[i]->id);
         }
         path = path + " -> " + to_string(virtualTarget.id);
-
         cout << path << endl;
+
+        vehicle.path.id = static_cast<int>(vehiclePaths[&vehicle].size());
+
+
+        computePathCost(vehicle.path);
+        vehiclePaths[&vehicle].push_back(vehicle.path);
     }
+}
+
+void buildMathModel() {
+    for (auto &vehicle : vehicles) {
+        for (auto &path : vehiclePaths[&vehicle]) {
+            x_v_p[&vehicle][&path] = XPRBnewvar(model, XPRB_PL, XPRBnewname("x_%d_%d", vehicle.id, path.id), 0, 1);
+        }
+    }
+
+    XPRBctr obj = XPRBnewctr(model, "Obj", XPRB_N);
+    for (auto &vehicle : vehicles) {
+        for (auto &path : vehiclePaths[&vehicle]) {
+            XPRBaddterm(obj, x_v_p[&vehicle][&path], path.cost);
+        }
+    }
+    XPRBsetobj(model, obj);
+
+    for(auto &node : nodes){
+        XPRBctr fulfill = XPRBnewctr(model, "Demand Fulfillment Once", XPRB_E);
+        for (auto &vehicle : vehicles) {
+            for (auto &path : vehiclePaths[&vehicle]) {
+
+                if(std::find(path.content.begin(), path.content.end(), &node) != path.content.end()) {
+                    XPRBaddterm(fulfill, x_v_p[&vehicle][&path], 1);
+                }
+            }
+        }
+        XPRBaddterm(fulfill, nullptr, 1);
+    }
+    XPRBsetsense(model, XPRB_MINIM);
 }
 
 int main() {

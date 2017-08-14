@@ -12,75 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea50ad4d-f4f6-4024-a791-6f9b9610ddd8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C101.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C102.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C103.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C104.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C105.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C106.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C107.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C108.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C109.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C201.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C202.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C203.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C204.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C205.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C206.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C207.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C208.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R101.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R102.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R103.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R104.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R105.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R106.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R107.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R108.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R109.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R110.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R111.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R112.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R201.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R202.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R203.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R204.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R205.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R206.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R207.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R208.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R209.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R210.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/R211.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC101.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC102.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC103.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC104.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC105.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC106.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC107.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC108.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC201.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC202.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC203.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC204.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC205.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC206.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC207.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/RC208.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/vrptw.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMIP.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/CMIP.cbp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/CXX.includecache" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/DependInfo.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/build.make" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/cmake_clean.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/cmake_clean.cmake" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/depend.internal" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/depend.internal" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/depend.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/depend.make" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/link.txt" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMIP.dir/link.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/esp.cpp" afterPath="$PROJECT_DIR$/esp.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vrptw.cpp" afterPath="$PROJECT_DIR$/vrptw.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -98,8 +30,8 @@
       <file leaf-file-name="cfl_bc_bd.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/cfl_bc_bd.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="750" column="90" lean-forward="true" selection-start-line="750" selection-start-column="4" selection-end-line="750" selection-end-column="90" />
+            <state relative-caret-position="574">
+              <caret line="112" column="43" lean-forward="true" selection-start-line="82" selection-start-column="4" selection-end-line="112" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -140,8 +72,8 @@
       <file leaf-file-name="vrptw.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vrptw.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="499" column="74" lean-forward="true" selection-start-line="499" selection-start-column="74" selection-end-line="499" selection-end-column="74" />
+            <state relative-caret-position="478">
+              <caret line="556" column="36" lean-forward="false" selection-start-line="556" selection-start-column="36" selection-end-line="556" selection-end-column="36" />
               <folding>
                 <element signature="e#62#79#0" expanded="true" />
               </folding>
@@ -202,7 +134,6 @@
       <find>DBL_MAX</find>
       <find>XPRB_INFINITY</find>
       <find>XPRBgetso</find>
-      <find>count</find>
       <find>cout</find>
       <find>XPRBsetmsglevel</find>
       <find>getobjval</find>
@@ -223,6 +154,7 @@
       <find>sort</find>
       <find>init</find>
       <find>insert</find>
+      <find>count</find>
     </findStrings>
     <replaceStrings>
       <replace>XPRB_INFINITY</replace>
@@ -328,19 +260,6 @@
               <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="CMIP" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="vrptw" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
-              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-              <item name="vrptw" type="462c0819:PsiDirectoryNode" />
-              <item name="solomon_25" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
@@ -588,12 +507,12 @@
       <workItem from="1500516775920" duration="89831000" />
       <workItem from="1501063058385" duration="91325000" />
       <workItem from="1501727162549" duration="1277000" />
-      <workItem from="1502076306873" duration="59724000" />
+      <workItem from="1502076306873" duration="61129000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="272269000" />
+    <option name="totallyTimeSpent" value="273674000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -614,11 +533,11 @@
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29689923" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48139533" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4883721" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4883721" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -736,7 +655,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/vrptw.cpp</url>
-          <line>508</line>
+          <line>562</line>
           <option name="timeStamp" value="200" />
         </line-breakpoint>
       </breakpoints>
@@ -1109,14 +1028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cfl_bc_bd.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="750" column="90" lean-forward="true" selection-start-line="750" selection-start-column="4" selection-end-line="750" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/c++/5/bits/basic_string.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
@@ -1133,10 +1044,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/cfl_bc_bd.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="112" column="43" lean-forward="true" selection-start-line="82" selection-start-column="4" selection-end-line="112" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vrptw.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="499" column="74" lean-forward="true" selection-start-line="499" selection-start-column="74" selection-end-line="499" selection-end-column="74" />
+        <state relative-caret-position="478">
+          <caret line="556" column="36" lean-forward="false" selection-start-line="556" selection-start-column="36" selection-end-line="556" selection-end-column="36" />
           <folding>
             <element signature="e#62#79#0" expanded="true" />
           </folding>
