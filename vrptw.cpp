@@ -116,7 +116,7 @@ map<Node *, vector<Arc>> outArcs;
 
 Node virtualSource;
 const int sourceNodeId = 0;
-const int targetNodeId = 26;
+const int targetNodeId = 11;
 Node virtualTarget;
 map<int, Node> nodes;
 vector<Node *> unhandledTasks;
@@ -126,15 +126,19 @@ vector<Node *> unhandledTasks;
 //map<Node *, double> duals;
 //map<Node *, XPRBctr> ctrs;
 
-bool isPathCycle(Path *path) {
-    for (int i = 1; i <= path->content.size() - 1; i++) {
-        for (int j = i + 1; j <= path->content.size() - 1; j++) {
-            if (path->content[j]->id == path->content[i]->id) {
-                return true;
-            }
-        }
-    }
-    return false;
+//bool isPathCycle(Path *path) {
+//    for (int i = 1; i <= path->content.size() - 1; i++) {
+//        for (int j = i + 1; j <= path->content.size() - 1; j++) {
+//            if (path->content[j]->id == path->content[i]->id) {
+//                return true;
+//            }
+//        }
+//    }
+//    return false;
+//}
+
+int distance(double x1, double y1, double x2, double y2) {
+    return (int) sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 }
 
 bool isPathCycle(Label *targetLabel, Node *arcTarget) {
@@ -146,6 +150,33 @@ bool isPathCycle(Label *targetLabel, Node *arcTarget) {
         target = target->preLabel;
     }
     return false;
+}
+
+bool checkVehicleTimeWindow(Path *path) {
+    int departTime = 0;
+    int arriveTime = 0;
+
+    arriveTime = departTime + distance(virtualSource.x, virtualSource.y, path->content[0]->x, path->content[0]->y);
+    if (arriveTime < path->content[0]->earliestTime) {
+        departTime = path->content[0]->earliestTime + path->content[0]->serviceTime;
+    } else if (arriveTime > path->content[0]->latestTime) {
+        return false;
+    } else {
+        departTime = arriveTime + path->content[0]->serviceTime;
+    }
+
+    for (int i = 1; i < path->content.size(); i++) {
+        arriveTime = departTime + distance(path->content[i - 1]->x, path->content[i - 1]->y, path->content[i]->x,
+                                           path->content[i]->y);
+        if (arriveTime < path->content[i]->earliestTime) {
+            departTime = path->content[i]->earliestTime + path->content[i]->serviceTime;
+        } else if (arriveTime > path->content[0]->latestTime) {
+            return false;
+        } else {
+            departTime = arriveTime + path->content[i]->serviceTime;
+        }
+    }
+    return true;
 }
 
 Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath, vector<Node *> blockNodes) {
@@ -214,10 +245,7 @@ Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath, vector<Node 
                                     ++it2;
                                 }
                             }
-
-
                             it = nodeLabels[arc.target].erase(it);
-
                         } else {
                             if ((*it)->cost <= targetLabel->cost + arc.cost + arc.target->cost &&
                                 (*it)->arrivalTime <=
@@ -228,7 +256,6 @@ Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath, vector<Node 
                             }
                             ++it;
                         }
-
                     }
 
                     if (addNewLabel) {
@@ -252,8 +279,8 @@ Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath, vector<Node 
 //    int minCost = MAX;
     int pathId = 0;
     for (auto &node : nodeLabels) {
-        if (node.first->id != targetNodeId)
-            continue;
+//        if (node.first->id != targetNodeId)
+//            continue;
         for (auto &label : node.second) {
             vector<Node *> content;
             Label *targetLabel = label;
@@ -292,6 +319,9 @@ Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath, vector<Node 
 //            }
             Path *p = new Path(content, (int) label->cost);
 
+            if (!p->content.empty() && !checkVehicleTimeWindow(p)) {
+                cout << "Violate time window " << endl;
+            }
             pathId++;
             paths.push_back(p);
 
@@ -384,9 +414,7 @@ void readFromFile(const string &fileName) {
     in.close();
 }
 
-int distance(double x1, double y1, double x2, double y2) {
-    return (int) sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-}
+
 
 void initArcs() {
     for (auto &node : nodes) {
@@ -568,6 +596,7 @@ void buildPath() {
         double score = 0;
         score -= detourDuration;
         score -= task->latestTime - task->earliestTime;
+        score += -task->cost;
         double critical = 1 - ((double) (task->latestTime - task->earliestTime) / task->earliestTime);
         score += critical * 7;
         if (maxScore < score) {
@@ -610,7 +639,7 @@ void buildPath() {
 }
 
 void initVehicles() {
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 1; i <= 100; i++) {
         vector<Node *> nodes;
         vehicles.push_back({i, new Path(nodes, 0), 200});
     }
@@ -724,14 +753,7 @@ void buildMathModel() {
 void findMinReducedCostPath() {
 //    Path* minReducePath = shortestPath(&virtualSource);
     vector<Node *> blockNodes;
-//    while (blockNodes.size() != nodes.size()) {
-//        Path *minReducePath = shortestPathWithoutCycle(&virtualSource, false, blockNodes);
-////        minReducePath->id = static_cast<int>(pathSet.size());
-//        pathSet.push_back(minReducePath);
-//        for (auto &node : minReducePath->content) {
-//            blockNodes.push_back(node);
-//        }
-//    }
+
 
     Path *minReducePath = shortestPathWithoutCycle(&virtualSource, false, blockNodes);
     computePathCost(minReducePath);
@@ -757,24 +779,39 @@ int main() {
     readFromFile(fileName);
     initArcs();
 
+//    vector<Node *> blockNodes;
+//    Path *minReducePath = shortestPathWithoutCycle(&virtualSource, true, blockNodes);
+
     for (auto &node : nodes) {
         unhandledTasks.push_back(&node.second);
     }
     buildPathBasedOnUnhandledTasks();
     buildMathModel();
-    findMinReducedCostPath();
 
-
-    for (auto &path : pathSet) {
-        string content;
-        for (auto &node : path->content) {
-            content = content + " -> ";
-            content = content + to_string(node->id);
+    int step = 1;
+    while(step < 10){
+        for (auto &node : nodes) {
+            unhandledTasks.push_back(&node.second);
         }
-        cout << content << endl;
+        buildPathBasedOnUnhandledTasks();
+        buildMathModel();
+        step++;
     }
 
-    buildMathModel();
+
+//    findMinReducedCostPath();
+//
+//
+//    for (auto &path : pathSet) {
+//        string content;
+//        for (auto &node : path->content) {
+//            content = content + " -> ";
+//            content = content + to_string(node->id);
+//        }
+//        cout << content << endl;
+//    }
+
+//    buildMathModel();
 
     for (auto it = pathSet.begin(); it != pathSet.end(); ++it) {
         delete *it;
