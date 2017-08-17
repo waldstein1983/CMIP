@@ -154,9 +154,26 @@ Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath, vector<Node 
     NPS.push_back(sourceLabel);
 
     while (!NPS.empty()) {
-        sort(NPS.begin(), NPS.end());
-        Label *targetLabel = NPS[0];
-        NPS.erase(NPS.begin());
+//        sort(NPS.begin(), NPS.end());
+        Label *targetLabel = nullptr;
+        int minArriveTime = MAX;
+        for (auto &label : NPS) {
+            if (label->arrivalTime < minArriveTime) {
+                minArriveTime = label->arrivalTime;
+                targetLabel = label;
+            }
+        }
+        for (auto it = NPS.begin(); it != NPS.end();) {
+            if (*it == targetLabel) {
+                it = NPS.erase(it);
+            } else {
+                ++it;
+            }
+        }
+
+
+//        Label *targetLabel = NPS[0];
+//        NPS.erase(NPS.begin());
 
         for (auto &arc : outArcs[targetLabel->node]) {
 
@@ -167,13 +184,14 @@ Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath, vector<Node 
                 continue;
 
             if (arc.target->id != targetLabel->node->id &&
-                targetLabel->arrivalTime + arc.time <= arc.target->latestTime &&
+                targetLabel->arrivalTime + targetLabel->node->serviceTime + arc.time <= arc.target->latestTime &&
                 targetLabel->curDemand + arc.target->demand <= capacity) {
                 if (nodeLabels.count(arc.target) == 0 ||
                     (nodeLabels.count(arc.target) != 0 && nodeLabels[arc.target].empty())) {
                     Label *newLabel = new Label(arc.target, targetLabel,
                                                 targetLabel->cost + arc.cost + arc.target->cost,
-                                                max(targetLabel->arrivalTime + arc.time, arc.target->earliestTime),
+                                                max(targetLabel->arrivalTime + targetLabel->node->serviceTime +
+                                                    arc.time, arc.target->earliestTime),
                                                 targetLabel->curDemand + arc.target->demand);
                     nodeLabels[arc.target].push_back(newLabel);
                     NPS.push_back(newLabel);
@@ -181,7 +199,8 @@ Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath, vector<Node 
                     bool addNewLabel = true;
                     for (auto it = nodeLabels[arc.target].begin(); it != nodeLabels[arc.target].end();) {
                         if ((*it)->cost >= targetLabel->cost + arc.cost + arc.target->cost &&
-                            (*it)->arrivalTime >= targetLabel->arrivalTime + arc.time &&
+                            (*it)->arrivalTime >=
+                            targetLabel->arrivalTime + targetLabel->node->serviceTime + arc.time &&
                             (*it)->curDemand >= targetLabel->curDemand + arc.target->demand) {
 
                             for (auto it2 = NPS.begin(); it2 != NPS.end();) {
@@ -201,7 +220,8 @@ Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath, vector<Node 
 
                         } else {
                             if ((*it)->cost <= targetLabel->cost + arc.cost + arc.target->cost &&
-                                (*it)->arrivalTime <= targetLabel->arrivalTime + arc.time &&
+                                (*it)->arrivalTime <=
+                                targetLabel->arrivalTime + targetLabel->node->serviceTime + arc.time &&
                                 (*it)->curDemand <= targetLabel->curDemand + arc.target->demand) {
                                 addNewLabel = false;
                                 break;
@@ -214,7 +234,8 @@ Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath, vector<Node 
                     if (addNewLabel) {
                         Label *newLabel = new Label(arc.target, targetLabel,
                                                     targetLabel->cost + arc.cost + arc.target->cost,
-                                                    max(targetLabel->arrivalTime + arc.time, arc.target->earliestTime),
+                                                    max(targetLabel->arrivalTime + targetLabel->node->serviceTime +
+                                                        arc.time, arc.target->earliestTime),
                                                     targetLabel->curDemand + arc.target->demand);
                         nodeLabels[arc.target].push_back(newLabel);
                         NPS.push_back(newLabel);
@@ -240,7 +261,8 @@ Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath, vector<Node 
                 cout << "Node " << targetLabel->node->id << " violate time window" << endl;
                 return nullptr;
             }
-            string path = to_string(targetLabel->node->id);
+//            string path = to_string(targetLabel->node->id);
+            string path;
 //            content.insert(content.begin(), &nodes[targetLabel->node->id]);
 //            content.insert(content.begin(), &virtualTarget);
 
@@ -489,7 +511,7 @@ Vehicle *findEmptyVehicle(Node *insertion) {
 }
 
 InsertingTuple *findNextInsertingTuple(Vehicle *vehicle) {
-    vector<InsertingTuple*> tuples;
+    vector<InsertingTuple *> tuples;
     for (auto &task : unhandledTasks) {
         if (!checkVehicleCapacity(vehicle, task)) {
             continue;
@@ -514,18 +536,19 @@ InsertingTuple *findNextInsertingTuple(Vehicle *vehicle) {
 
     if (!tuples.empty()) {
 //        sort(tuples.begin(), tuples.end());
-        InsertingTuple* maxScoreTuple = nullptr;
+        InsertingTuple *maxScoreTuple = nullptr;
         double maxScore = -MAX;
-        for(auto &tuple : tuples){
-            if(tuple->score > maxScore){
+        for (auto &tuple : tuples) {
+            if (tuple->score > maxScore) {
                 maxScore = tuple->score;
                 maxScoreTuple = tuple;
             }
         }
 
-        InsertingTuple* target = new InsertingTuple(maxScoreTuple->vehicle,maxScoreTuple->pos, maxScoreTuple->insertion,
-        maxScoreTuple->score);
-        for(auto it = tuples.begin();it != tuples.end();++it){
+        InsertingTuple *target = new InsertingTuple(maxScoreTuple->vehicle, maxScoreTuple->pos,
+                                                    maxScoreTuple->insertion,
+                                                    maxScoreTuple->score);
+        for (auto it = tuples.begin(); it != tuples.end(); ++it) {
             delete *it;
         }
         tuples.clear();
@@ -616,7 +639,7 @@ void buildPathBasedOnUnhandledTasks() {
         if (vehicle.path->content.empty())
             continue;
 
-        if(find(pathSet.begin(),pathSet.end(), vehicle.path) != pathSet.end())
+        if (find(pathSet.begin(), pathSet.end(), vehicle.path) != pathSet.end())
             continue;
 
 
@@ -642,12 +665,12 @@ void buildMathModel() {
 //    ctrs.clear();
     XPRBprob model = XPRBnewprob("vrptw");
     map<Vehicle *, map<Path *, XPRBvar>> x_v_p;
-    map<Node *, double> duals;
+//    map<Node *, double> duals;
     map<Node *, XPRBctr> ctrs;
 
     for (auto &vehicle : vehicles) {
-        for (int i = 0;i < pathSet.size();i++) {
-            x_v_p[&vehicle][pathSet[i]] = XPRBnewvar(model, XPRB_PL, XPRBnewname("x_%d_%d", vehicle.id,i), 0, 1);
+        for (int i = 0; i < pathSet.size(); i++) {
+            x_v_p[&vehicle][pathSet[i]] = XPRBnewvar(model, XPRB_PL, XPRBnewname("x_%d_%d", vehicle.id, i), 0, 1);
         }
     }
 
@@ -658,7 +681,7 @@ void buildMathModel() {
         }
     }
     XPRBsetobj(model, obj);
-    XPRBprintctr(obj);
+//    XPRBprintctr(obj);
 
 
     for (auto &node : nodes) {
@@ -673,7 +696,7 @@ void buildMathModel() {
         }
         XPRBaddterm(fulfill, nullptr, 1);
         ctrs[&node.second] = fulfill;
-        XPRBprintctr(fulfill);
+//        XPRBprintctr(fulfill);
     }
     XPRBsetsense(model, XPRB_MINIM);
 
@@ -692,17 +715,10 @@ void buildMathModel() {
     cout << "Optimal Cost " << XPRBgetobjval(model) << endl;
 
     for (auto &node : nodes) {
-        duals[&node.second] = XPRBgetdual(ctrs[&node.second]);
-    }
-
-
-
-    for (auto &node : nodes) {
         node.second.cost = 0;
-        node.second.cost = -duals[&node.second];
+        node.second.cost = -XPRBgetdual(ctrs[&node.second]);
     }
 }
-
 
 
 void findMinReducedCostPath() {
@@ -749,9 +765,9 @@ int main() {
     findMinReducedCostPath();
 
 
-    for(auto &path : pathSet){
+    for (auto &path : pathSet) {
         string content;
-        for(auto &node : path->content){
+        for (auto &node : path->content) {
             content = content + " -> ";
             content = content + to_string(node->id);
         }
