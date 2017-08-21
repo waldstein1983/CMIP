@@ -12,63 +12,68 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea50ad4d-f4f6-4024-a791-6f9b9610ddd8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C101.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C102.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C103.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C104.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C105.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C106.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C107.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C108.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C109.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C201.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C202.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C203.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C204.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C205.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C206.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C207.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/C208.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R101.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R102.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R103.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R104.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R105.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R106.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R107.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R108.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R109.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R110.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R111.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R112.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R201.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R202.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R203.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R204.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R205.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R206.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R207.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R208.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R209.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R210.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/R211.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC101.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC102.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC103.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC104.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC105.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC106.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC107.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC108.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC201.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC202.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC203.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC204.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC205.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC206.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC207.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_100/RC208.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C101.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C102.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C103.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C104.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C105.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C106.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C107.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C108.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C109.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C201.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C202.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C203.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C204.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C205.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C206.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C207.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/C208.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R101.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R102.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R103.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R104.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R105.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R106.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R107.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R108.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R109.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R110.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R111.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R112.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R201.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R202.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R203.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R204.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R205.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R206.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R207.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R208.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R209.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R210.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/R211.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC101.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC102.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC103.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC104.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC105.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC106.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC107.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC108.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC201.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC202.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC203.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC204.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC205.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC206.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC207.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/vrptw/solomon_50/RC208.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/vrptw/solomon_25/C102.txt" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C102.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/vrptw/solomon_25/C103.txt" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C103.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/vrptw/solomon_25/C104.txt" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C104.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/vrptw/solomon_25/C105.txt" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C105.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/vrptw/solomon_25/C106.txt" afterPath="$PROJECT_DIR$/data/vrptw/solomon_25/C106.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vrptw.cpp" afterPath="$PROJECT_DIR$/vrptw.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -84,33 +89,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cfl_bc_bd.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cfl_bc_bd.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="272" column="34" lean-forward="false" selection-start-line="272" selection-start-column="4" selection-end-line="272" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ufl_bc_bd.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ufl_bc_bd.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="vrptw.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vrptw.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="531">
-              <caret line="1077" column="67" lean-forward="false" selection-start-line="1077" selection-start-column="67" selection-end-line="1077" selection-end-column="67" />
+            <state relative-caret-position="328">
+              <caret line="1145" column="23" lean-forward="false" selection-start-line="1145" selection-start-column="23" selection-end-line="1145" selection-end-column="23" />
               <folding>
                 <element signature="e#64#81#0" expanded="true" />
               </folding>
@@ -118,51 +101,91 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="C101.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_50/C101.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="512">
+              <caret line="59" column="68" lean-forward="false" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="C106.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C106.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="34" column="68" lean-forward="false" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="C202.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C202.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="R205.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/R205.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RC208.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/RC208.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="C105.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C105.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="547">
+              <caret line="34" column="68" lean-forward="false" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="C104.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C104.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="528">
+              <caret line="34" column="68" lean-forward="false" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="C103.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C103.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="C102.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_100/C102.txt">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C102.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="C101.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_100/C101.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="C101.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C101.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stl_iterator.h" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/include/c++/5/bits/stl_iterator.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14193">
-              <caret line="747" column="0" lean-forward="false" selection-start-line="747" selection-start-column="0" selection-end-line="747" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="stl_vector.h" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/include/c++/5/bits/stl_vector.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="317" column="0" lean-forward="false" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
+              <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -259,6 +282,12 @@
         <option value="$PROJECT_DIR$/esp.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/data/vrptw/solomon_25/C101.txt" />
+        <option value="$PROJECT_DIR$/data/vrptw/solomon_25/C102.txt" />
+        <option value="$PROJECT_DIR$/data/vrptw/solomon_25/C103.txt" />
+        <option value="$PROJECT_DIR$/data/vrptw/solomon_25/C104.txt" />
+        <option value="$PROJECT_DIR$/data/vrptw/solomon_25/C105.txt" />
+        <option value="$PROJECT_DIR$/data/vrptw/solomon_25/C106.txt" />
+        <option value="$PROJECT_DIR$/data/vrptw/solomon_50/C101.txt" />
         <option value="$PROJECT_DIR$/vrptw.cpp" />
       </list>
     </option>
@@ -317,6 +346,19 @@
             </path>
             <path>
               <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="vrptw" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="vrptw" type="462c0819:PsiDirectoryNode" />
+              <item name="solomon_50" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
@@ -331,15 +373,15 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/local/ANT/baohuaw/CLionProjects/CMIP/ufl_bc_bd.cpp" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/data" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data/vrptw" />
       <recent name="$PROJECT_DIR$/data/vrptw/solomon_25" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/data/cfl/Beasley" />
       <recent name="$PROJECT_DIR$/data/cfl" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/data" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -563,12 +605,13 @@
       <workItem from="1501727162549" duration="1277000" />
       <workItem from="1502076306873" duration="78975000" />
       <workItem from="1502851931813" duration="38082000" />
-      <workItem from="1503046572703" duration="1393000" />
+      <workItem from="1503046572703" duration="2500000" />
+      <workItem from="1503277245005" duration="8543000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="330995000" />
+    <option name="totallyTimeSpent" value="340645000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -583,17 +626,17 @@
     <frame x="75" y="6" width="2497" height="1452" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11514904" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1159657" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32713178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48139533" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.48139533" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49379843" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49379843" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -603,6 +646,27 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32713178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.48139533" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1159657" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49379843" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -690,129 +754,40 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/vrptw.cpp</url>
-          <line>1173</line>
+          <line>1189</line>
           <option name="timeStamp" value="265" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/vrptw.cpp</url>
-          <line>540</line>
+          <line>528</line>
           <option name="timeStamp" value="313" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/vrptw.cpp</url>
-          <line>422</line>
+          <line>410</line>
           <option name="timeStamp" value="315" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/vrptw.cpp</url>
-          <line>1098</line>
-          <option name="timeStamp" value="317" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/vrptw.cpp</url>
-          <line>1107</line>
-          <option name="timeStamp" value="318" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/vrptw.cpp</url>
-          <line>1089</line>
-          <option name="timeStamp" value="320" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/vrptw.cpp</url>
-          <line>1161</line>
+          <line>1177</line>
           <option name="timeStamp" value="326" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <condition expression="step == 227" language="ObjectiveC" />
           <url>file://$PROJECT_DIR$/vrptw.cpp</url>
-          <line>1139</line>
-          <option name="timeStamp" value="327" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/vrptw.cpp</url>
-          <line>390</line>
-          <option name="timeStamp" value="328" />
+          <line>1148</line>
+          <option name="timeStamp" value="333" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="329" />
+      <option name="time" value="345" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
         <watch expression="NPS" language="ObjectiveC" />
-        <watch expression="nodeLabels" language="ObjectiveC" />
-        <watch expression="unhandledTasks" language="ObjectiveC" />
-        <watch expression="outArcs" language="ObjectiveC" />
-        <watch expression="nodes" language="ObjectiveC" />
-        <watch expression="duals" language="ObjectiveC" />
-        <watch expression="nodes" language="ObjectiveC" />
-        <watch expression="pathSet" language="ObjectiveC" />
-        <watch expression="&amp;paths[0]" language="ObjectiveC" />
-        <watch expression="paths" language="ObjectiveC" />
-        <watch expression="vehicles" language="ObjectiveC" />
-        <watch expression="tuples" language="ObjectiveC" />
-        <watch expression="XPRBgetdual (objValue)" language="ObjectiveC" />
-        <watch expression="pathSet" language="ObjectiveC" />
       </configuration>
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/ufl/GalvaoRaggi/50/50.1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/cfl/cap-10/2Cap10.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/cap41.txt" />
-    <entry file="file://$PROJECT_DIR$/data/cfl/cap-10/1Cap10.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-23424">
-          <caret line="5014" column="14" lean-forward="false" selection-start-line="5014" selection-start-column="14" selection-end-line="5014" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/cap62">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="34" lean-forward="false" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xbd1wagon2.cxx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xbcutstk.cxx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="65" column="42" lean-forward="false" selection-start-line="65" selection-start-column="42" selection-end-line="65" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/cap61">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="20" column="102" lean-forward="false" selection-start-line="20" selection-start-column="102" selection-end-line="20" selection-end-column="102" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/cap133">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/cap132">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1018,7 +993,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/cfl_bc_bd.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="5168">
           <caret line="272" column="34" lean-forward="false" selection-start-line="272" selection-start-column="4" selection-end-line="272" selection-end-column="34" />
           <folding />
         </state>
@@ -1035,13 +1010,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="4688" column="4" lean-forward="false" selection-start-line="4688" selection-start-column="4" selection-end-line="4688" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/5/bits/basic_string.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="5343" column="0" lean-forward="false" selection-start-line="5343" selection-start-column="0" selection-end-line="5343" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1097,22 +1065,101 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1919">
           <caret line="101" column="10" lean-forward="false" selection-start-line="101" selection-start-column="10" selection-end-line="101" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///usr/include/c++/5/bits/stl_vector.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
+        <state relative-caret-position="6023">
           <caret line="317" column="0" lean-forward="false" selection-start-line="317" selection-start-column="0" selection-end-line="317" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/5/bits/basic_string.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="5343" column="0" lean-forward="false" selection-start-line="5343" selection-start-column="0" selection-end-line="5343" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C102.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="4" lean-forward="false" selection-start-line="0" selection-start-column="4" selection-end-line="0" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C103.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C104.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="34" column="68" lean-forward="false" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C105.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="547">
+          <caret line="34" column="68" lean-forward="false" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/RC208.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/R205.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C202.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_25/C106.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="34" column="68" lean-forward="false" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_50/C101.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="512">
+          <caret line="59" column="68" lean-forward="false" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vrptw.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="531">
-          <caret line="1077" column="67" lean-forward="false" selection-start-line="1077" selection-start-column="67" selection-end-line="1077" selection-end-column="67" />
+        <state relative-caret-position="328">
+          <caret line="1145" column="23" lean-forward="false" selection-start-line="1145" selection-start-column="23" selection-end-line="1145" selection-end-column="23" />
           <folding>
             <element signature="e#64#81#0" expanded="true" />
           </folding>
