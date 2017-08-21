@@ -7,7 +7,8 @@ set(SOURCE_FILES
 #        ufl_bc_bd.cpp
 #        cfl_bc_bd2.cpp
 #        esp.cpp
-        vrptw.cpp
+#        vrptw.cpp
+        vrptw2.cpp
         )
 
 set(XPRESS_INC_DIR /opt/xpressmp/include)

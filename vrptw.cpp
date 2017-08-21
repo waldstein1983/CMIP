@@ -12,9 +12,11 @@
 #include <iterator>
 #include <sstream>
 #include <fstream>
+#include <chrono>
 
 
 using namespace std;
+using namespace std::chrono;
 
 struct Node {
     int id;
@@ -110,7 +112,7 @@ vector<Arc *> arcs;
 
 Node virtualSource;
 const int sourceNodeId = 0;
-const int targetNodeId = 51;
+const int targetNodeId = 101;
 Node virtualTarget;
 map<int, Node> nodes;
 vector<Node *> unhandledTasks;
@@ -170,6 +172,18 @@ bool checkVehicleTimeWindow(Path *path) {
             departTime = arriveTime + path->content[i]->serviceTime;
         }
     }
+
+
+    arriveTime =
+            departTime + distance(path->content[path->content.size() - 1]->x, path->content[path->content.size() - 1]->y, virtualTarget.x, virtualTarget.y);
+//    if (arriveTime < virtualTarget.earliestTime) {
+//        arriveTime = virtualTarget.earliestTime;
+//    }
+
+    if (arriveTime > virtualTarget.latestTime) {
+        return false;
+    }
+
     return true;
 }
 
@@ -610,6 +624,7 @@ void readFromFile(const string &fileName) {
         }
         lineId++;
     }
+//    targetNodeId = nodes.rbegin()->first + 1;
     in.close();
 }
 
@@ -790,6 +805,9 @@ InsertingTuple *findNextInsertingTuple(Path *path) {
             }
         }
 
+        if(maxScoreTuple == nullptr)
+            return nullptr;
+
         auto *target = new InsertingTuple(maxScoreTuple->path, maxScoreTuple->pos,
                                           maxScoreTuple->insertion,
                                           maxScoreTuple->score);
@@ -869,6 +887,10 @@ void buildPath() {
         insertingTuple = findNextInsertingTuple(path);
     }
 
+    if(isPathExisting(path)){
+        delete path;
+        return;
+    }
     computePathCost(path);
     pathSet.push_back(path);
 }
@@ -1122,24 +1144,45 @@ string pathToString(Path* path){
     return pathStr;
 }
 
-int main() {
+double computePathReducedCost(Path* path){
+    double cost = 0;
+    cost += distance(virtualSource.x, virtualSource.y, path->content[0]->x, path->content[0]->y);
+    cost += path->content[0]->cost;
+    for(int i = 1;i < path->content.size();i++){
+        cost += distance( path->content[i - 1]->x, path->content[i - 1]->y, path->content[i]->x, path->content[i]->y);
+        cost += path->content[i]->cost;
+    }
 
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/solomon_50/C101.txt";
+    cost += distance(virtualTarget.x, virtualTarget.y, path->content[path->content.size() - 1]->x, path->content[path->content.size() - 1]->y);
+
+    return cost;
+}
+
+void removePositiveReducedCostPaths(){
+    for(auto it = pathSet.begin();it != pathSet.end();){
+        if(computePathReducedCost(*it) >= 0 && (*it)->content.size() != 1){
+            it = pathSet.erase(it);
+        }else{
+            ++it;
+        }
+    }
+}
+
+int main() {
+    milliseconds start = duration_cast<milliseconds>(
+            system_clock::now().time_since_epoch()
+    );
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/solomon_25/C101.txt";
     readFromFile(fileName);
     initArcs();
 
-//    vector<Node *> blockNodes;
-//    Path *minReducePath = shortestPathWithoutCycle(&virtualSource, true, blockNodes);
-
-//    for (auto &node : nodes) {
-//        unhandledTasks.push_back(&node.second);
-//    }
-//    buildPathBasedOnUnhandledTasks();
     buildSimplePath();
+
+    buildPathByHeuristic();
 
     buildMathModel();
 
-    buildPathByHeuristic();
+
 
 
     int step = 1;
@@ -1152,15 +1195,24 @@ int main() {
             break;
 //    Path *minReducePath = shortestPath(&virtualSource, true, blockNodes);
         computePathCost(minReducePath);
-        cout << "Step " << step << " , " << pathToString(minReducePath) << ", numOfPath " << pathSet.size() << endl;
+        cout << "Step " << step << " , " << pathToString(minReducePath) << " , reduced cost " << computePathReducedCost(minReducePath) << "  , numOfPath " << pathSet.size() << endl;
         pathSet.push_back(minReducePath);
-        buildMathModel();
+
+//        removePositiveReducedCostPaths();
+
         buildPathByHeuristic();
+
+        buildMathModel();
+
         step++;
     }
 
     cout << "Optimal Solution" << endl;
     for(auto &path : solution){
+        if(!checkVehicleTimeWindow(path)){
+            cout << pathToString(path) << "   violate time window";
+            continue;
+        }
         cout << pathToString(path) << endl;
     }
 
@@ -1193,6 +1245,12 @@ int main() {
         delete *it;
     }
     pathSet.clear();
+
+    milliseconds end = duration_cast<milliseconds>(
+            system_clock::now().time_since_epoch()
+    );
+
+    cout << "Time " << (end.count() - start.count()) << endl;
     return 0;
 }
 

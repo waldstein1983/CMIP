@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/CMIP.dir/vrptw.cpp.o"
+  "CMakeFiles/CMIP.dir/vrptw2.cpp.o"
   "CMIP.pdb"
   "CMIP"
 )
