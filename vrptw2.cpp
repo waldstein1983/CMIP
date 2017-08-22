@@ -55,8 +55,8 @@ struct Label {
     double arrivalTime;
     int curDemand;
 
-    bool operator<(const Label &other) const {
-        return arrivalTime < other.arrivalTime;
+    bool operator<(const Label* other) const {
+        return arrivalTime < other->arrivalTime;
     }
 
     bool operator==(const Label &other) {
@@ -89,6 +89,7 @@ struct InsertingTuple {
 
     InsertingTuple(Path *path, int pos, Node *insertion, double score) : path(path), pos(pos),
                                                                          insertion(insertion), score(score) {}
+
     bool operator<(const InsertingTuple &other) const {
         return score < other.score;
     }
@@ -116,6 +117,8 @@ Node virtualTarget;
 map<int, Node> nodes;
 vector<Node *> unhandledTasks;
 
+void computePathCost(Path *path);
+
 //XPRBprob model = XPRBnewprob("vrptw");
 //map<Vehicle *, map<Path *, XPRBvar>> x_v_p;
 //map<Node *, double> duals;
@@ -132,8 +135,8 @@ vector<Node *> unhandledTasks;
 //    return false;
 //}
 
-int distance(double x1, double y1, double x2, double y2) {
-    return (int) sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+double distance(double x1, double y1, double x2, double y2) {
+    return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 }
 
 bool isPathCycle(Label *targetLabel, Node *arcTarget) {
@@ -174,7 +177,9 @@ bool checkVehicleTimeWindow(Path *path) {
 
 
     arriveTime =
-            departTime + distance(path->content[path->content.size() - 1]->x, path->content[path->content.size() - 1]->y, virtualTarget.x, virtualTarget.y);
+            departTime +
+            distance(path->content[path->content.size() - 1]->x, path->content[path->content.size() - 1]->y,
+                     virtualTarget.x, virtualTarget.y);
 //    if (arriveTime < virtualTarget.earliestTime) {
 //        arriveTime = virtualTarget.earliestTime;
 //    }
@@ -205,34 +210,39 @@ bool isPathExisting(Path *p) {
     return false;
 }
 
+bool comparePtrToLabel(Label* a, Label* b) { return (a->arrivalTime < b->arrivalTime); }
+
 Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath) {
     auto *sourceLabel = new Label(source, nullptr, 0, 0, 0);
     nodeLabels[source].push_back(sourceLabel);
     NPS.push_back(sourceLabel);
 
     while (!NPS.empty()) {
+
+        sort(NPS.begin(), NPS.end(), comparePtrToLabel);
+        Label* targetLabel = NPS[0];
+        NPS.erase(NPS.begin());
 //        sort(NPS.begin(), NPS.end());
-        Label *targetLabel = nullptr;
-        double minArriveTime = MAX;
-        for (auto &label : NPS) {
-            if (label->arrivalTime < minArriveTime) {
-                minArriveTime = label->arrivalTime;
-                targetLabel = label;
-            }
-        }
-        for (auto it = NPS.begin(); it != NPS.end();) {
-            if (*it == targetLabel) {
-                it = NPS.erase(it);
-            } else {
-                ++it;
-            }
-        }
+//
+//
+//        Label *targetLabel = nullptr;
+//        double minArriveTime = MAX;
+//        for (auto &label : NPS) {
+//            if (label->arrivalTime < minArriveTime) {
+//                minArriveTime = label->arrivalTime;
+//                targetLabel = label;
+//            }
+//        }
+//        for (auto it = NPS.begin(); it != NPS.end();) {
+//            if (*it == targetLabel) {
+//                it = NPS.erase(it);
+//            } else {
+//                ++it;
+//            }
+//        }
+
 
         for (auto &arc : outArcs[targetLabel->node]) {
-
-//            if (!(find(blockNodes.begin(), blockNodes.end(), arc->target) == blockNodes.end()))
-//                continue;
-//
             if (!includeCyclePath && isPathCycle(targetLabel, arc->target))
                 continue;
 
@@ -294,17 +304,13 @@ Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath) {
         }
     }
 
-//    Path sp;
     vector<Path *> paths;
-//    Path* shortest = nullptr;
-//    Path shortest(0, );
-//    int minCost = MAX;
     int pathId = 0;
     for (auto &node : nodeLabels) {
         if (node.first->id != targetNodeId)
             continue;
         for (auto &label : node.second) {
-            if(label->cost >= 0)
+            if (label->cost >= 0)
                 continue;
 
             vector<Node *> content;
@@ -313,11 +319,7 @@ Path *shortestPathWithoutCycle(Node *source, bool includeCyclePath) {
                 cout << "Node " << targetLabel->node->id << " violate time window" << endl;
                 return nullptr;
             }
-//            string path = to_string(targetLabel->node->id);
             string path;
-//            content.insert(content.begin(), &nodes[targetLabel->node->id]);
-//            content.insert(content.begin(), &virtualTarget);
-
             while (targetLabel->preLabel != nullptr) {
                 path = " - " + path;
                 path = to_string(targetLabel->preLabel->node->id) + path;
@@ -556,15 +558,6 @@ Path *shortestPath(Node *source, bool includeCyclePath, vector<Node *> blockNode
             shortest = path;
         }
     }
-//    sort(paths.begin(), paths.end());
-//    string path;
-//    for (auto &pathNode : paths[0]->content) {
-//        path += to_string(pathNode->id) + "->";
-//    }
-////    path = path + " -> " + to_string(targetNodeId);
-//    cout << "least reduced cost path: " << path << endl;
-//    Path* shortest = paths[0];
-
     Path *target = new Path(shortest->content, shortest->cost);
     for (auto it = paths.begin() + 1; it != paths.end(); ++it) {
         delete (*it);
@@ -670,7 +663,7 @@ void initArcs() {
     }
 }
 
-int detourDistance(Path *path, int pos, Node *insertion) {
+double detourDistance(Path *path, int pos, Node *insertion) {
     double prev_x, prev_y, next_x, next_y;
     if (pos == 0) {
         prev_x = virtualSource.x;
@@ -688,7 +681,7 @@ int detourDistance(Path *path, int pos, Node *insertion) {
         next_y = path->content[pos]->y;
     }
 
-    int detour = distance(prev_x, prev_y, insertion->x, insertion->y);
+    double detour = distance(prev_x, prev_y, insertion->x, insertion->y);
     detour += distance(insertion->x, insertion->y, next_x, next_y);
     detour -= distance(prev_x, prev_y, next_x, next_y);
     return detour;
@@ -700,6 +693,14 @@ bool checkVehicleCapacity(Path *path, Node *insertion) {
         total += node->demand;
     }
     return total + insertion->demand <= capacity;
+}
+
+bool checkVehicleCapacity(Path *path) {
+    int total = 0;
+    for (auto &node : path->content) {
+        total += node->demand;
+    }
+    return total <= capacity;
 }
 
 bool checkTimeWindow(Path *path, Node *insertion, int pos) {
@@ -772,12 +773,12 @@ InsertingTuple *findNextInsertingTuple(Path *path) {
         }
 
         for (int pos = 0; pos < path->content.size() + 1; pos++) {
-            int detour = detourDistance(path, pos, task);
+            double detour = detourDistance(path, pos, task);
             double score;
             score = -detour;
 
 //            score -= task->latestTime - task->earliestTime;
-            score += -task->cost;
+            score += -task->cost * 1;
 
 //            double critical = 1 - ((double) (task->latestTime - task->earliestTime) / task->earliestTime);
 //
@@ -788,7 +789,6 @@ InsertingTuple *findNextInsertingTuple(Path *path) {
                 continue;
             }
 
-//            cout << "Score " << score << endl;
             tuples.push_back(new InsertingTuple(path, pos, task, score));
         }
     }
@@ -804,7 +804,7 @@ InsertingTuple *findNextInsertingTuple(Path *path) {
             }
         }
 
-        if(maxScoreTuple == nullptr)
+        if (maxScoreTuple == nullptr)
             return nullptr;
 
         auto *target = new InsertingTuple(maxScoreTuple->path, maxScoreTuple->pos,
@@ -820,9 +820,147 @@ InsertingTuple *findNextInsertingTuple(Path *path) {
     return nullptr;
 }
 
+struct RemovingNode {
+    Path *path;
+    int pos;
+    double distance;
+
+    RemovingNode(Path *path, int pos, double distance) : path(path), pos(pos), distance(distance) {}
+
+};
+
+RemovingNode *findMaxDetourNode(vector<Path *> &paths) {
+    RemovingNode *targetRemoving = nullptr;
+    vector<RemovingNode *> removingNodes;
+    double maxDetour = 0;
+    for (auto &path : paths) {
+        Node *prev = &virtualSource;
+        Node *target = path->content[0];
+        Node *next = path->content[1];
+
+        double detour = distance(prev->x, prev->y, target->x, target->y);
+        detour += distance(target->x, target->y, next->x, next->y);
+        detour -= distance(prev->x, prev->y, next->x, next->y);
+
+        removingNodes.push_back(new RemovingNode(path, 0, detour));
+
+        for (int i = 1; i < path->content.size() - 1; i++) {
+            prev = path->content[i - 1];
+            target = path->content[i];
+            next = path->content[1 + 1];
+
+            double detour = distance(prev->x, prev->y, target->x, target->y);
+            detour += distance(target->x, target->y, next->x, next->y);
+            detour -= distance(prev->x, prev->y, next->x, next->y);
+
+            removingNodes.push_back(new RemovingNode(path, i, detour));
+        }
+
+        prev = path->content[path->content.size() - 2];
+        target = path->content[path->content.size() - 1];
+        next = &virtualTarget;
+
+        detour = distance(prev->x, prev->y, target->x, target->y);
+        detour += distance(target->x, target->y, next->x, next->y);
+        detour -= distance(prev->x, prev->y, next->x, next->y);
+
+        removingNodes.push_back(new RemovingNode(path, static_cast<int>(path->content.size() - 1), detour));
+    }
+
+//    Path *shortest = nullptr;
+//    double minCost = MAX;
+    for (auto &removingNode : removingNodes) {
+        if (removingNode->distance > maxDetour) {
+            maxDetour = removingNode->distance;
+            targetRemoving = removingNode;
+        }
+    }
+
+    auto *maxDetourNode = new RemovingNode(targetRemoving->path, targetRemoving->pos, targetRemoving->distance);
+//    Path *target = new Path(shortest->content, shortest->cost);
+    for (auto it = removingNodes.begin() + 1; it != removingNodes.end(); ++it) {
+        delete (*it);
+    }
+    removingNodes.clear();
+
+    return maxDetourNode;
+}
+
+void neighborSearch(vector<Path *> &paths) {
+    for (int i = 0; i < 10; i++) {
+        double totalCost = 0;
+        for(auto &path : paths){
+            computePathCost(path);
+            totalCost += path->cost;
+        }
+
+        RemovingNode *maxDetour = findMaxDetourNode(paths);
+
+        Node *node = maxDetour->path->content[maxDetour->pos];
+        maxDetour->path->content.erase(maxDetour->path->content.begin() + maxDetour->pos);
+
+        vector<InsertingTuple *> tuples;
+        for (auto &path : paths) {
+            if (!checkVehicleCapacity(path, node)) {
+                continue;
+            }
+
+            for (int pos = 0; pos < path->content.size() + 1; pos++) {
+                double detour = detourDistance(path, pos, node);
+                double score;
+                score = -detour;
+
+//            score -= task->latestTime - task->earliestTime;
+                score += -node->cost * 1;
+
+//            double critical = 1 - ((double) (task->latestTime - task->earliestTime) / task->earliestTime);
+//
+//            score += critical * 7;
+
+                score += distance(virtualSource.x, virtualSource.y, node->x, node->y);
+                if (!checkTimeWindow(path, node, pos)) {
+                    continue;
+                }
+
+                tuples.push_back(new InsertingTuple(path, pos, node, score));
+            }
+        }
+
+
+        if (!tuples.empty()) {
+            InsertingTuple *maxScoreTuple = nullptr;
+            double maxScore = -MAX;
+            for (auto &tuple : tuples) {
+                if (tuple->score > maxScore) {
+                    maxScore = tuple->score;
+                    maxScoreTuple = tuple;
+                }
+            }
+
+            if (maxScoreTuple == nullptr)
+                return;
+
+            maxScoreTuple->path->content.insert(maxScoreTuple->path->content.begin() + maxScoreTuple->pos,
+                                                maxScoreTuple->insertion);
+            for (auto it = tuples.begin(); it != tuples.end(); ++it) {
+                delete *it;
+            }
+            tuples.clear();
+
+
+            double totalCost = 0;
+            for(auto &path : paths){
+                computePathCost(path);
+                totalCost += path->cost;
+            }
+//            cout << endl;
+        }
+    }
+}
+
 //void remove()
 void computePathCost(Path *path) {
-    int pathCost = 0;
+    double pathCost = 0;
     pathCost += distance(virtualSource.x, virtualSource.y, path->content[0]->x, path->content[0]->y);
     for (int i = 1; i < path->content.size(); i++) {
         pathCost += distance(path->content[i - 1]->x, path->content[i - 1]->y,
@@ -833,7 +971,7 @@ void computePathCost(Path *path) {
     path->cost = pathCost;
 }
 
-void buildPath(vector<Path*> &newPaths) {
+void buildPath(vector<Path *> &newPaths) {
     double maxScore = -MAX;
     Node *maxScoreTask = nullptr;
     for (auto &task : unhandledTasks) {
@@ -841,7 +979,7 @@ void buildPath(vector<Path*> &newPaths) {
         double score = 0;
         score -= detourDuration;
         score -= task->latestTime - task->earliestTime;
-        score += -task->cost;
+        score += -task->cost * 1;
 //        score -= task->latestTime - task->earliestTime;
 //        double critical = 1 - ((double) (task->latestTime - task->earliestTime) / task->earliestTime);
 //        score += critical * 7;
@@ -857,7 +995,7 @@ void buildPath(vector<Path*> &newPaths) {
 //        return;
     vector<Node *> content;
     content.push_back(maxScoreTask);
-    Path *path = new Path(content, 0);
+    auto *path = new Path(content, 0);
 //    vehicle->path->content.push_back(maxScoreTask);
 
     for (auto it = unhandledTasks.begin(); it != unhandledTasks.end();) {
@@ -886,7 +1024,7 @@ void buildPath(vector<Path*> &newPaths) {
         insertingTuple = findNextInsertingTuple(path);
     }
 
-    if(isPathExisting(path)){
+    if (isPathExisting(path)) {
         delete path;
         return;
     }
@@ -903,9 +1041,7 @@ void buildPath(vector<Path*> &newPaths) {
 
 
 
-void buildPathByHeuristic(vector<Path*> &newPaths) {
-
-
+void buildPathByHeuristic(vector<Path *> &newPaths) {
     for (auto &node : nodes) {
         unhandledTasks.push_back(&node.second);
     }
@@ -921,7 +1057,7 @@ map<Node *, XPRBctr> ctrs;
 XPRBctr obj;
 XPRBbasis basis;
 
-void initModel(){
+void initModel() {
     obj = XPRBnewctr(model, "Obj", XPRB_N);
 //    for (auto &path : newPaths) {
 //        XPRBaddterm(obj, x[path], path->cost);
@@ -946,9 +1082,9 @@ void initModel(){
     XPRBsetsense(model, XPRB_MINIM);
 }
 
-void buildMathModel(vector<Path*> &newPaths) {
+void buildMathModel(vector<Path *> &newPaths) {
 
-    if(x.size() != 0){
+    if (x.size() != 0) {
         XPRBloadmat(model);
         XPRBloadbasis(basis);
         basis = nullptr;
@@ -969,7 +1105,7 @@ void buildMathModel(vector<Path*> &newPaths) {
 
     for (auto &node : nodes) {
 //        if()
-        if(ctrs.count(&node.second) == 0){
+        if (ctrs.count(&node.second) == 0) {
             XPRBctr fulfill = XPRBnewctr(model, "Demand Fulfillment Once", XPRB_E);
             for (auto &path : newPaths) {
 
@@ -979,7 +1115,7 @@ void buildMathModel(vector<Path*> &newPaths) {
             }
             XPRBaddterm(fulfill, nullptr, 1);
             ctrs[&node.second] = fulfill;
-        }else{
+        } else {
             for (auto &path : newPaths) {
 
                 if (find(path->content.begin(), path->content.end(), &(node.second)) != path->content.end()) {
@@ -1000,7 +1136,7 @@ void buildMathModel(vector<Path*> &newPaths) {
 
     solution.clear();
     for (auto &path : pathSet) {
-        if (abs(XPRBgetsol(x[path]) - 1) <= 0.00001){
+        if (abs(XPRBgetsol(x[path]) - 1) <= 0.00001) {
             solution.push_back(path);
         }
 //            cout << XPRBgetsol(x[path])
@@ -1025,7 +1161,7 @@ void buildMathModel(vector<Path*> &newPaths) {
 
 }
 
-void buildSimplePath(vector<Path*> &newPaths) {
+void buildSimplePath(vector<Path *> &newPaths) {
     for (auto &node : nodes) {
         vector<Node *> content;
         content.push_back(&node.second);
@@ -1036,38 +1172,53 @@ void buildSimplePath(vector<Path*> &newPaths) {
 
 }
 
-string pathToString(Path* path){
+string pathToString(Path *path) {
     string pathStr = to_string(virtualSource.id);
-    for(auto &node : path->content){
+    for (auto &node : path->content) {
         pathStr += " -> " + to_string(node->id);
     }
     pathStr += " -> " + to_string(virtualTarget.id);
     return pathStr;
 }
 
-double computePathReducedCost(Path* path){
+double computePathReducedCost(Path *path) {
     double cost = 0;
     cost += distance(virtualSource.x, virtualSource.y, path->content[0]->x, path->content[0]->y);
     cost += path->content[0]->cost;
-    for(int i = 1;i < path->content.size();i++){
-        cost += distance( path->content[i - 1]->x, path->content[i - 1]->y, path->content[i]->x, path->content[i]->y);
+    for (int i = 1; i < path->content.size(); i++) {
+        cost += distance(path->content[i - 1]->x, path->content[i - 1]->y, path->content[i]->x, path->content[i]->y);
         cost += path->content[i]->cost;
     }
 
-    cost += distance(virtualTarget.x, virtualTarget.y, path->content[path->content.size() - 1]->x, path->content[path->content.size() - 1]->y);
+    cost += distance(virtualTarget.x, virtualTarget.y, path->content[path->content.size() - 1]->x,
+                     path->content[path->content.size() - 1]->y);
 
     return cost;
 }
 
-void removePositiveReducedCostPaths(){
-    for(auto it = pathSet.begin();it != pathSet.end();){
-        if(computePathReducedCost(*it) >= 0 && (*it)->content.size() != 1){
-            it = pathSet.erase(it);
-        }else{
-            ++it;
+bool pathInclude(Path *path1, Path *path2) {
+    int target = -1;
+    for (int i = 0; i < path1->content.size(); i++) {
+        if (find(path2->content.begin(), path2->content.end(), path1->content[i]) != path2->content.end()) {
+            target = i;
+        } else {
+            return false;
         }
     }
 }
+
+void removePositiveReducedCostPaths() {
+    for (auto it = pathSet.begin(); it != pathSet.end();) {
+
+//        if (computePathReducedCost(*it) >= 0 && (*it)->content.size() != 1) {
+//            it = pathSet.erase(it);
+//        } else {
+//            ++it;
+//        }
+    }
+}
+
+//void buildPathBasedOnMinReducedCostPath()
 
 int main() {
 
@@ -1075,22 +1226,30 @@ int main() {
             system_clock::now().time_since_epoch()
     );
 
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/solomon_100/C101.txt";
-//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/s-cvrptw/C1_2_1.TXT";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/solomon_100/C101.txt";
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/s-cvrptw/C1_2_1.TXT";
     readFromFile(fileName);
     initArcs();
     initModel();
 
-    vector<Path*> newPaths;
-    buildSimplePath(newPaths);
-
+    vector<Path *> newPaths;
 
     buildPathByHeuristic(newPaths);
+
+    neighborSearch(newPaths);
+
+    double totalCost = 0;
+    for(auto &path : newPaths){
+        computePathCost(path);
+        totalCost += path->cost;
+    }
+
+//    buildSimplePath(newPaths);
 
 
     buildMathModel(newPaths);
 
-    for(auto &path : newPaths){
+    for (auto &path : newPaths) {
         pathSet.push_back(path);
     }
 
@@ -1107,24 +1266,46 @@ int main() {
 //            cout << "Min Reduced Cost Path violates time window" << endl;
 //            break;
 //        }
-        if(minReducePath == nullptr)
+        if (minReducePath == nullptr)
             break;
 //    Path *minReducePath = shortestPath(&virtualSource, true, blockNodes);
         computePathCost(minReducePath);
-        cout << "Step " << step << " , " << pathToString(minReducePath) << " , reduced cost " << computePathReducedCost(minReducePath) << "  , numOfPath " << pathSet.size() << endl;
+        cout << "Step " << step << " , " << pathToString(minReducePath) << " , reduced cost "
+             << computePathReducedCost(minReducePath) << "  , numOfPath " << pathSet.size() << endl;
 
         newPaths.push_back(minReducePath);
 
 
-//        removePositiveReducedCostPaths();
+//        unhandledTasks.clear();
+//        for (auto &node : nodes) {
+//            if (find(minReducePath->content.begin(), minReducePath->content.end(), &node.second) ==
+//                minReducePath->content.end()) {
+//                unhandledTasks.push_back(&node.second);
+//            }
+//        }
+//        while (!unhandledTasks.empty()) {
+//            buildPath(newPaths);
+//        }
 
-        buildPathByHeuristic(newPaths);
-
+//        vector<Path*> heuristicPaths;
+//
+//        buildPathByHeuristic(heuristicPaths);
+//        neighborSearch(heuristicPaths);
+//
+//        double totalCost = 0;
+//        for(auto &path : heuristicPaths){
+//            computePathCost(path);
+//            totalCost += path->cost;
+//        }
+//
+//        for (auto &path : heuristicPaths) {
+//            newPaths.push_back(path);
+//        }
 
 
         buildMathModel(newPaths);
 
-        for(auto &path : newPaths){
+        for (auto &path : newPaths) {
             pathSet.push_back(path);
         }
 
@@ -1134,9 +1315,14 @@ int main() {
     }
 
     cout << "Optimal Solution" << endl;
-    for(auto &path : solution){
-        if(!checkVehicleTimeWindow(path)){
+    for (auto &path : solution) {
+        if (!checkVehicleTimeWindow(path)) {
             cout << pathToString(path) << "   violate time window";
+            continue;
+        }
+
+        if (!checkVehicleCapacity(path)) {
+            cout << pathToString(path) << "   violate capacity";
             continue;
         }
         cout << pathToString(path) << endl;

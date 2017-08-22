@@ -12,9 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea50ad4d-f4f6-4024-a791-6f9b9610ddd8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_2_1.TXT" afterPath="$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_2_1.TXT" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vrptw.cpp" afterPath="$PROJECT_DIR$/vrptw.cpp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vrptw2.cpp" afterPath="$PROJECT_DIR$/vrptw2.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -30,21 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="cfl_bc_bd.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/cfl_bc_bd.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="vrptw.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vrptw.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="928">
-              <caret line="1221" column="20" lean-forward="false" selection-start-line="1221" selection-start-column="20" selection-end-line="1221" selection-end-column="20" />
+            <state relative-caret-position="335">
+              <caret line="912" column="4" lean-forward="true" selection-start-line="912" selection-start-column="4" selection-end-line="914" selection-end-column="5" />
               <folding>
                 <element signature="e#64#81#0" expanded="true" />
                 <element signature="e#2676#2716#0" expanded="false" />
@@ -53,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="C103.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_100/C103.txt">
+      <file leaf-file-name="xbcutstk.cxx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xbcutstk.cxx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
-              <caret line="68" column="21" lean-forward="false" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
+            <state relative-caret-position="719">
+              <caret line="137" column="86" lean-forward="false" selection-start-line="135" selection-start-column="12" selection-end-line="137" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -66,8 +53,8 @@
       <file leaf-file-name="vrptw2.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vrptw2.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-229">
-              <caret line="1077" column="88" lean-forward="false" selection-start-line="1077" selection-start-column="88" selection-end-line="1077" selection-end-column="88" />
+            <state relative-caret-position="94">
+              <caret line="222" column="36" lean-forward="false" selection-start-line="222" selection-start-column="36" selection-end-line="222" selection-end-column="36" />
               <folding>
                 <element signature="e#64#81#0" expanded="true" />
               </folding>
@@ -75,51 +62,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="C11010.TXT" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/C11010.TXT">
+      <file leaf-file-name="RC110_1.TXT" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/RC110_1.TXT">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-15105">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="C1_2_1.TXT" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_2_1.TXT">
+      <file leaf-file-name="C1_2_5.TXT" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_2_5.TXT">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="725">
-              <caret line="209" column="68" lean-forward="false" selection-start-line="209" selection-start-column="68" selection-end-line="209" selection-end-column="68" />
+            <state relative-caret-position="-3265">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <file leaf-file-name="C1_8_8.TXT" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_8_8.TXT">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="11" column="9" lean-forward="false" selection-start-line="11" selection-start-column="9" selection-end-line="11" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="xbcutstk.cxx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/xbcutstk.cxx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="907">
-              <caret line="137" column="86" lean-forward="false" selection-start-line="135" selection-start-column="12" selection-end-line="137" selection-end-column="86" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="C101.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_50/C101.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="59" column="68" lean-forward="false" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
+            <state relative-caret-position="-6042">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -128,8 +95,38 @@
       <file leaf-file-name="C101.txt" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_100/C101.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1995">
-              <caret line="105" column="36" lean-forward="false" selection-start-line="105" selection-start-column="36" selection-end-line="105" selection-end-column="36" />
+            <state relative-caret-position="16">
+              <caret line="76" column="71" lean-forward="true" selection-start-line="76" selection-start-column="71" selection-end-line="76" selection-end-column="71" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="C1_6_9.TXT" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_6_9.TXT">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-6156">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="C1_4_9.TXT" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_4_9.TXT">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5871">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="C1_2_8.TXT" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_2_8.TXT">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-732">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -139,8 +136,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getVar</find>
-      <find>XPRBnewCut</find>
       <find>getDu</find>
       <find>DBL_MAX</find>
       <find>XPRB_INFINITY</find>
@@ -169,6 +164,8 @@
       <find>26</find>
       <find>arc.</find>
       <find>new Path</find>
+      <find>int</find>
+      <find>buildPathBasedOnUnhandledTasks</find>
     </findStrings>
     <replaceStrings>
       <replace>XPRB_INFINITY</replace>
@@ -296,6 +293,13 @@
               <item name="CMIP" type="462c0819:PsiDirectoryNode" />
               <item name="data" type="462c0819:PsiDirectoryNode" />
               <item name="vrptw" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
+              <item name="CMIP" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+              <item name="vrptw" type="462c0819:PsiDirectoryNode" />
+              <item name="s-cvrptw" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CMIP" type="dad4c3:CidrFilesViewHelper$MyProjectTreeStructure$1" />
@@ -546,12 +550,12 @@
       <workItem from="1502076306873" duration="78975000" />
       <workItem from="1502851931813" duration="38082000" />
       <workItem from="1503046572703" duration="2500000" />
-      <workItem from="1503277245005" duration="27388000" />
+      <workItem from="1503277245005" duration="41880000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="359490000" />
+    <option name="totallyTimeSpent" value="373982000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -566,24 +570,24 @@
     <frame x="75" y="6" width="2497" height="1452" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1159657" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32713178" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32945737" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39224806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39224806" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1159657" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49379843" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49379843" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23764803" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -708,13 +712,32 @@
           <option name="timeStamp" value="349" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <condition expression="step == 469" language="ObjectiveC" />
           <url>file://$PROJECT_DIR$/vrptw2.cpp</url>
-          <line>1113</line>
-          <option name="timeStamp" value="360" />
+          <line>1248</line>
+          <option name="timeStamp" value="367" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/vrptw2.cpp</url>
+          <line>1290</line>
+          <option name="timeStamp" value="369" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/vrptw2.cpp</url>
+          <line>1304</line>
+          <option name="timeStamp" value="371" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/vrptw2.cpp</url>
+          <line>226</line>
+          <option name="timeStamp" value="374" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/vrptw2.cpp</url>
+          <line>243</line>
+          <option name="timeStamp" value="375" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="361" />
+      <option name="time" value="376" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="CMakeRunConfiguration">
@@ -723,48 +746,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/cap104">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/cap102">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/capa1">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/capa3">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/capb2">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/capc4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/cfl/Beasley/capc3">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1034,26 +1015,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_100/C101.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1995">
-          <caret line="105" column="36" lean-forward="false" selection-start-line="105" selection-start-column="36" selection-end-line="105" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_100/C103.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
           <caret line="68" column="21" lean-forward="false" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xbcutstk.cxx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="907">
-          <caret line="137" column="86" lean-forward="false" selection-start-line="135" selection-start-column="12" selection-end-line="137" selection-end-column="86" />
           <folding />
         </state>
       </provider>
@@ -1082,17 +1047,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vrptw.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="928">
-          <caret line="1221" column="20" lean-forward="false" selection-start-line="1221" selection-start-column="20" selection-end-line="1221" selection-end-column="20" />
-          <folding>
-            <element signature="e#64#81#0" expanded="true" />
-            <element signature="e#2676#2716#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
@@ -1101,10 +1055,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_2_5.TXT">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3265">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_8_8.TXT">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6042">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_6_9.TXT">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6156">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_4_9.TXT">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5871">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/C1_2_8.TXT">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-732">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/solomon_100/C101.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="76" column="71" lean-forward="true" selection-start-line="76" selection-start-column="71" selection-end-line="76" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/vrptw/s-cvrptw/RC110_1.TXT">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15105">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vrptw.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="912" column="4" lean-forward="true" selection-start-line="912" selection-start-column="4" selection-end-line="914" selection-end-column="5" />
+          <folding>
+            <element signature="e#64#81#0" expanded="true" />
+            <element signature="e#2676#2716#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xbcutstk.cxx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="719">
+          <caret line="137" column="86" lean-forward="false" selection-start-line="135" selection-start-column="12" selection-end-line="137" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/vrptw2.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-229">
-          <caret line="1077" column="88" lean-forward="false" selection-start-line="1077" selection-start-column="88" selection-end-line="1077" selection-end-column="88" />
+        <state relative-caret-position="94">
+          <caret line="222" column="36" lean-forward="false" selection-start-line="222" selection-start-column="36" selection-end-line="222" selection-end-column="36" />
           <folding>
             <element signature="e#64#81#0" expanded="true" />
           </folding>
