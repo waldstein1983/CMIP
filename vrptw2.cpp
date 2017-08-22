@@ -1075,7 +1075,8 @@ int main() {
             system_clock::now().time_since_epoch()
     );
 
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/solomon_25/C101.txt";
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/solomon_100/C101.txt";
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/s-cvrptw/C1_2_1.TXT";
     readFromFile(fileName);
     initArcs();
     initModel();
@@ -1087,8 +1088,6 @@ int main() {
     buildPathByHeuristic(newPaths);
 
 
-
-
     buildMathModel(newPaths);
 
     for(auto &path : newPaths){
@@ -1098,14 +1097,16 @@ int main() {
     newPaths.clear();
 
 
-
-
     int step = 1;
     while (step < 10000) {
 
 
         vector<Node *> blockNodes;
         Path *minReducePath = shortestPathWithoutCycle(&virtualSource, false);
+//        if(!checkVehicleTimeWindow(minReducePath)){
+//            cout << "Min Reduced Cost Path violates time window" << endl;
+//            break;
+//        }
         if(minReducePath == nullptr)
             break;
 //    Path *minReducePath = shortestPath(&virtualSource, true, blockNodes);

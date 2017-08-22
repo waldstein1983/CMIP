@@ -1172,7 +1172,7 @@ int main() {
     milliseconds start = duration_cast<milliseconds>(
             system_clock::now().time_since_epoch()
     );
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/solomon_25/C101.txt";
+    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/solomon_50/C101.txt";
     readFromFile(fileName);
     initArcs();
 
@@ -1215,31 +1215,6 @@ int main() {
         }
         cout << pathToString(path) << endl;
     }
-
-//    int step = 1;
-//    while (step < 10) {
-//        for (auto &node : nodes) {
-//            unhandledTasks.push_back(&node.second);
-//        }
-//        buildPathBasedOnUnhandledTasks();
-//        buildMathModel();
-//        step++;
-//    }
-
-
-//    findMinReducedCostPath();
-//
-//
-//    for (auto &path : pathSet) {
-//        string content;
-//        for (auto &node : path->content) {
-//            content = content + " -> ";
-//            content = content + to_string(node->id);
-//        }
-//        cout << content << endl;
-//    }
-
-//    buildMathModel2();
 
     for (auto it = pathSet.begin(); it != pathSet.end(); ++it) {
         delete *it;
