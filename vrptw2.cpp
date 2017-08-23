@@ -936,7 +936,16 @@ RemovingNode *findMaxDetourNode(vector<Path *> &paths) {
     return maxDetourNode;
 }
 
-void neighborSearch(vector<Path *> &paths) {
+void randomRemovingSearch(vector<Path *> &paths, int removingSize){
+    vector<Node*> removingNodes;
+    for(auto &path : paths){
+        for(auto &node : path->content){
+
+        }
+    }
+}
+
+void maxDetourRemovingSearch(vector<Path *> &paths) {
     for (int i = 0; i < 30; i++) {
         double totalCost = 0;
         for (auto &path : paths) {
@@ -1088,12 +1097,13 @@ buildPath(vector<Path *> &newPaths, bool considerDetourDistance, bool considerTi
     newPaths.push_back(path);
 }
 
-void buildPathByHeuristic(vector<Path *> &newPaths) {
+void buildPathByHeuristic(vector<Path *> &newPaths,bool considerDetourDistance, bool considerTimeWindowWidth, bool considerNodeCost,
+                          bool considerDistanceFromDepot) {
     for (auto &node : nodes) {
         unhandledTasks.push_back(&node.second);
     }
     while (!unhandledTasks.empty()) {
-        buildPath(newPaths, true, false, true, false);
+        buildPath(newPaths, considerDetourDistance, considerTimeWindowWidth, considerNodeCost, considerDistanceFromDepot);
     }
 }
 
@@ -1298,7 +1308,7 @@ int main() {
 
 //    buildPathByHeuristic(newPaths);
 
-    buildPathByHeuristic(newPaths);
+    buildPathByHeuristic(newPaths, true, true, true, true);
 
 
 
@@ -1313,9 +1323,9 @@ int main() {
 
     buildMathModel(newPaths);
 
-    neighborSearch(solution);
+    maxDetourRemovingSearch(solution);
 
-    double solutionCost = computeSolutionCost(solution);
+//    double solutionCost = computeSolutionCost(solution);
 
 //    for(auto &path : solution){
 //        cout << pathToString(path) <<  "   cost " << path->cost << endl;
@@ -1377,9 +1387,9 @@ int main() {
 
         buildMathModel(newPaths);
 
-        neighborSearch(solution);
+        maxDetourRemovingSearch(solution);
 
-        solutionCost = computeSolutionCost(solution);
+//        solutionCost = computeSolutionCost(solution);
 
         for (auto &path : newPaths) {
             pathSet.push_back(path);

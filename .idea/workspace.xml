@@ -12,7 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ea50ad4d-f4f6-4024-a791-6f9b9610ddd8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vrptw2.cpp" afterPath="$PROJECT_DIR$/vrptw2.cpp" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -54,8 +53,8 @@
       <file leaf-file-name="vrptw2.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vrptw2.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-166">
-              <caret line="281" column="4" lean-forward="false" selection-start-line="281" selection-start-column="4" selection-end-line="281" selection-end-column="4" />
+            <state relative-caret-position="632">
+              <caret line="1392" column="0" lean-forward="true" selection-start-line="1392" selection-start-column="0" selection-end-line="1392" selection-end-column="0" />
               <folding>
                 <element signature="e#64#81#0" expanded="true" />
               </folding>
@@ -481,12 +480,12 @@
       <workItem from="1502076306873" duration="78975000" />
       <workItem from="1502851931813" duration="38082000" />
       <workItem from="1503046572703" duration="2500000" />
-      <workItem from="1503277245005" duration="58190000" />
+      <workItem from="1503277245005" duration="60984000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="390292000" />
+    <option name="totallyTimeSpent" value="393086000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -644,33 +643,33 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/vrptw2.cpp</url>
-          <line>1310</line>
+          <line>1320</line>
           <option name="timeStamp" value="383" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/vrptw2.cpp</url>
-          <line>1313</line>
+          <line>1323</line>
           <option name="timeStamp" value="386" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/vrptw2.cpp</url>
-          <line>1329</line>
+          <line>1339</line>
           <option name="timeStamp" value="392" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <condition expression="step == 58" language="ObjectiveC" />
           <url>file://$PROJECT_DIR$/vrptw2.cpp</url>
-          <line>1334</line>
+          <line>1344</line>
           <option name="timeStamp" value="396" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/vrptw2.cpp</url>
-          <line>1377</line>
+          <line>1387</line>
           <option name="timeStamp" value="399" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/vrptw2.cpp</url>
-          <line>1197</line>
+          <line>1207</line>
           <option name="timeStamp" value="400" />
         </line-breakpoint>
       </breakpoints>
@@ -1069,8 +1068,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vrptw2.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-166">
-          <caret line="281" column="4" lean-forward="false" selection-start-line="281" selection-start-column="4" selection-end-line="281" selection-end-column="4" />
+        <state relative-caret-position="632">
+          <caret line="1392" column="0" lean-forward="true" selection-start-line="1392" selection-start-column="0" selection-end-line="1392" selection-end-column="0" />
           <folding>
             <element signature="e#64#81#0" expanded="true" />
           </folding>
