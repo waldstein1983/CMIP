@@ -21,21 +21,7 @@ using namespace std::chrono;
 
 double ub = MAX;
 
-struct BranchingConstraint {
-    string name;
-//    int branchingId;
-    Path *branchingPath;
-    int ctrType;
-    int bound;
-};
 
-
-struct BranchingConstraintSet {
-//    XPRBbasis basis;
-    vector<BranchingConstraint> branchingCons;
-};
-
-vector<BranchingConstraintSet> branchingNodes;
 
 struct Node {
     int id;
@@ -120,6 +106,22 @@ vector<Path *> pathSet;
 vector<Path *> solution;
 vector<Label *> NPS;
 
+
+struct BranchingConstraint {
+    string name;
+//    int branchingId;
+    Path *branchingPath;
+    int ctrType;
+    int bound;
+};
+
+
+struct BranchingConstraintSet {
+//    XPRBbasis basis;
+    vector<BranchingConstraint> branchingCons;
+};
+
+vector<BranchingConstraintSet> branchingNodes;
 //vector<Vehicle> vehicles;
 
 const int capacity = 200;
@@ -1255,9 +1257,11 @@ double buildMathModel(vector<Path *> &newPaths, BranchingConstraintSet &target, 
 
     solution.clear();
     for (auto &var : x) {
-        if (abs(XPRBgetsol(var.second) - 1) <= 0.00001) {
+        if (abs(XPRBgetsol(var.second) - 0) > INT_GAP) {
             solution.push_back(var.first);
         }
+
+
 //        cout << XPRBgetvarname(var.second) << "     " << XPRBgetsol(var.second) << "    " << pathToString(var.first) <<  "   cost " << var.first->cost << endl;
 //
     }
@@ -1475,7 +1479,7 @@ void pricing(BranchingConstraintSet &target) {
             buildPath(newPaths, true, true, false, true);
         }
 
-        buildMathModel(newPaths, target, basis);
+        totalDualOfBranchingConstraints = buildMathModel(newPaths, target, basis);
 
         maxDetourRemovingSearch(solution);
 
@@ -1560,13 +1564,13 @@ void branchAndPrice() {
 //        }
 
 
-        if (XPRBgetlpstat(model) == XPRB_LP_OPTIMAL) {
-            if (XPRBgetobjval(model) < ub && abs(XPRBgetobjval(model) - ub) >= INT_GAP) {
-//                bendersDecomposition(useOptimalityCutInBendersDecomposition, useDualSimplexInBendersDecomposition,
-//                                     useRoundingHeuristicInBendersDecomposition);
-                branching(target);
-            }
-        }
+//        if (XPRBgetlpstat(model) == XPRB_LP_OPTIMAL) {
+//            if (XPRBgetobjval(model) < ub && abs(XPRBgetobjval(model) - ub) >= INT_GAP) {
+////                bendersDecomposition(useOptimalityCutInBendersDecomposition, useDualSimplexInBendersDecomposition,
+////                                     useRoundingHeuristicInBendersDecomposition);
+//                branching(target);
+//            }
+//        }
 
 
 //        step++;
