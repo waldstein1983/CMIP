@@ -16,7 +16,6 @@
 #include <chrono>
 
 
-
 using namespace std;
 using namespace std::chrono;
 
@@ -233,7 +232,7 @@ bool isPathExisting(Path *p) {
     return false;
 }
 
-Path *shortestPath(Node *source, bool includeCyclePath) {
+Path *shortestPath(Node *source, bool includeCyclePath, double constant) {
     auto *sourceLabel = new Label(source, nullptr, 0, 0, 0);
     nodeLabels[source].push_back(sourceLabel);
     NPS.push_back(sourceLabel);
@@ -335,7 +334,7 @@ Path *shortestPath(Node *source, bool includeCyclePath) {
         if (node.first->id != targetNodeId)
             continue;
         for (auto &label : node.second) {
-            if (label->cost >= 0)
+            if (label->cost - constant >= 0)
                 continue;
 
             vector<Node *> content;
@@ -1116,7 +1115,8 @@ XPRBprob model = XPRBnewprob("vrptw");
 map<Path *, XPRBvar> x;
 map<Node *, XPRBctr> ctrs;
 XPRBctr obj;
-XPRBbasis basis;
+
+//double totalDualOfBranchingConstraints;
 
 void initModel() {
     obj = XPRBnewctr(model, "Obj", XPRB_N);
@@ -1124,7 +1124,87 @@ void initModel() {
     XPRBsetsense(model, XPRB_MINIM);
 }
 
-void buildMathModel(vector<Path *> &newPaths) {
+//void buildMathModel(vector<Path *> &newPaths) {
+////    XPRBbasis basis;
+//
+//    if (x.size() != 0) {
+//        XPRBloadmat(model);
+//        XPRBloadbasis(basis);
+//        basis = nullptr;
+//    }
+//
+//    for (int i = 0; i < newPaths.size(); i++) {
+//        x[newPaths[i]] = XPRBnewvar(model, XPRB_PL, XPRBnewname("x_%d", pathSet.size() + i), 0, 1);
+//    }
+//
+//    for (auto &path : pathSet) {
+//        XPRBsetterm(obj, x[path], path->cost);
+//    }
+//
+//    for (auto &path : newPaths) {
+//        XPRBaddterm(obj, x[path], path->cost);
+//    }
+//
+//    XPRBsetobj(model, obj);
+////    XPRBprintctr(obj);
+//
+//
+//    for (auto &node : nodes) {
+////        if()
+//        if (ctrs.count(&node.second) == 0) {
+//            XPRBctr fulfill = XPRBnewctr(model, "Demand Fulfillment Once", XPRB_E);
+//            for (auto &path : newPaths) {
+//
+//                if (find(path->content.begin(), path->content.end(), &(node.second)) != path->content.end()) {
+//                    XPRBaddterm(fulfill, x[path], 1);
+//                }
+//            }
+//            XPRBaddterm(fulfill, nullptr, 1);
+//            ctrs[&node.second] = fulfill;
+//        } else {
+//            for (auto &path : newPaths) {
+//
+//                if (find(path->content.begin(), path->content.end(), &(node.second)) != path->content.end()) {
+//                    XPRBaddterm(ctrs[&(node.second)], x[path], 1);
+//                }
+//            }
+//        }
+//    }
+//
+////    cout << "Solve Math Model.... " << endl;
+//    XPRBsetmsglevel(model, 1);
+//    XPRBlpoptimise(model, "");
+//
+//    basis = XPRBsavebasis(model);
+//
+//    solution.clear();
+//    for (auto &var : x) {
+//        if (abs(XPRBgetsol(var.second) - 1) <= 0.00001) {
+//            solution.push_back(var.first);
+//        }
+////        cout << XPRBgetvarname(var.second) << "     " << XPRBgetsol(var.second) << "    " << pathToString(var.first) <<  "   cost " << var.first->cost << endl;
+////
+//    }
+//
+//    cout << "Optimal Cost " << XPRBgetobjval(model) << endl;
+//
+////    for(auto &arc : arcs){
+////        if(arc->target == &virtualTarget)
+////            continue;
+////        arc->originalCost = arc->cost;
+////        arc->cost = arc->cost - (int) XPRBgetdual(ctrs[(arc->target)]);
+////    }
+//
+//
+//
+//    for (auto &node : nodes) {
+//        node.second.cost = 0;
+//        node.second.cost = -XPRBgetdual(ctrs[&node.second]);
+//    }
+//}
+
+double buildMathModel(vector<Path *> &newPaths, BranchingConstraintSet &target, XPRBbasis &basis) {
+//    XPRBbasis basis;
 
     if (x.size() != 0) {
         XPRBloadmat(model);
@@ -1147,9 +1227,7 @@ void buildMathModel(vector<Path *> &newPaths) {
     XPRBsetobj(model, obj);
 //    XPRBprintctr(obj);
 
-
     for (auto &node : nodes) {
-//        if()
         if (ctrs.count(&node.second) == 0) {
             XPRBctr fulfill = XPRBnewctr(model, "Demand Fulfillment Once", XPRB_E);
             for (auto &path : newPaths) {
@@ -1170,7 +1248,6 @@ void buildMathModel(vector<Path *> &newPaths) {
         }
     }
 
-//    cout << "Solve Math Model.... " << endl;
     XPRBsetmsglevel(model, 1);
     XPRBlpoptimise(model, "");
 
@@ -1194,11 +1271,21 @@ void buildMathModel(vector<Path *> &newPaths) {
 //        arc->cost = arc->cost - (int) XPRBgetdual(ctrs[(arc->target)]);
 //    }
 
+    double totalDualOfBranchingConstraints = 0;
+    for (auto &branching : target.branchingCons) {
+        auto branchingCtr = (XPRBctr) XPRBgetbyname(model, branching.name.c_str(), XPRB_CTR);
+        totalDualOfBranchingConstraints += XPRBgetdual(branchingCtr);
+
+//        XPRBdelctr(branchingCtr);
+    }
+//    for()
+
     for (auto &node : nodes) {
         node.second.cost = 0;
-
         node.second.cost = -XPRBgetdual(ctrs[&node.second]);
     }
+
+    return totalDualOfBranchingConstraints;
 }
 
 void buildSimplePath(vector<Path *> &newPaths) {
@@ -1247,19 +1334,6 @@ bool pathInclude(Path *path1, Path *path2) {
     }
 }
 
-//void removePositiveReducedCostPaths() {
-//    for (auto it = pathSet.begin(); it != pathSet.end();) {
-//
-////        if (computePathReducedCost(*it) >= 0 && (*it)->content.size() != 1) {
-////            it = pathSet.erase(it);
-////        } else {
-////            ++it;
-////        }
-//    }
-//}
-
-//void buildPathBasedOnMinReducedCostPath()
-
 double computeSolutionCost(vector<Path *> &paths) {
     double totalCost = 0;
     for (auto &path : paths) {
@@ -1269,10 +1343,6 @@ double computeSolutionCost(vector<Path *> &paths) {
     return totalCost;
 }
 
-void solveRelaxModel() {
-
-
-}
 
 bool isSolutionInteger(vector<Path *> &paths) {
     for (auto &var : x) {
@@ -1285,8 +1355,7 @@ bool isSolutionInteger(vector<Path *> &paths) {
 }
 
 
-
-void buildBranchingConstraintSet(BranchingConstraintSet &targetSet, Path* path, int ctrType) {
+void buildBranchingConstraintSet(BranchingConstraintSet &targetSet, Path *path, int ctrType) {
     BranchingConstraintSet branchingSet = {{}};
 //    branchingSet.basis = XPRBsavebasis(masterSolver);
     for (auto &ctr : targetSet.branchingCons) {
@@ -1315,7 +1384,7 @@ void buildBranchingConstraintSet(BranchingConstraintSet &targetSet, Path* path, 
 }
 
 void branching(BranchingConstraintSet &set) {
-    Path* targetBranchingPath = nullptr;
+    Path *targetBranchingPath = nullptr;
     double gapToHalf = MAX;
     for (auto &var : x) {
         if (abs(XPRBgetsol(var.second) - round(XPRBgetsol(var.second))) <= INT_GAP) {
@@ -1336,13 +1405,28 @@ void branching(BranchingConstraintSet &set) {
     buildBranchingConstraintSet(set, targetBranchingPath, 1);
 }
 
-void pricing() {
+void pricing(BranchingConstraintSet &target) {
     vector<Path *> newPaths;
-
     buildPathByHeuristic(newPaths, true, true, true, true);
 
     buildSimplePath(newPaths);
-    buildMathModel(newPaths);
+
+    for (auto &branching : target.branchingCons) {
+        if (branching.ctrType == 0) {
+            XPRBctr ctr = XPRBnewctr(model, branching.name.c_str(), XPRB_L);
+            XPRBaddterm(ctr, x[branching.branchingPath], 1);
+            XPRBaddterm(ctr, nullptr, branching.bound);
+
+        } else if (branching.ctrType == 1) {
+            XPRBctr ctr = XPRBnewctr(model, branching.name.c_str(), XPRB_G);
+            XPRBaddterm(ctr, x[branching.branchingPath], 1);
+            XPRBaddterm(ctr, nullptr, branching.bound);
+        }
+    }
+
+    XPRBbasis basis;
+
+    double totalDualOfBranchingConstraints = buildMathModel(newPaths, target, basis);
 
     maxDetourRemovingSearch(solution);
 
@@ -1353,14 +1437,26 @@ void pricing() {
     newPaths.clear();
 
     if (!isSolutionInteger(solution)) {
-        BranchingConstraintSet target = {{}};
-        branching(target);
+        for (auto &branching : target.branchingCons) {
+            auto branchingCtr = (XPRBctr) XPRBgetbyname(model, branching.name.c_str(), XPRB_CTR);
+            XPRBdelctr(branchingCtr);
+        }
+
+
+        if (XPRBgetlpstat(model) == XPRB_LP_OPTIMAL) {
+            if (XPRBgetobjval(model) < ub && abs(XPRBgetobjval(model) - ub) >= INT_GAP) {
+                branching(target);
+            }
+        }
+
+//        BranchingConstraintSet target = {{}};
+//        branching(target);
         return;
     }
 
     int step = 1;
     while (step < 10000) {
-        Path *minReducePath = shortestPath(&virtualSource, false);
+        Path *minReducePath = shortestPath(&virtualSource, false, totalDualOfBranchingConstraints);
         if (minReducePath == nullptr)
             break;
         computePathCost(minReducePath);
@@ -1379,7 +1475,7 @@ void pricing() {
             buildPath(newPaths, true, true, false, true);
         }
 
-        buildMathModel(newPaths);
+        buildMathModel(newPaths, target, basis);
 
         maxDetourRemovingSearch(solution);
 
@@ -1390,8 +1486,18 @@ void pricing() {
         newPaths.clear();
 
         if (!isSolutionInteger(solution)) {
-            BranchingConstraintSet target = {{}};
-            branching(target);
+
+            for (auto &branching : target.branchingCons) {
+                auto branchingCtr = (XPRBctr) XPRBgetbyname(model, branching.name.c_str(), XPRB_CTR);
+                XPRBdelctr(branchingCtr);
+            }
+
+            if (XPRBgetlpstat(model) == XPRB_LP_OPTIMAL) {
+                if (XPRBgetobjval(model) < ub && abs(XPRBgetobjval(model) - ub) >= INT_GAP) {
+                    branching(target);
+                }
+            }
+
             break;
         }
 
@@ -1406,7 +1512,9 @@ void branchAndPrice() {
     initArcs();
     initModel();
 
-    pricing();
+    BranchingConstraintSet target = {{}};
+
+    pricing(target);
 
 
     while (!branchingNodes.empty()) {
@@ -1422,23 +1530,24 @@ void branchAndPrice() {
 //            cout << "Terminate due to time limit of 3600 sec" << endl;
 //            break;
 //        }
-        BranchingConstraintSet target = branchingNodes[0];
+        target = branchingNodes[0];
         branchingNodes.erase(branchingNodes.begin());
 
-        for (auto &branching : target.branchingCons) {
-            if (branching.ctrType == 0) {
-                XPRBctr ctr = XPRBnewctr(model, branching.name.c_str(), XPRB_L);
-                XPRBaddterm(ctr, x[branching.branchingPath], 1);
-                XPRBaddterm(ctr, nullptr, branching.bound);
+//        for (auto &branching : target.branchingCons) {
+//            if (branching.ctrType == 0) {
+//                XPRBctr ctr = XPRBnewctr(model, branching.name.c_str(), XPRB_L);
+//                XPRBaddterm(ctr, x[branching.branchingPath], 1);
+//                XPRBaddterm(ctr, nullptr, branching.bound);
+//
+//            } else if (branching.ctrType == 1) {
+//                XPRBctr ctr = XPRBnewctr(model, branching.name.c_str(), XPRB_G);
+//                XPRBaddterm(ctr, x[branching.branchingPath], 1);
+//                XPRBaddterm(ctr, nullptr, branching.bound);
+//            }
+//        }
 
-            } else if (branching.ctrType == 1) {
-                XPRBctr ctr = XPRBnewctr(model, branching.name.c_str(), XPRB_G);
-                XPRBaddterm(ctr, x[branching.branchingPath], 1);
-                XPRBaddterm(ctr, nullptr, branching.bound);
-            }
-        }
-
-        XPRBlpoptimise(model, "");
+        pricing(target);
+//        XPRBlpoptimise(model, "");
 
 //        if (useDualSimplexInBranch) {
 //            XPRBloadmat(masterSolver);
@@ -1459,10 +1568,7 @@ void branchAndPrice() {
             }
         }
 
-        for (auto &branching : target.branchingCons) {
-            auto branchingCtr = (XPRBctr) XPRBgetbyname(model, branching.name.c_str(), XPRB_CTR);
-            XPRBdelctr(branchingCtr);
-        }
+
 //        step++;
     }
 
@@ -1471,112 +1577,115 @@ void branchAndPrice() {
 
 
 int main() {
-
     milliseconds start = duration_cast<milliseconds>(
             system_clock::now().time_since_epoch()
     );
 
-    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/solomon_100/C103.txt";
-//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/s-cvrptw/C1_2_1.TXT";
-    readFromFile(fileName);
-    initArcs();
-    initModel();
-
-    vector<Path *> newPaths;
-
-//    buildPathByHeuristic(newPaths);
-
-    buildPathByHeuristic(newPaths, true, true, true, true);
+    branchAndPrice();
 
 
-
-//    double totalCost = 0;
+//
+//    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/solomon_100/C103.txt";
+////    string fileName = "/home/local/ANT/baohuaw/CLionProjects/CMIP/data/vrptw/s-cvrptw/C1_2_1.TXT";
+//    readFromFile(fileName);
+//    initArcs();
+//    initModel();
+//
+//    vector<Path *> newPaths;
+//
+////    buildPathByHeuristic(newPaths);
+//
+//    buildPathByHeuristic(newPaths, true, true, true, true);
+//
+//
+//
+////    double totalCost = 0;
+////    for (auto &path : newPaths) {
+////        computePathCost(path);
+////        totalCost += path->cost;
+////    }
+//
+//    buildSimplePath(newPaths);
+//
+//
+//    buildMathModel(newPaths);
+//
+//    maxDetourRemovingSearch(solution);
+//
+////    double solutionCost = computeSolutionCost(solution);
+//
+////    for(auto &path : solution){
+////        cout << pathToString(path) <<  "   cost " << path->cost << endl;
+////    }
 //    for (auto &path : newPaths) {
-//        computePathCost(path);
-//        totalCost += path->cost;
+//        pathSet.push_back(path);
 //    }
-
-    buildSimplePath(newPaths);
-
-
-    buildMathModel(newPaths);
-
-    maxDetourRemovingSearch(solution);
-
-//    double solutionCost = computeSolutionCost(solution);
-
-//    for(auto &path : solution){
-//        cout << pathToString(path) <<  "   cost " << path->cost << endl;
-//    }
-    for (auto &path : newPaths) {
-        pathSet.push_back(path);
-    }
-
-    newPaths.clear();
-
-
-    int step = 1;
-    while (step < 10000) {
-
-
-//        vector<Node *> blockNodes;
-        Path *minReducePath = shortestPath(&virtualSource, false);
-//        if(!checkVehicleTimeWindow(minReducePath)){
-//            cout << "Min Reduced Cost Path violates time window" << endl;
+//
+//    newPaths.clear();
+//
+//
+//    int step = 1;
+//    while (step < 10000) {
+//
+//
+////        vector<Node *> blockNodes;
+//        Path *minReducePath = shortestPath(&virtualSource, false);
+////        if(!checkVehicleTimeWindow(minReducePath)){
+////            cout << "Min Reduced Cost Path violates time window" << endl;
+////            break;
+////        }
+//        if (minReducePath == nullptr)
 //            break;
+////    Path *minReducePath = shortestPath(&virtualSource, true, blockNodes);
+//        computePathCost(minReducePath);
+//        cout << "Step " << step << " , " << pathToString(minReducePath) << " , reduced cost "
+//             << computePathReducedCost(minReducePath) << "  , numOfPath " << pathSet.size() << endl;
+//
+////        vector<Path*> newPaths;
+//        newPaths.push_back(minReducePath);
+//
+//
+//        unhandledTasks.clear();
+//        for (auto &node : nodes) {
+//            if (find(minReducePath->content.begin(), minReducePath->content.end(), &node.second) ==
+//                minReducePath->content.end()) {
+//                unhandledTasks.push_back(&node.second);
+//            }
 //        }
-        if (minReducePath == nullptr)
-            break;
-//    Path *minReducePath = shortestPath(&virtualSource, true, blockNodes);
-        computePathCost(minReducePath);
-        cout << "Step " << step << " , " << pathToString(minReducePath) << " , reduced cost "
-             << computePathReducedCost(minReducePath) << "  , numOfPath " << pathSet.size() << endl;
-
-//        vector<Path*> newPaths;
-        newPaths.push_back(minReducePath);
-
-
-        unhandledTasks.clear();
-        for (auto &node : nodes) {
-            if (find(minReducePath->content.begin(), minReducePath->content.end(), &node.second) ==
-                minReducePath->content.end()) {
-                unhandledTasks.push_back(&node.second);
-            }
-        }
-        while (!unhandledTasks.empty()) {
-            buildPath(newPaths, true, true, false, true);
-        }
-
-//        vector<Path *> heuristicPaths;
+//        while (!unhandledTasks.empty()) {
+//            buildPath(newPaths, true, true, false, true);
+//        }
+//
+////        vector<Path *> heuristicPaths;
+//////
+////        buildPathByHeuristic(heuristicPaths);
+////        neighborSearch(heuristicPaths);
 ////
-//        buildPathByHeuristic(heuristicPaths);
-//        neighborSearch(heuristicPaths);
+////        double totalCost = 0;
+////        for (auto &path : heuristicPaths) {
+////            computePathCost(path);
+////            totalCost += path->cost;
+////        }
 //
-//        double totalCost = 0;
-//        for (auto &path : heuristicPaths) {
-//            computePathCost(path);
-//            totalCost += path->cost;
-//        }
-
-//        for (auto &path : heuristicPaths) {
-//            newPaths.push_back(path);
-//        }
-
-
-        buildMathModel(newPaths);
-
-        maxDetourRemovingSearch(solution);
-
-//        solutionCost = computeSolutionCost(solution);
-
-        for (auto &path : newPaths) {
-            pathSet.push_back(path);
-        }
+////        for (auto &path : heuristicPaths) {
+////            newPaths.push_back(path);
+////        }
 //
-        newPaths.clear();
-
-        step++;
-    }
+//
+//        buildMathModel(newPaths);
+//
+//        maxDetourRemovingSearch(solution);
+//
+////        solutionCost = computeSolutionCost(solution);
+//
+//        for (auto &path : newPaths) {
+//            pathSet.push_back(path);
+//        }
+////
+//        newPaths.clear();
+//
+//        step++;
+//    }
 
     cout << "Optimal Solution" << endl;
     for (auto &path : solution) {
